@@ -1,23 +1,54 @@
-# Creating a contact list with React Native
+# Enochian
+
+![Prophet Enoch](https://github.com/carllosaguiar/enochian/blob/main/public/images/enoch.jpg?raw=true)
 
 ## TOC
 
 [Apresentação](#apresentação)   
-[Telas implementadas](#telas-implementadas)     
 [Requisitos](#requisitos)
+[Rodando o projeto](#rodando-o-projeto)     
+[Como usar Enochian](#como-usar-enochian)
 
 ### Apresentação
-
-Essa é uma aplicação em [React Native](https://reactnative.dev/docs/getting-started/) que demonstrará de forma prática como reenderizar uma lista de contatos telefônicos requisitados em uma API, como scrollar percorrendo a lista de contatos e, se desejado, acessas seus detalhes.
-
-### Telas implementadas
-
-![Prophet Enoch](https://github.com/carllosaguiar/enochian/blob/master/public/images/Enoch.jpg?raw=true)
-
+Enochian é uma Aplicação Web voltada para o estudo do esoterísmo do Tarot :mage_man: e da Cabala :star_of_david:.
+Com Enochian será possível ter seu Perfil e ter todos os cálculos da Cabala Pessoal em um único ambiente.
 
 ### Requisitos
-- Em um diretório de sua escolha, faça um :arrow_down: `pull` no projeto.
-- Dentro da Raíz do projeto execute `npm install` para que o *npm* possa ler o package.json do projeto e :heavy_plus_sign: instale todas as dependências necessárias para que o projeto possa funcionar.
-- Por fim, execute `npm start` para que então esse linha `"start": "expo start"` chame a execução do **expo**.
+Para continuar, você deve ter instalados em sua máquina:    
+
+- Gerenciador de pacotes do php [Composer](#https://getcomposer.org/download/)  
+- Gerenciador de pacotes do Node [Yarn](#https://yarnpkg.com/getting-started/install)
+- Banco de dados MySql [MySql](#https://dev.mysql.com/downloads/mysql/)
+>Nota: Escolha sua distribuição linux e realize a instalação seguindo os passos da documentação oficial.
+
+### Rodando o projeto
+Para rodar o projeto em seu Ambiente Local, basta seguir os seguintes passos:
+
+-  :arrow_right: Faça download do repositório para sua máquina local
+-   Dentro do diretório do projeto `enochian/` :arrow_down::
+
+step:1
+```
+    $ composer install
+```
+
+setp:2
+```
+    $ yarn install
+```
+
+setp:3
+```
+    $ symfony server:start
+```
+
+setp:4
+```
+    $ yarn encore dev-server
+```
+
+### Como usar Enochian
+Enochian é uma aplicação que usa uma base de conhecimento específica para ser consultada de maneira correta.
+Para isso, preparamos uma [Documentação](#link-da-doc) :writing_hand: para você dar os primeiros passos.  
 
 Fim :rocket:
