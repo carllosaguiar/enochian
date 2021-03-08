@@ -5,7 +5,7 @@
 ## TOC
 
 [Apresentação](#apresentação)   
-[Por que Enochian?](porque-enochian?)   
+[Por que Enochian?](por-que-enochian?)   
 [Requisitos](#requisitos)   
 [Rodando o projeto](#rodando-o-projeto)     
 [Como usar Enochian](#como-usar-enochian)
