@@ -5,7 +5,7 @@
 ## TOC
 
 [Apresentação](#apresentação)   
-[Por que Enochian?](por-que-enochian?)   
+[Por que Enochian?](#por-que-enochian?)   
 [Requisitos](#requisitos)   
 [Rodando o projeto](#rodando-o-projeto)     
 [Como usar Enochian](#como-usar-enochian)
@@ -55,6 +55,6 @@ setp:4
 
 ### Como usar Enochian
 Enochian é uma aplicação que usa uma base de conhecimento específica para ser consultada de maneira correta.
-Para isso, preparamos uma [Documentação](#https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ) :writing_hand: para você dar os primeiros passos.  
+Para isso, preparamos uma [Documentação](https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ) :writing_hand: para você dar os primeiros passos.  
 
 Fim :rocket:
