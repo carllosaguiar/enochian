@@ -1,0 +1,65 @@
+body {
+    background-color: whitesmoke;
+}
+
+/*Container da página principal*/
+.main-container{
+    display: flex;
+    margin-top: 60px;
+}
+
+/*Default class bootstrap*/
+
+.card{
+    margin: 4px;
+}
+
+/*Container da página dos arcanos maiores do tarot*/
+.card-container{
+    display: flex;
+}
+
+.main-title{
+    flex-direction: row;
+    text-align: center;
+    padding-top: 30px;
+    margin: 20px;
+}
+
+.card-items{
+    display: flex;
+    margin: auto;
+    width: 76%;
+    flex-direction: row;
+    flex-shrink: 3;
+}
+
+/*Multilinhas, a direção é definida por flex-direction.*/
+.wrap{
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+/*Default*/
+.nowrap  {
+    -webkit-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+}
+
+/*Classe principal para a div de login*/
+.login-container{
+    display: flex;
+}
+
+/*Definições para os itens do formulário*/
+.form-login{
+    align-content: center;
+}
+
+
+.arcanos-maiores {
+    display: inline-block;
+    margin: 20px;
+    animation: backInUp; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; /* don't forget to set a duration! */
+}
