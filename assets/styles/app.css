@@ -1,11 +1,12 @@
 body {
-    background-color: whitesmoke;
+    padding: 60px 0px;
+    margin: 0;
 }
 
 /*Container da página principal*/
 .main-container{
     display: flex;
-    margin-top: 60px;
+    padding-top: 30px;
 }
 
 /*Default class bootstrap*/
@@ -22,14 +23,13 @@ body {
 .main-title{
     flex-direction: row;
     text-align: center;
-    padding-top: 30px;
     margin: 20px;
 }
 
 .card-items{
     display: flex;
     margin: auto;
-    width: 76%;
+    max-width: 900px;
     flex-direction: row;
     flex-shrink: 3;
 }
@@ -49,13 +49,8 @@ body {
 /*Classe principal para a div de login*/
 .login-container{
     display: flex;
+    padding-top: 40px;
 }
-
-/*Definições para os itens do formulário*/
-.form-login{
-    align-content: center;
-}
-
 
 .arcanos-maiores {
     display: inline-block;
