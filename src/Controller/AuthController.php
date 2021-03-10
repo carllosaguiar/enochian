@@ -2,15 +2,24 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Security\User;
 
 class AuthController extends AbstractController
 {
+
+    private $dao;
+
+    public function __construct()
+    {
+
+    }
     /**
-     * @Route("/auth", name="login")
+     * @Route("/auth", name="form_login")
+     * @return Response
      */
     public function login(): Response
     {
@@ -18,20 +27,28 @@ class AuthController extends AbstractController
     }
 
     /**
-     * @Route("/auth", name="register")
+     * @Route("/auth/access", name="access")
      * @param Request $request
      * @return Response
      */
-    public function register(Request $request): Response
+    public function tryAccess(Request $request): Response
     {
-        return $this->render('auth/register.html.twig');
+        $user = new User();
+        $user->setEmail($request->get('username'));
+        $user->setPassword($request->get('password'));
+
+        return $this->render('auth/register.html.twig', [
+            'usuario' => $user->getEmail(),
+            'senha' => $user->getPassword()
+        ]);
     }
 
     /**
-     * @Route("/auth", name="recovery")
+     * @Route("/auth/register", name="form-register")
+     * @return Response
      */
-    public function recovery()
+    public function register(): Response
     {
-        return $this->render('auth/recovery.html.twig');
+        return $this->render('auth/register.html.twig');
     }
 }

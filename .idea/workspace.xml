@@ -2,10 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46f1b066-2738-43be-a6e3-6b33241371f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/enochian.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/enochian.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/enochian.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/styles/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/styles/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/enochian.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/enochian.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AuthController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/auth/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tarot/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tarot/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/auth/register.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/auth/register.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +36,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
@@ -98,6 +109,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/property-info" />
       <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
       <path value="$PROJECT_DIR$/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-guard" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-core" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
+      <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
     </include_path>
   </component>
   <component name="ProjectId" id="1p2tloOVftdJ7fVULRiswyTtcsv" />
@@ -164,7 +180,9 @@
       <workItem from="1615026314229" duration="5068000" />
       <workItem from="1615203986828" duration="4687000" />
       <workItem from="1615212026883" duration="8618000" />
-      <workItem from="1615306567881" duration="4710000" />
+      <workItem from="1615306567881" duration="4752000" />
+      <workItem from="1615318237744" duration="2681000" />
+      <workItem from="1615321441238" duration="10207000" />
     </task>
     <servers />
   </component>
