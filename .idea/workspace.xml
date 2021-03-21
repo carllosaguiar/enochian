@@ -5,11 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46f1b066-2738-43be-a6e3-6b33241371f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Tarot.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/TarotRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/ArcaneRepositoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/CabalaRepositoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/ArcaneService.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/CabalaService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/enochian.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/enochian.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/enochian.ini" beforeDir="false" afterPath="$PROJECT_DIR$/config/enochian.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TarotController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TarotController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/enochian.sql" beforeDir="false" afterPath="$PROJECT_DIR$/enochian.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TarotController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Tarot.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TarotRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tarot/index.html.twig" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +125,11 @@
       <path value="$PROJECT_DIR$/vendor/symfony/security-core" />
       <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
       <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/vendor/dama/doctrine-test-bundle" />
     </include_path>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1p2tloOVftdJ7fVULRiswyTtcsv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -117,12 +138,14 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/styles" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -134,11 +157,11 @@
       <recent name="$PROJECT_DIR$/assets/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Repository" />
+      <recent name="$PROJECT_DIR$/src/Repository/EntityRepository" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/src/Repository/Connect" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -178,6 +201,19 @@
       <workItem from="1615306567881" duration="4752000" />
       <workItem from="1615318237744" duration="2681000" />
       <workItem from="1615321441238" duration="10207000" />
+      <workItem from="1615477068348" duration="1759000" />
+      <workItem from="1615535995352" duration="26091000" />
+      <workItem from="1615841353647" duration="10065000" />
+      <workItem from="1615903112335" duration="326000" />
+      <workItem from="1615905626135" duration="7372000" />
+      <workItem from="1616004561765" duration="51000" />
+      <workItem from="1616005768698" duration="1149000" />
+      <workItem from="1616060602651" duration="4228000" />
+      <workItem from="1616186329367" duration="1101000" />
+      <workItem from="1616214925272" duration="24000" />
+      <workItem from="1616215078293" duration="3431000" />
+      <workItem from="1616246489396" duration="5185000" />
+      <workItem from="1616292173153" duration="398000" />
     </task>
     <servers />
   </component>
