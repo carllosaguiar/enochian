@@ -31,24 +31,13 @@ final class ArcaneService
         return $this->arcaneRepository->findById($id);
     }
 
-
     /**
-     * @param string $name
-     * @return object|null
+     * @return Arcane
      */
-    public function findArcaneByName(string $name): ?object
-    {
-        return $this->arcaneRepository->findArcaneByName($name);
-    }
-
-    /**
-     * @return Arcane[]
-     */
-    public function findAllArcane(): array
+    public function findAllArcane(): Arcane
     {
         return $this->arcaneRepository->findAllArcane();
     }
-
 
     /**
      * @param Arcane $arcane
@@ -57,5 +46,4 @@ final class ArcaneService
     {
         $this->arcaneRepository->save($arcane);
     }
-
 }

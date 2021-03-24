@@ -12,7 +12,7 @@ use Doctrine\Persistence\ObjectRepository;
  * @method Arcane[]    findAll()
  * @method Arcane[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-final class ArcaneRepository implements ArcaneRepositoryInterface
+final class ArcaneRepository
 {
 
     /**
@@ -25,11 +25,9 @@ final class ArcaneRepository implements ArcaneRepositoryInterface
      */
     private $objectRepository;
 
-
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
-        $this->objectRepository = $this->entityManager->getRepository(Arcane::class);
     }
 
     /**

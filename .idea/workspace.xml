@@ -5,28 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46f1b066-2738-43be-a6e3-6b33241371f1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Repository/ArcaneRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Repository/CabalaRepositoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/ArcaneService.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Service/CabalaService.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/enochian.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/enochian.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Repository/BaseRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/enochian.sql" beforeDir="false" afterPath="$PROJECT_DIR$/enochian.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/IndexController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/TarotController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Tarot.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TarotRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tarot/index.html.twig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArcaneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArcaneController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ArcaneRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ArcaneRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/CabalaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/CabalaRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ArcaneService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ArcaneService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,9 +111,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/security-csrf" />
       <path value="$PROJECT_DIR$/vendor/dama/doctrine-test-bundle" />
     </include_path>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1p2tloOVftdJ7fVULRiswyTtcsv" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />

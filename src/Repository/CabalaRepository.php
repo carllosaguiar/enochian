@@ -3,9 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Cabala;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Persistence\ObjectRepository;
 
 /**
@@ -14,7 +12,7 @@ use Doctrine\Persistence\ObjectRepository;
  * @method Cabala[]    findAll()
  * @method Cabala[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CabalaRepository implements CabalaRepositoryInterface
+class CabalaRepository
 {
 
     /**
