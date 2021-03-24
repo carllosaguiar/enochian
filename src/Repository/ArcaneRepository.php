@@ -25,6 +25,10 @@ final class ArcaneRepository
      */
     private $objectRepository;
 
+    /**
+     * ArcaneRepository constructor.
+     * @param EntityManagerInterface $entityManager
+     */
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -56,7 +60,10 @@ final class ArcaneRepository
         return $this->objectRepository->findAll();
     }
 
-    //save in database
+
+    /**
+     * @param Arcane $arcane
+     */
     public function save(Arcane $arcane): void
     {
         $this->entityManager->persist($arcane);
