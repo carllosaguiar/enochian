@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ArcaneRepository;
+use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ArcaneRepository::class)
+ * Class Arcane
+ * @package App\Entity
+ * @Entity
  */
 class Arcane
 {

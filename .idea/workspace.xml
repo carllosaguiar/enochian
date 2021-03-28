@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="46f1b066-2738-43be-a6e3-6b33241371f1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/services.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Config/Connection.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArcaneController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArcaneController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Arcane.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Arcane.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Repository/ArcaneRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ArcaneRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Service/ArcaneService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/ArcaneService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/arcane/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/arcane/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +33,17 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="PhpDebugGeneral" listening_started="true" />
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/templates/arcane/index.html.twig" root0="FORCE_HIGHLIGHTING" root1="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/consoles/db/31ee390f-f32a-4179-9ee7-7700a82a97dd/console.sql" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="PhpDebugGeneral" xdebug_debug_port="9003" />
+  <component name="PhpServers">
+    <servers>
+      <server host="localhost" id="2b31676f-af57-4cbe-86b8-f5307aba4561" name="localhost" />
+    </servers>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.4">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/string" />
@@ -123,7 +138,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="reference.webide.settings.project.settings.php" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -140,6 +155,11 @@
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/public" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="debug" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" filter_connections="FILTER" server_name="localhost" session_id="phpstorm">
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -191,6 +211,8 @@
       <workItem from="1616215078293" duration="3431000" />
       <workItem from="1616246489396" duration="5185000" />
       <workItem from="1616292173153" duration="398000" />
+      <workItem from="1616867749453" duration="9856000" />
+      <workItem from="1616897495904" duration="2153000" />
     </task>
     <servers />
   </component>
@@ -208,5 +230,20 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/src/Controller/ArcaneController.php</url>
+          <line>33</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

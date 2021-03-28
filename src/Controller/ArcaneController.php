@@ -31,6 +31,10 @@ class ArcaneController extends AbstractController
      */
     public function index(): Response
     {
-        return $this->render('arcane/index.html.twig');
+        $arcanes = $this->arcaneService->findAllArcane();
+
+        return $this->render('arcane/index.html.twig', [
+            'arcanes' => $arcanes
+        ]);
     }
 }

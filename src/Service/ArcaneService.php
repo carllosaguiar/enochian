@@ -32,9 +32,9 @@ final class ArcaneService
     }
 
     /**
-     * @return Arcane
+     * @return array
      */
-    public function findAllArcane(): Arcane
+    public function findAllArcane(): array
     {
         return $this->arcaneRepository->findAllArcane();
     }

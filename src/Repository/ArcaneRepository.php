@@ -4,14 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Arcane;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\ORM\EntityRepository;
 
-/**
- * @method Arcane|null find($id, $lockMode = null, $lockVersion = null)
- * @method Arcane|null findOneBy(array $criteria, array $orderBy = null)
- * @method Arcane[]    findAll()
- * @method Arcane[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
- */
+
 final class ArcaneRepository
 {
 
@@ -21,9 +16,9 @@ final class ArcaneRepository
     private $entityManager;
 
     /**
-     * @var ObjectRepository
+     * @var EntityRepository
      */
-    private $objectRepository;
+    private $entityRepository;
 
     /**
      * ArcaneRepository constructor.
@@ -32,6 +27,7 @@ final class ArcaneRepository
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
+        $this->entityRepository = $entityManager->getRepository(Arcane::class);
     }
 
     /**
@@ -40,26 +36,16 @@ final class ArcaneRepository
      */
     public function findById(int $id): Arcane
     {
-        return $this->objectRepository->find($id);
+        return $this->entityRepository->find($id);
     }
 
     /**
-     * @param string $name
-     * @return object|null
+     * @return array
      */
-    public function findArcaneByName(string $name): ?object
+    public function findAllArcane(): array
     {
-        return $this->objectRepository->findOneBy(['name' => $name]);
+        return $this->entityRepository->findAll();
     }
-
-    /**
-     * @return Arcane|object[]
-     */
-    public function findAllArcane(): Arcane
-    {
-        return $this->objectRepository->findAll();
-    }
-
 
     /**
      * @param Arcane $arcane
