@@ -15,9 +15,18 @@ body {
     margin: 4px;
 }
 
-/*Container da página dos arcanos maiores do tarot*/
-.card-container{
+.card-body{
     display: flex;
+    flex-direction: column;
+}
+
+/*Container utilizado para páginas com conteúdo central*/
+.custom-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
 }
 
 .main-title{

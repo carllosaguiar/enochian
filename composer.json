@@ -3,6 +3,12 @@
     "description": "A Web Application for study of cabala",
     "type": "project",
     "license": "proprietary",
+    "authors": [
+        {
+            "name": "Carlos Aguiar",
+            "email": "carlosaguiar23@gmail.com"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
