@@ -6,21 +6,20 @@
     <div class="main-title">
         <h1 class="arcanos-maiores">Arcanos Maiores</h1>
     </div>
-    <div class="card-container">
+    <div class="custom-container">
         <div class="card-items justify-content-center wrap">
-            <div class="card">
-                {% for arcane in arcanes %}
+            {% for arcane in arcanes %}
+            <div class="card" style="width: 18rem">
                 <div class="card-header">
                     {{ arcane.name }}
                 </div>
-                <img src="/images/{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
+                <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ arcane.name }}</h5>
                     <p class="card-text">{{ arcane.description }}</p>
-                    <a href="#" class="btn btn-primary">Descrição Completa</a>
+                    <a href="#" class="btn btn-primary" style="margin-top: auto">Descrição Completa</a>
                 </div>
-                {% endfor %}
             </div>
-        </div>
+            {% endfor %}
     </div>
 {% endblock %}
