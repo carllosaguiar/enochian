@@ -17,11 +17,12 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
      * If you're not using these features, you do not need to implement
      * this method.
      *
+     * @param $username
      * @return UserInterface
      *
-     * @throws UsernameNotFoundException if the user is not found
+     * @throws \Exception
      */
-    public function loadUserByUsername($username)
+    public function loadUserByUsername($username): UserInterface
     {
         // Load a User object from your data source or throw UsernameNotFoundException.
         // The $username argument may not actually be a username:
@@ -41,9 +42,11 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
      * If your firewall is "stateless: true" (for a pure API), this
      * method is not called.
      *
+     * @param UserInterface $user
      * @return UserInterface
+     * @throws \Exception
      */
-    public function refreshUser(UserInterface $user)
+    public function refreshUser(UserInterface $user): UserInterface
     {
         if (!$user instanceof User) {
             throw new UnsupportedUserException(sprintf('Invalid user class "%s".', get_class($user)));
@@ -56,14 +59,18 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 
     /**
      * Tells Symfony to use this provider for this User class.
+     * @param $class
+     * @return bool
      */
-    public function supportsClass($class)
+    public function supportsClass($class): bool
     {
         return User::class === $class || is_subclass_of($class, User::class);
     }
 
     /**
      * Upgrades the encoded password of a user, typically for using a better hash algorithm.
+     * @param UserInterface $user
+     * @param string $newEncodedPassword
      */
     public function upgradePassword(UserInterface $user, string $newEncodedPassword): void
     {
