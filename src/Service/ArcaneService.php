@@ -46,4 +46,14 @@ final class ArcaneService
     {
         $this->arcaneRepository->save($arcane);
     }
+
+    /**
+     * @param int $number
+     * @return string
+     * @Annotation
+     */
+    public function locatorArcaneById(int $number): string
+    {
+        return $this->arcaneRepository->findById($number)->getImage();
+    }
 }
