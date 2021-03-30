@@ -127,7 +127,7 @@ class Cabala
     /**
      * @return int
      */
-    public function getEventOfTheDay(): int
+    public function getEventDay(): int
     {
         return $this->eventDay;
     }
@@ -199,7 +199,7 @@ class Cabala
             'innerUrgency' => $this->getInnerUrgency(),
             'fundamentalTonic' => $this->getFundamentalTonic(),
             'tonicOfTheDay' => $this->getTonicDay(),
-            'eventOfTheDay' => $this->getEventOfTheDay()
+            'eventOfTheDay' => $this->getEventDay()
         ];
     }
 
