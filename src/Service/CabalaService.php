@@ -11,10 +11,12 @@ class CabalaService
 {
 
     private $cabalaRepository;
+    private $locator;
 
-    public function __construct(CabalaRepository $cabalaRepository)
+    public function __construct(CabalaRepository $cabalaRepository, LocatorArcane $locator)
     {
         $this->cabalaRepository = $cabalaRepository;
+        $this->locator = $locator;
     }
 
     public function findYearOfBirthCabala()
@@ -47,4 +49,12 @@ class CabalaService
         return $this->cabalaRepository->findAllPersonalCabala();
     }
 
+    /**
+     * @param int $number
+     * @return false|string
+     */
+    public function locatorAbsoluteUrlArcane(int $number): string
+    {
+        return $this->locator->locatorArcane($number);
+    }
 }

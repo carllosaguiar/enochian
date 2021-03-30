@@ -56,4 +56,13 @@ final class ArcaneRepository
         $this->entityManager->flush();
     }
 
+    /**
+     * @param int $number
+     * @return false|string
+     */
+    public function locatorArcaneById(int $number): string
+    {
+        return $this->findById($number)->getImage();
+    }
+
 }
