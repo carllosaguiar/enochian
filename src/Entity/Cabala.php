@@ -20,7 +20,7 @@ class Cabala
     /**
      * @ORM\Column(type="integer")
      */
-    private $yearOfBirthCabal;
+    private $birthCabal;
 
     /**
      * @ORM\Column(type="blob")
@@ -35,71 +35,110 @@ class Cabala
     /**
      * @ORM\Column(type="integer")
      */
-    private $tonicOfTheDay;
+    private $tonicDay;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $eventOfTheDay;
+    private $eventDay;
 
-    public function getId(): ?int
+    /**
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getYearOfBirthCabal(): ?int
+    /**
+     * @return int
+     */
+    public function getBirthCabal(): int
     {
-        return $this->yearOfBirthCabal;
+        return $this->birthCabal;
     }
 
-    public function setYearOfBirthCabal(int $yearOfBirthCabal): self
+    /**
+     * @param int $birthCabal
+     * @return $this
+     */
+    public function setBirthCabal(int $birthCabal): self
     {
-        $this->yearOfBirthCabal = $yearOfBirthCabal;
+        $this->birthCabal = $birthCabal;
 
         return $this;
     }
 
-    public function getInnerUrgency(): string
+    /**
+     * @return int
+     */
+    public function getInnerUrgency(): int
     {
         return $this->innerUrgency;
     }
 
+    /**
+     * @param string $innerUrgency
+     * @return $this
+     */
     public function setInnerUrgency(string $innerUrgency): self
     {
         $this->innerUrgency = $innerUrgency;
         return $this;
     }
 
-    public function getFundamentalTonic(): ?int
+    /**
+     * @return int
+     */
+    public function getFundamentalTonic(): int
     {
         return $this->fundamentalTonic;
     }
 
+    /**
+     * @param int $fundamentalTonic
+     * @return $this
+     */
     public function setFundamentalTonic(int $fundamentalTonic): self
     {
         $this->fundamentalTonic = $fundamentalTonic;
         return $this;
     }
 
-    public function getTonicOfTheDay(): ?int
+    /**
+     * @return int
+     */
+    public function getTonicDay(): int
     {
-        return $this->tonicOfTheDay;
+        return $this->tonicDay;
     }
 
-    public function setTonicOfTheDay(int $tonicOfTheDay): self
+    /**
+     * @param int $tonicDay
+     * @return $this
+     */
+    public function setTonicDay(int $tonicDay): self
     {
-        $this->tonicOfTheDay = $tonicOfTheDay;
+        $this->tonicDay = $tonicDay;
+
         return $this;
     }
 
-    public function getEventOfTheDay(): ?int
+    /**
+     * @return int
+     */
+    public function getEventDay(): int
     {
-        return $this->eventOfTheDay;
+        return $this->eventDay;
     }
 
-    public function setEventOfTheDay(int $eventOfTheDay): self
+    /**
+     * @param int $eventDay
+     * @return $this
+     */
+    public function setEventDay(int $eventDay): self
     {
-        $this->eventOfTheDay = $eventOfTheDay;
+        $this->eventDay = $eventDay;
         return $this;
     }
 
@@ -108,7 +147,7 @@ class Cabala
      * @param string $year
      * @return int
      */
-    public function calculateYearOfBirthCabala(string $year): int
+    public function calculateBirthCabala(string $year): int
     {
         return 1;
     }
@@ -126,7 +165,7 @@ class Cabala
      * @param int $number
      * @return int
      */
-    public function calculateTonicOfTheDay(int $number): int
+    public function calculateTonicDay(int $number): int
     {
         return 1;
     }
@@ -144,7 +183,7 @@ class Cabala
      * @param int $number
      * @return int
      */
-    public function calculateEventOfTheDay(int $number): int
+    public function calculateEventDay(int $number): int
     {
         return 1;
     }
@@ -156,11 +195,11 @@ class Cabala
     {
         return [
             'id' => $this->getId(),
-            'yearOfBirthCabal' => $this->getYearOfBirthCabal(),
+            'yearOfBirthCabal' => $this->getBirthCabal(),
             'innerUrgency' => $this->getInnerUrgency(),
             'fundamentalTonic' => $this->getFundamentalTonic(),
-            'tonicOfTheDay' => $this->getTonicOfTheDay(),
-            'eventOfTheDay' => $this->getEventOfTheDay()
+            'tonicOfTheDay' => $this->getTonicDay(),
+            'eventOfTheDay' => $this->getEventDay()
         ];
     }
 

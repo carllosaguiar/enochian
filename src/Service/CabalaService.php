@@ -17,7 +17,6 @@ class CabalaService
         $this->cabalaRepository = $cabalaRepository;
     }
 
-
     public function findYearOfBirthCabala()
     {
         $this->cabalaRepository->findYearOfBirthCabala();
