@@ -56,6 +56,12 @@ body {
     flex-wrap: nowrap;
 }
 
+.main-container-login{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
 /*Classe principal para a div de login*/
 .login-container{
     display: flex;
@@ -82,8 +88,15 @@ body {
     background-repeat: no-repeat;
     background-size: contain;
     position: relative;
+    animation-name: vertical-displacement;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
 }
 
+@keyframes vertical-displacement {
+    from {top: 200px;}
+    to   {top: 0}
+}
 
 .arcanos-maiores {
     display: inline-block;

@@ -11,12 +11,6 @@ use App\Security\User;
 class AuthController extends AbstractController
 {
 
-    private $dao;
-
-    public function __construct()
-    {
-
-    }
     /**
      * @Route("/auth", name="form_login")
      * @return Response
