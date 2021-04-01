@@ -27,14 +27,7 @@ class AuthController extends AbstractController
      */
     public function tryAccess(Request $request): Response
     {
-        $user = new User();
-        $user->setEmail($request->get('username'));
-        $user->setPassword($request->get('password'));
-
-        return $this->render('auth/register.html.twig', [
-            'usuario' => $user->getEmail(),
-            'senha' => $user->getPassword()
-        ]);
+        return $this->render('auth/register.html.twig');
     }
 
     /**
