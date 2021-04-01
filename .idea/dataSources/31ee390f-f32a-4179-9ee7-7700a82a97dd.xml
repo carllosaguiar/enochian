@@ -920,130 +920,168 @@ SELECT|sys.sys_config
     <table id="286" parent="2" name="doctrine_migration_versions">
       <Collation>utf8_unicode_ci</Collation>
     </table>
-    <column id="287" parent="284" name="id">
+    <table id="287" parent="2" name="user">
+      <Collation>utf8mb4_unicode_ci</Collation>
+    </table>
+    <column id="288" parent="284" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="288" parent="284" name="name">
+    <column id="289" parent="284" name="name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="289" parent="284" name="image">
+    <column id="290" parent="284" name="image">
       <Position>3</Position>
       <DataType>longblob|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="290" parent="284" name="description">
+    <column id="291" parent="284" name="description">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="291" parent="284" name="letter">
+    <column id="292" parent="284" name="letter">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="292" parent="284" name="spiritual_plane">
+    <column id="293" parent="284" name="spiritual_plane">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="293" parent="284" name="mental_plane">
+    <column id="294" parent="284" name="mental_plane">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="294" parent="284" name="physical_plane">
+    <column id="295" parent="284" name="physical_plane">
       <Position>8</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="295" parent="284" name="transcendent_axiom">
+    <column id="296" parent="284" name="transcendent_axiom">
       <Position>9</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="296" parent="284" name="astrological_association">
+    <column id="297" parent="284" name="astrological_association">
       <Position>10</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="297" parent="284" name="in_general">
+    <column id="298" parent="284" name="in_general">
       <Position>11</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="298" parent="284" name="right">
+    <column id="299" parent="284" name="right">
       <Position>12</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="299" parent="284" name="reverse">
+    <column id="300" parent="284" name="reverse">
       <Position>13</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="300" parent="284" name="PRIMARY">
+    <key id="301" parent="284" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="301" parent="285" name="id">
+    <column id="302" parent="285" name="id">
       <Position>1</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>null</SequenceIdentity>
     </column>
-    <column id="302" parent="285" name="inner_urgency">
+    <column id="303" parent="285" name="inner_urgency">
       <Position>2</Position>
       <DataType>longblob|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="303" parent="285" name="fundamental_tonic">
+    <column id="304" parent="285" name="fundamental_tonic">
       <Position>3</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="304" parent="285" name="birth_cabal">
+    <column id="305" parent="285" name="birth_cabal">
       <Position>4</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="305" parent="285" name="tonic_day">
+    <column id="306" parent="285" name="tonic_day">
       <Position>5</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="306" parent="285" name="event_day">
+    <column id="307" parent="285" name="event_day">
       <Position>6</Position>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="307" parent="285" name="PRIMARY">
+    <key id="308" parent="285" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="308" parent="286" name="version">
+    <column id="309" parent="286" name="version">
       <Position>1</Position>
       <DataType>varchar(191)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="309" parent="286" name="executed_at">
+    <column id="310" parent="286" name="executed_at">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
     </column>
-    <column id="310" parent="286" name="execution_time">
+    <column id="311" parent="286" name="execution_time">
       <Position>3</Position>
       <DataType>int|0s</DataType>
     </column>
-    <key id="311" parent="286" name="PRIMARY">
+    <key id="312" parent="286" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version</ColNames>
       <Primary>1</Primary>
+    </key>
+    <column id="313" parent="287" name="id">
+      <Position>1</Position>
+      <DataType>int|0s</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>null</SequenceIdentity>
+    </column>
+    <column id="314" parent="287" name="email">
+      <Position>2</Position>
+      <DataType>varchar(180)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="315" parent="287" name="password">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="316" parent="287" name="roles">
+      <Position>4</Position>
+      <DataType>json|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="317" parent="287" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="318" parent="287" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="319" parent="287" name="UNIQ_8D93D649E7927C74">
+      <ColNames>email</ColNames>
+      <UnderlyingIndexName>UNIQ_8D93D649E7927C74</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
