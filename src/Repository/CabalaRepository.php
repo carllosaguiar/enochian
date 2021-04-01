@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Cabala;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @method Cabala|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,23 +12,12 @@ use Doctrine\Persistence\ObjectRepository;
  * @method Cabala[]    findAll()
  * @method Cabala[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CabalaRepository
+class CabalaRepository extends ServiceEntityRepository
 {
 
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var ObjectRepository
-     */
-    private $objectRepository;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->entityManager = $entityManager;
-        $this->objectRepository = $this->entityManager->getRepository(Cabala::class);
+        parent::__construct($registry, Cabala::class);
     }
 
     public function findYearOfBirthCabala(){}
@@ -47,11 +36,11 @@ class CabalaRepository
     public function createEventOfTheDay(int $number){}
 
     /**
-     * @return Cabala|object[]
+     * @return Cabala[]
      */
-    public function findAllPersonalCabala(): Cabala
+    public function findAllPersonalCabala(): array
     {
-        return $this->objectRepository->findAll();
+        return $this->findAll();
     }
 
 }

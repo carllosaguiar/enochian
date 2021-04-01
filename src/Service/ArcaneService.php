@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Entity\Arcane;
 use App\Repository\ArcaneRepository;
+use Doctrine\ORM\ORMException;
 
 final class ArcaneService
 {
@@ -41,6 +42,7 @@ final class ArcaneService
 
     /**
      * @param Arcane $arcane
+     * @throws ORMException
      */
     public function updateArcane(Arcane $arcane): void
     {
