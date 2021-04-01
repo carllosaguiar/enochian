@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Entity;
-
-use Doctrine\ORM\Mapping\Entity;
+use App\Repository\ArcaneRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Arcane
- * @package App\Entity
- * @Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ArcaneRepository")
  */
 class Arcane
 {

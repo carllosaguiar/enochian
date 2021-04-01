@@ -3,7 +3,6 @@
 
 namespace App\Service;
 
-use App\Entity\Cabala;
 use App\Repository\CabalaRepository;
 
 
@@ -44,7 +43,10 @@ class CabalaService
         $this->cabalaRepository->findEventOfTheDay();
     }
 
-    public function findAllPersonalCabala()
+    /**
+     * @return array
+     */
+    public function findAllPersonalCabala(): array
     {
         return $this->cabalaRepository->findAllPersonalCabala();
     }

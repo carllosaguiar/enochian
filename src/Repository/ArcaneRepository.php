@@ -3,31 +3,22 @@
 namespace App\Repository;
 
 use App\Entity\Arcane;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\ORMException;
+use Doctrine\Persistence\ManagerRegistry;
 
+/**
+ * @method Arcane|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Arcane|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Arcane[]    findAll()
+ * @method Arcane[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
 
-final class ArcaneRepository
+class ArcaneRepository extends ServiceEntityRepository
 {
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    /**
-     * @var EntityRepository
-     */
-    private $entityRepository;
-
-    /**
-     * ArcaneRepository constructor.
-     * @param EntityManagerInterface $entityManager
-     */
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $registry)
     {
-        $this->entityManager = $entityManager;
-        $this->entityRepository = $entityManager->getRepository(Arcane::class);
+        parent::__construct($registry, Arcane::class);
     }
 
     /**
@@ -36,24 +27,25 @@ final class ArcaneRepository
      */
     public function findById(int $id): Arcane
     {
-        return $this->entityRepository->find($id);
+        return $this->find($id);
     }
 
     /**
-     * @return array
+     * @return Arcane[]
      */
     public function findAllArcane(): array
     {
-        return $this->entityRepository->findAll();
+        return $this->findAll();
     }
 
     /**
      * @param Arcane $arcane
+     * @throws ORMException
      */
     public function save(Arcane $arcane): void
     {
-        $this->entityManager->persist($arcane);
-        $this->entityManager->flush();
+        $this->_em->persist($arcane);
+        $this->_em->flush();
     }
 
     /**
