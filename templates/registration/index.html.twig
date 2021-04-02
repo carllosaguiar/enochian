@@ -3,32 +3,21 @@
 {% block title %}Enochian | Register{% endblock %}
 {% block body %}
 <div class="custom-container container">
-    <form style="width: 500px; padding-top: 50px">
+    <div class="container" style="width: 500px; padding-top: 50px">
         {{ form_start(form) }}
         <div class="mb-3">
-            {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Seu nome'}}) }}
+            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
-            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Seu melhor email'}}) }}
+            {{ form_row(form.password.first, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
-            {{ form_row(form.password.first, {'attr': {'class':'form-control', 'placeholder': 'Senha'}}) }}
+            {{ form_row(form.password.second, {'attr': {'class': 'form-control'}}) }}
         </div>
         <div class="mb-3">
-            {{ form_row(form.password.second, {'attr': {'class':'form-control', 'placeholder': 'Repita a senha'}}) }}
-        </div>
-        <div class="mb-3">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="disabledFieldsetCheck" disabled>
-                <label class="form-check-label" for="disabledFieldsetCheck">
-                    Can't check this
-                </label>
-            </div>
-        </div>
-        <div class="mb-3">
-            <button type="button" class="btn btn-outline-primary">Enviar</button>
+            <button type="submit" class="btn btn-outline-primary">Enviar</button>
         </div>
         {{ form_end(form) }}
-    </form>
+    </div>
 </div>
 {% endblock %}

@@ -89,7 +89,7 @@ body {
 .bg-img{
     /* The image used */
     background-image: url("/public/images/tree-of-life.png");
-    min-height: 380px;
+    min-height: 280px;
 
     /* Center and scale the image nicely */
     background-position: center;
@@ -112,6 +112,18 @@ body {
     animation: backInUp; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 2s; /* don't forget to set a duration! */
 }
+
+.card{
+    padding: 3px;
+    border-radius: 20px;
+    box-shadow:0 0 0 #a71d5d;
+}
+
+.card:hover{
+    box-shadow:0 0 10px #B68CC7;
+    border-color: #B68CC7;
+}
+
 
 /*css custom to profile*/
 .profile-container {
