@@ -22,8 +22,6 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/registration", name="registration")
-     * @param Request $request
-     * @return RedirectResponse|Response
      */
     public function index(Request $request)
     {
