@@ -15,19 +15,19 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
     <a class="navbar-brand" href="{{ path('home') }}">Enochian</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Tarot
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li><a class="dropdown-item" href="{{ path('major') }}">Arcanos Maiores</a></li>
                         <li><a class="dropdown-item" href="#">Arcanos Menores</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -36,10 +36,10 @@
                 </li>
                 {% if app.user  %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Cabala
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li><a class="dropdown-item" href="#">Urgência Interior</a></li>
                         <li><a class="dropdown-item" href="#">Tônica Fundamental</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -47,10 +47,10 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Perfil
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                         <li><a class="dropdown-item" href="#">Visualizar</a></li>
                         <li><a class="dropdown-item" href="#">Editar</a></li>
                     </ul>
@@ -60,7 +60,7 @@
                     <a class="nav-link" href="https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ" target="_blank">Doc</a>
                 </li>
             </ul>
-            <ul class="navbar-nav d-none d-lg-flex ml-2 order-3">
+            <ul class="navbar-nav d-flex d-lg-flex ml-2 order-3">
                     <li class="nav-item"><a class="nav-link" href="{{ path('registration') }}">Registrar</a></li>
                 {% if app.user %}
                     <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}">Sair</a></li>
