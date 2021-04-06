@@ -19,7 +19,7 @@ class CabalaController extends AbstractController
     }
 
     /**
-     * @Route("/cabala", name="index")
+     * @Route("/cabala", name="cabala")
      */
     public function index(): Response
     {
