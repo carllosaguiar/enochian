@@ -67,14 +67,15 @@ class Arcane
     private $inGeneral;
 
     /**
-     * @ORM\Column(type="string", name="`right`", length=255)
+     * @ORM\Column(type="string", length=255)
      */
-    private $positiveRight;
+    private $favorable;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $reverse;
+    private $notFavorable;
+
 
     public function getId(): ?int
     {
@@ -201,26 +202,26 @@ class Arcane
         return $this;
     }
 
-    public function getPositiveRight(): ?string
+    public function getFavorable(): ?string
     {
-        return $this->positiveRight;
+        return $this->favorable;
     }
 
-    public function setPositiveRight(string $positiveRight): self
+    public function setFavorable(string $favorable): self
     {
-        $this->positiveRight = $positiveRight;
+        $this->favorable = $favorable;
 
         return $this;
     }
 
-    public function getReverse(): ?string
+    public function getNotFavorable(): ?string
     {
-        return $this->reverse;
+        return $this->notFavorable;
     }
 
-    public function setReverse(string $reverse): self
+    public function setNotFavorable(string $notFavorable): self
     {
-        $this->reverse = $reverse;
+        $this->notFavorable = $notFavorable;
 
         return $this;
     }
