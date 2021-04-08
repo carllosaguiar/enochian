@@ -37,4 +37,19 @@ class ArcaneController extends AbstractController
             'arcanes' => $arcanes
         ]);
     }
+
+    /**
+     * @Route ("/arcane/{id}", name="arcane")
+     * @param Request $request
+     * @return Response
+     */
+    public function viewArcane(Request $request): Response
+    {
+        $id = $request->get('id');
+        $arcane =  $this->arcaneService->findArcaneById($id);
+
+        return $this->render('arcane/arcane.html.twig', [
+            'arcane' => $arcane
+        ]);
+    }
 }

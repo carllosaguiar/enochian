@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Enochian | Profile {% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            {% if arcane %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <div class="card" style="width: 18rem">
+                                <div class="card-header"> {{ arcane.name }} </div>
+                                <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
+                            </div>
+                        </div>
+                        <a href="{{ path('major') }}" class="button-arcane btn btn-outline-primary">Ver Arcanos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form class="form-horizontal" role="form" method="post">
+                            <div class="mb-3">
+                                <label>Nome</label>
+                                <p class="fw-normal"> {{ arcane.name }} </p>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label>Descrição</label>
+                                <p class="fw-normal"> {{ arcane.description }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Letra</label>
+                                <p class="fw-normal"> {{ arcane.letter }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Plano Espiritual</label>
+                                <p class="fw-normal"> {{ arcane.spiritualPlane }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Plano Mental</label>
+                                <p class="fw-normal"> {{ arcane.mentalPlane }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Plano Físico</label>
+                                <p class="fw-normal"> {{ arcane.physicalPlane }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Axioma Transcendental</label>
+                                <p class="fw-normal"> {{ arcane.transcendentAxiom }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Axioma Transcendental</label>
+                                <p class="fw-normal"> {{ arcane.astrologicalAssociation }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Em Geral</label>
+                                <p class="fw-normal"> {{ arcane.inGeneral }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Direito</label>
+                                <p class="fw-normal"> {{ arcane.favorable }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label>Reves</label>
+                                <p class="fw-normal"> {{ arcane.notFavorable }} </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Ooops!!! Nenhum Arcano para ser exibido?!!! &#x1F644
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

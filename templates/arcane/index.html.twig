@@ -17,9 +17,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ arcane.name }}</h5>
                     <p class="card-text">{{ arcane.description }}</p>
-                    <a href="#" class="btn btn-primary" style="margin-top: auto">Descrição Completa</a>
+                    <a href="{{ path('arcane', {id: arcane.id}) }}" class="btn btn-primary" style="margin-top: auto">Descrição Completa</a>
                 </div>
             </div>
             {% endfor %}
+        </div>
     </div>
 {% endblock %}

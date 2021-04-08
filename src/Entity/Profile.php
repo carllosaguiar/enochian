@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ProfileRepository;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=ProfileRepository::class)
@@ -101,14 +102,14 @@ class Profile
         return $this;
     }
 
-    public function getUser(): ?User
+    public function getUser()
     {
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(UserInterface $user): self
     {
-        $this->user = $user->getId();
+        $this->user = $user;
 
         return $this;
     }

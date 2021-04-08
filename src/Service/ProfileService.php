@@ -8,6 +8,8 @@ use App\Entity\Profile;
 use App\Entity\User;
 use App\Repository\ProfileRepository;
 use App\Repository\UserRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 
 class ProfileService
 {
@@ -19,7 +21,7 @@ class ProfileService
         $this->profileRepository = $profileRepository;
     }
 
-    public function viewProfile(): array
+    public function viewAllProfile(): array
     {
         return $this->profileRepository->findAll();
     }

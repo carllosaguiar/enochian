@@ -1,7 +1,9 @@
 body {
     height: 100%;
-    padding: 60px 0px;
-    margin: 0;
+    padding: 60px 0;
+    margin-top:20px;
+    color: #1a202c;
+    text-align: left;
 }
 
 /*Container da página principal*/
@@ -12,13 +14,40 @@ body {
 
 /*Default class bootstrap*/
 
+.main-title{
+    flex-direction: row;
+    text-align: center;
+    margin: 20px;
+}
+
 .card{
     margin: 4px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:0 0 0 #a71d5d;
+}
+
+.card:hover {
+    box-shadow:0 0 10px #B68CC7;
+    border-color: #B68CC7;
 }
 
 .card-body{
     display: flex;
     flex-direction: column;
+}
+
+.card-items{
+    display: flex;
+    margin: auto;
+    max-width: 900px;
+    flex-direction: row;
+    flex-shrink: 3;
+}
+
+.card:hover{
+    box-shadow:0 0 10px #B68CC7;
+    border-color: #B68CC7;
 }
 
 /*Container utilizado para páginas com conteúdo central*/
@@ -28,20 +57,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     align-content: space-around;
-}
-
-.main-title{
-    flex-direction: row;
-    text-align: center;
-    margin: 20px;
-}
-
-.card-items{
-    display: flex;
-    margin: auto;
-    max-width: 900px;
-    flex-direction: row;
-    flex-shrink: 3;
 }
 
 /*Multilinhas, a direção é definida por flex-direction.*/
@@ -68,19 +83,6 @@ body {
     padding: 16px;
     border-radius: 20px;
 }
-
-/**
-#form{
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow:0 0 0 #000;
-}
-
-#form:hover {
-    box-shadow:0 0 10px #B68CC7;
-    border-color: #B68CC7;
-}
- */
 
 .form-text{
     color: #2f353a;
@@ -113,26 +115,15 @@ body {
     animation-duration: 2s; /* don't forget to set a duration! */
 }
 
-.card{
-    padding: 3px;
-    border-radius: 20px;
-    box-shadow:0 0 0 #a71d5d;
+.button-arcane {
+    margin-top: 35px;
+    margin-bottom: 35px;
+    padding: 10px 0 10px 0;
 }
-
-.card:hover{
-    box-shadow:0 0 10px #B68CC7;
-    border-color: #B68CC7;
-}
-
 
 /*css custom to profile*/
 
-body{
-    margin-top:20px;
-    color: #1a202c;
-    text-align: left;
-    background-color: #e2e8f0;
-}
+
 .main-body {
     padding: 15px;
 }
@@ -140,7 +131,7 @@ body{
     box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
 }
 
-.card {
+.card-profile {
     position: relative;
     display: flex;
     flex-direction: column;
