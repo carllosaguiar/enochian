@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Profile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @method Profile|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,12 +15,19 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class ProfileRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    private $security;
+
+    public function __construct(ManagerRegistry $registry, Security $security)
     {
         parent::__construct($registry, Profile::class);
+        $this->security = $security;
     }
 
-
+    public function getUserProfileById(): ?Profile
+    {
+        $currentUser = $this->security->getUser();
+        return $this->find($currentUser);
+    }
 
     // /**
     //  * @return Profile[] Returns an array of Profile objects

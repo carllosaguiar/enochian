@@ -27,7 +27,7 @@ class ProfileController extends AbstractController
      */
     public function index(): Response
     {
-        $profile = $this->profile->viewAllProfile();
+        $profile = $this->profile->gerUserProfile();
 
         return $this->render('profile/index.html.twig', [
             'profile' => $profile
@@ -42,7 +42,9 @@ class ProfileController extends AbstractController
     public function create(Request $request): Response
     {
         $profile = new Profile();
-        $form = $this->createForm(ProfileType::class, $profile);
+        $form = $this->createForm(ProfileType::class, $profile, [
+            'action' => $this->generateUrl('create'),
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
