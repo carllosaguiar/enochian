@@ -5,7 +5,7 @@
 {% block body %}
     <div class="bg-img"></div>
     <div class="login-container justify-content-center">
-        <form class="form-horizontal" role="form" method="post">
+        <form class="form-horizontal col-md-2" role="form" method="post">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}

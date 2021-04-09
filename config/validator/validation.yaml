@@ -1,0 +1,7 @@
+App\Entity\Profile:
+  properties:
+    name:
+      - NotBlank: ~
+    birthDate:
+      - NotBlank: ~
+      - Type: \DateTime
