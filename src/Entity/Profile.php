@@ -41,9 +41,10 @@ class Profile
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     private $user;
+
 
     public function getId(): ?int
     {
@@ -102,15 +103,23 @@ class Profile
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUser()
     {
         return $this->user;
     }
 
-    public function setUser(UserInterface $user): self
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
         return $this;
     }
+
 }

@@ -20,10 +20,10 @@ class Cabala
     /**
      * @ORM\Column(type="integer")
      */
-    private $birthCabal;
+    private $birthCabala;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="integer")
      */
     private $innerUrgency;
 
@@ -43,6 +43,13 @@ class Cabala
     private $eventDay;
 
     /**
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="cabala", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -53,18 +60,18 @@ class Cabala
     /**
      * @return int
      */
-    public function getBirthCabal(): int
+    public function getBirthCabala(): int
     {
-        return $this->birthCabal;
+        return $this->birthCabala;
     }
 
     /**
-     * @param int $birthCabal
+     * @param int $birthCabala
      * @return $this
      */
-    public function setBirthCabal(int $birthCabal): self
+    public function setBirthCabala(int $birthCabala): self
     {
-        $this->birthCabal = $birthCabal;
+        $this->birthCabala = $birthCabala;
 
         return $this;
     }
@@ -78,10 +85,10 @@ class Cabala
     }
 
     /**
-     * @param string $innerUrgency
+     * @param int $innerUrgency
      * @return $this
      */
-    public function setInnerUrgency(string $innerUrgency): self
+    public function setInnerUrgency(int $innerUrgency): self
     {
         $this->innerUrgency = $innerUrgency;
         return $this;
@@ -189,18 +196,22 @@ class Cabala
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function findAllCabalaOfUser():array
+    public function getUser()
     {
-        return [
-            'id' => $this->getId(),
-            'yearOfBirthCabal' => $this->getBirthCabal(),
-            'innerUrgency' => $this->getInnerUrgency(),
-            'fundamentalTonic' => $this->getFundamentalTonic(),
-            'tonicOfTheDay' => $this->getTonicDay(),
-            'eventOfTheDay' => $this->getEventDay()
-        ];
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     * @return $this
+     */
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 
 }

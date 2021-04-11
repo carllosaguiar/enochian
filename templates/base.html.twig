@@ -20,14 +20,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ path('home') }}">Home</a>
+                <li class="nav-item active">
+                    <a class="nav-link" aria-current="page" href="{{ path('home') }}">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                         Tarot
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <ul class="dropdown-menu fade-up">
                         <li><a class="dropdown-item" href="{{ path('major') }}">Arcanos Maiores</a></li>
                         <li><a class="dropdown-item" href="#">Arcanos Menores</a></li>
                         <li><hr class="dropdown-divider"></li>
@@ -36,10 +36,10 @@
                 </li>
                 {% if app.user  %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
                         Cabala
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                    <ul class="dropdown-menu fade-up">
                         <li><a class="dropdown-item" href="{{ path('cabala') }}">Cabala Pessoal</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="#">Em breve</a></li>
@@ -56,7 +56,7 @@
                 </li>
                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ" target="_blank">Doc</a>
+                    <a class="btn btn-outline-secondary btn-sm py-0" href="https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ"  style="font-size: 0.8em;" target="_blank">Doc</a>
                 </li>
             </ul>
             <ul class="navbar-nav d-flex d-lg-flex ml-2 order-3">

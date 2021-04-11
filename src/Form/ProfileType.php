@@ -47,7 +47,6 @@ class ProfileType extends AbstractType
             ->add('image', FileType::class, [
                 'label' => 'Foto do Perfil',
                 'attr' => [
-                    'placeholder' => 'Sua foto',
                     'class' => 'mb-3'
                 ]
             ])
