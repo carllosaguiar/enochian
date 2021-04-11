@@ -30,7 +30,7 @@ class ProfileController extends AbstractController
         $profile = $this->profile->gerUserProfile();
 
         return $this->render('profile/index.html.twig', [
-            'profile' => $profile
+            'profiles' => $profile
         ]);
     }
 

@@ -39,6 +39,10 @@ class User implements UserInterface
      */
     private $profile;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Cabala::class, mappedBy="user", cascade={"persist", "remove"})
+     */
+    private $cabala;
 
     public function getId(): ?int
     {
@@ -127,6 +131,23 @@ class User implements UserInterface
         }
 
         $this->profile = $profile;
+
+        return $this;
+    }
+
+    public function getCabala(): ?Profile
+    {
+        return $this->cabala;
+    }
+
+    public function setCabala(Cabala $cabala): self
+    {
+        // set the owning side of the relation if necessary
+        if ($cabala->getUser() !== $this) {
+            $cabala->setUser($this);
+        }
+
+        $this->cabala = $cabala;
 
         return $this;
     }
