@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use App\Repository\CabalaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=CabalaRepository::class)
@@ -18,9 +18,9 @@ class Cabala
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $birthCabala;
+    private $yearOfBirth;
 
     /**
      * @ORM\Column(type="integer")
@@ -58,20 +58,20 @@ class Cabala
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function getBirthCabala(): int
+    public function getYearOfBirth(): array
     {
-        return $this->birthCabala;
+        return $this->yearOfBirth;
     }
 
     /**
-     * @param int $birthCabala
+     * @param array $yearOfBirth
      * @return $this
      */
-    public function setBirthCabala(int $birthCabala): self
+    public function setYearOfBirth(array $yearOfBirth): self
     {
-        $this->birthCabala = $birthCabala;
+        $this->yearOfBirth = $yearOfBirth;
 
         return $this;
     }
@@ -150,13 +150,42 @@ class Cabala
     }
 
     // functions for calculate personal cabala
+
     /**
-     * @param string $year
-     * @return int
+     * @param int $year
+     * @param int $amountEvent
+     * @return array
      */
-    public function calculateBirthCabala(string $year): int
+    public function calculateYearOfBirth(int $year, int $amountEvent): array
     {
-        return 1;
+        $arrayData = [];
+
+        $amountEvent = ($amountEvent == 0) || ($amountEvent == null)  ? 0 : $amountEvent;
+
+        for ($i = 0; $i <= $amountEvent; $i++)
+        {
+            $sum = array_sum(str_split($year)); // sum year birth
+            $sumYear = $year + $sum; // sum year with year birth
+            $firstSynthesis = array_sum(str_split($sumYear)); // get first synthesis
+            if($firstSynthesis > 9)
+            {
+                $secondSynthesis = array_sum(str_split($firstSynthesis)); //get second synthesis
+            } else {
+                $secondSynthesis = null;
+            }
+
+            array_push($arrayData, [
+                'year' => $sumYear,
+                'firstSynthesis' => $firstSynthesis,
+                'secondSynthesis' => $secondSynthesis
+            ]);
+
+            $year = $sumYear;
+
+        }
+
+        //return year, first synthesis and second synthesis
+        return $arrayData;
     }
 
     /**
@@ -204,10 +233,10 @@ class Cabala
     }
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      * @return $this
      */
-    public function setUser(User $user): self
+    public function setUser(UserInterface $user): self
     {
         $this->user = $user;
 

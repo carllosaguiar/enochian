@@ -16,15 +16,17 @@
                     <div class="card">
                         <strong>This is the first item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                     </div>
-                    <form class="form-horizontal col-md-12" style="padding-top: 10px" role="form" method="post">
+                    {{ form_start(yearOfBirth, {'action': path('create_personal_cabala'), 'method': 'POST'}) }}
+                        <div class="alert alert-error">
+                            {{ form_errors(yearOfBirth) }}
+                        </div>
                         <div class="mb-3">
-                            <label for="inputDate"><strong>Data de Nascimento</strong></label>
-                            <input id="inputDate" type="date" class="form-control" placeholder="Seu nome completo" name="birthDate">
+                            {{ form_widget(yearOfBirth) }}
                         </div>
                         <div class="mb-3">
                             <a type="submit" href="#" class="btn btn-outline-primary">Enviar</a>
                         </div>
-                    </form>
+                    {{ form_end(yearOfBirth) }}
                 </div>
             </div>
         </div>
