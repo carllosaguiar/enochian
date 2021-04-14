@@ -20,7 +20,11 @@ class CabalaRepository extends ServiceEntityRepository
         parent::__construct($registry, Cabala::class);
     }
 
-    public function findYearOfBirthCabala(){}
+    public function findYearOfBirthCabala(int $yearOfBirth, int $amountEvents)
+    {
+
+    }
+
     public function createYearOfBirthCabal(int $number){}
 
     public function findInnerUrgency(){}

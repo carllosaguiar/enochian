@@ -3,6 +3,7 @@
 
 namespace App\Service;
 
+use App\Entity\Cabala;
 use App\Repository\CabalaRepository;
 
 
@@ -18,9 +19,10 @@ class CabalaService
         $this->locator = $locator;
     }
 
-    public function findYearOfBirthCabala()
+    public function serviceSetYearOfBirth($year, $amountEvents): array
     {
-        $this->cabalaRepository->findYearOfBirthCabala();
+        $cabala = new Cabala();
+        return $cabala->calculateYearOfBirth($year, $amountEvents);
     }
 
     public function findInnerUrgency()

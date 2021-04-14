@@ -27,15 +27,7 @@ class CabalaController extends AbstractController
     }
 
     /**
-     * @Route("/cabala", name="cabala")
-     */
-    public function index(): Response
-    {
-        return $this->render('cabala/index.html.twig');
-    }
-
-    /**
-     * @Route("/cabala/personal", name="personal_cabala")
+     * @Route("/cabala", name="create_personal_cabala")
      * @param Request $request
      * @return Response
      */
@@ -43,8 +35,8 @@ class CabalaController extends AbstractController
     {
         $cabala = new Cabala();
 
-        $birthCabala = $this->createForm(BirthCabalaType::class);
-        $birthCabala->handleRequest($request);
+        $yearOfBirth = $this->createForm(BirthCabalaType::class);
+        $yearOfBirth->handleRequest($request);
 
         $innerUrgency = $this->createForm(InnerUrgencyType::class);
         $innerUrgency->handleRequest($request);
@@ -58,16 +50,24 @@ class CabalaController extends AbstractController
         $eventDay = $this->createForm(EventDayType::class);
         $eventDay->handleRequest($request);
 
-        if ($birthCabala->isSubmitted() && $birthCabala->isValid())
+        if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid())
         {
+            $year = $yearOfBirth->get('yearOfBirth');
+            $amountEvents = $yearOfBirth->get('amountEvents');
+
+            $result = $this->service->serviceSetYearOfBirth($year, $amountEvents);
+
             $em = $this->getDoctrine()->getManager();
             $user = $this->security->getUser();
             $cabala->setUser($user);
+            $cabala->setYearOfBirth($result);
             $em->persist($cabala);
             $em->flush();
         }
+            return $this->render('cabala/index.html.twig', [
+                'yearOfBirth' => $yearOfBirth->createView()
+            ]);
 
-        return $this->render('cabala/personal.html.twig');
     }
 
 }
