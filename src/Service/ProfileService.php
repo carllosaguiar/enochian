@@ -24,7 +24,7 @@ class ProfileService
         $this->userRepository = $userRepository;
     }
 
-    public function gerUserProfile(): ?Profile
+    public function getUserProfile(): ?Profile
     {
         return $this->profileRepository->getUserProfileById();
     }

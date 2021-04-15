@@ -3,11 +3,9 @@
 namespace App\Form;
 
 use App\Entity\Profile;
-use Doctrine\DBAL\Types\DateTimeImmutableType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -44,7 +42,8 @@ class ProfileType extends AbstractType
                     'class' => 'mb-3'
                 ]
             ])
-            ->add('image', FileType::class, [
+            ->add('my_file', FileType::class, [
+                'mapped' => false,
                 'label' => 'Foto do Perfil',
                 'attr' => [
                     'class' => 'mb-3'

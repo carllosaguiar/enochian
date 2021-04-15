@@ -96,7 +96,11 @@ class Arcane
 
     public function getImage()
     {
-        return stream_get_contents($this->image);
+        if($this->image !== null)
+        {
+            return stream_get_contents($this->image);
+        }
+        return $this->image;
     }
 
     public function setImage($image): self
