@@ -27,10 +27,10 @@ class ProfileController extends AbstractController
      */
     public function index(): Response
     {
-        $profile = $this->profile->gerUserProfile();
+        $profile = $this->profile->getUserProfile();
 
         return $this->render('profile/index.html.twig', [
-            'profiles' => $profile
+            'profile' => $profile
         ]);
     }
 
@@ -48,8 +48,18 @@ class ProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $file = $request->files->get('profile')['my_file'];
+
+            $uploads_directory = $this->getParameter('uploads_directory');
+
+            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+
+            $file->move($uploads_directory, $filename);
+
             $em = $this->getDoctrine()->getManager();
             $user = $this->security->getUser();
+            $profile->setImage($filename);
             $profile->setUser($user);
             $em->persist($profile);
             $em->flush();
@@ -57,8 +67,11 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile');
         }
 
+        $userProfile = $this->profile->getUserProfile();
+
         return $this->render('profile/new.html.twig', [
-            'profile' => $form->createView()
+            'form_profile' => $form->createView(),
+            'userProfile' => $userProfile
         ]);
     }
 }

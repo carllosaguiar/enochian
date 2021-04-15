@@ -6,46 +6,95 @@
     <div class="container">
         <div class="main-body">
             <div class="row gutters-sm">
-                <div class="col-md-4 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="d-flex flex-column align-items-center text-center">
-                                {% if profile.image|default is empty and profile.gender == 'Masculino' %}
-                                    <img src="{{asset('images/man-avatar.png')}}" alt="Avatar" class="rounded-circle" width="150">
-                                {% endif %}
-                                {% if profile.image|default is empty and profile.gender == 'Feminino' %}
-                                    <img src="{{asset('images/woman-avatar.png')}}" alt="Avatar" class="rounded-circle" width="150">
-                                {% endif %}
-                                {% if profile.image|default is empty and profile.gender|default is empty %}
-                                    <img src="{{asset('images/man-avatar.png')}}" alt="Avatar" class="rounded-circle" width="180">
-                                {% endif %}
-                                <div class="mt-3">
-                                    <h4>{{ app.user.username }}</h4>
-                                    <p class="text-secondary mb-1">Full Stack Developer</p>
-                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                                    <a href="#" class="btn btn-outline-primary">Ver Cabala Pessoal</a>
-                                </div>
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            {% if userProfile is empty %}
+                                <img src="{{asset('images/avatar.jpg')}}" alt="Avatar" class="rounded-circle" width="180">
+                            {% else %}
+                                <img src="{{ asset('uploads/') ~ userProfile.image }}" alt="Avatar" class="rounded-circle" width="180"/>
+                            {% endif %}
+                            <div class="mt-3">
+                                <h4>{{ app.user.username }}</h4>
+                                <p class="text-secondary mb-1">Full Stack Developer</p>
+                                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                <a href="#" class="btn btn-outline-primary">Ver Cabala Pessoal</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            {{ form_start(profile, {'action': path('create'), 'method': 'POST'}) }}
-                                <div class="alert alert-error">
-                                    {{ form_errors(profile) }}
-                                </div>
-                                <div class="mb-3">
-                                    {{ form_widget(profile) }}
-                                </div>
-                                <div class="mb-3">
-                                    <button type="submit" class="btn btn-outline-primary">Enviar</button>
-                                </div>
-                            {{ form_end(profile) }}
+            </div>
+            {% if userProfile is empty %}
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        {{ form_start(form_profile, {'action': path('create'), 'method': 'POST'}) }}
+                            <div class="alert alert-error">
+                                {{ form_errors(form_profile) }}
+                            </div>
+                            <div class="mb-3">
+                                {{ form_widget(form_profile) }}
+                            </div>
+                            <div class="mb-3">
+                                <button type="submit" class="btn btn-outline-primary">Enviar</button>
+                            </div>
+                        {{ form_end(form_profile) }}
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Nome Completo</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ userProfile.name }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ app.user.email }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                (239) 816-9029
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Contato</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                (320) 380-4539
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Endereço</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                Bay Area, San Francisco, CA
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            {% endif %}
             </div>
         </div>
     </div>

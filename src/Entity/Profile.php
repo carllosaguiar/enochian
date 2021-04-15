@@ -74,7 +74,7 @@ class Profile
 
     public function setImage($image): self
     {
-        $this->image = $image;
+        $this->image = (string) $image;
 
         return $this;
     }
