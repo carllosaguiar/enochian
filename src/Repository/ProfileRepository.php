@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Profile;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 
@@ -23,10 +24,20 @@ class ProfileRepository extends ServiceEntityRepository
         $this->security = $security;
     }
 
-    public function getUserProfileById(): ?Profile
+    /**
+     * @return Profile|null
+     * @throws NonUniqueResultException
+     */
+    public function findUserProfileById(): ?Profile
     {
         $currentUser = $this->security->getUser();
-        return $this->find($currentUser);
+
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.user = :val')
+            ->setParameter('val', $currentUser)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
     }
 
     // /**

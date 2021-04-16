@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Arcane;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -24,10 +25,16 @@ class ArcaneRepository extends ServiceEntityRepository
     /**
      * @param int $id
      * @return Arcane|object
+     * @throws NonUniqueResultException
      */
     public function findById(int $id): Arcane
     {
-        return $this->find($id);
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.id = :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
 
     /**
@@ -35,7 +42,11 @@ class ArcaneRepository extends ServiceEntityRepository
      */
     public function findAllArcane(): array
     {
-        return $this->findAll();
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
     }
 
     /**

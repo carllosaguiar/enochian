@@ -25,7 +25,7 @@ class Profile
     private $name;
 
     /**
-     * @ORM\Column(type="blob")
+     * @ORM\Column(type="blob", nullable=true)
      */
     private $image;
 

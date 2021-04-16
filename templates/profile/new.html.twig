@@ -29,7 +29,7 @@
             <div class="col-md-8">
                 <div class="card mb-3">
                     <div class="card-body">
-                        {{ form_start(form_profile, {'action': path('create'), 'method': 'POST'}) }}
+                        {{ form_start(form_profile) }}
                             <div class="alert alert-error">
                                 {{ form_errors(form_profile) }}
                             </div>
@@ -92,6 +92,9 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <a href="{{ path('update', {id: userProfile.id }) }}" class="btn btn-outline-primary">Editar</a>
                 </div>
             </div>
             {% endif %}

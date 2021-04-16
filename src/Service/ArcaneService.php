@@ -5,6 +5,7 @@ namespace App\Service;
 
 use App\Entity\Arcane;
 use App\Repository\ArcaneRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\ORMException;
 
 final class ArcaneService
@@ -26,8 +27,9 @@ final class ArcaneService
     /**
      * @param $id
      * @return Arcane
+     * @throws NonUniqueResultException
      */
-    public function findArcaneById($id): Arcane
+    public function getArcaneById($id): Arcane
     {
         return $this->arcaneRepository->findById($id);
     }
@@ -35,7 +37,7 @@ final class ArcaneService
     /**
      * @return array
      */
-    public function findAllArcane(): array
+    public function getAllArcane(): array
     {
         return $this->arcaneRepository->findAllArcane();
     }
@@ -53,6 +55,7 @@ final class ArcaneService
      * @param int $number
      * @return string
      * @Annotation
+     * @throws NonUniqueResultException
      */
     public function locatorArcaneById(int $number): string
     {
