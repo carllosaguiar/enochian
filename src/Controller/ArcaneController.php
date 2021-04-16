@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Service\ArcaneService;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class ArcaneController extends AbstractController
      */
     public function index(): Response
     {
-        $arcanes = $this->arcaneService->findAllArcane();
+        $arcanes = $this->arcaneService->getAllArcane();
 
         return $this->render('arcane/index.html.twig', [
             'arcanes' => $arcanes
@@ -42,11 +43,12 @@ class ArcaneController extends AbstractController
      * @Route ("/arcane/{id}", name="arcane")
      * @param Request $request
      * @return Response
+     * @throws NonUniqueResultException
      */
     public function viewArcane(Request $request): Response
     {
         $id = $request->get('id');
-        $arcane =  $this->arcaneService->findArcaneById($id);
+        $arcane =  $this->arcaneService->getArcaneById($id);
 
         return $this->render('arcane/arcane.html.twig', [
             'arcane' => $arcane

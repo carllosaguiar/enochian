@@ -43,6 +43,7 @@ class ProfileType extends AbstractType
                 ]
             ])
             ->add('my_file', FileType::class, [
+                'required' => false,
                 'mapped' => false,
                 'label' => 'Foto do Perfil',
                 'attr' => [
