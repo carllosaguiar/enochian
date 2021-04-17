@@ -101,7 +101,7 @@ body {
 .bg-img{
     /* The image used */
     background-image: url("/public/images/tree-of-life.png");
-    min-height: 280px;
+    min-height: 380px;
 
     /* Center and scale the image nicely */
     background-position: center;
