@@ -4,7 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Cabala;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @method Cabala|null find($id, $lockMode = null, $lockVersion = null)
@@ -15,29 +17,30 @@ use Doctrine\Persistence\ManagerRegistry;
 class CabalaRepository extends ServiceEntityRepository
 {
 
-    public function __construct(ManagerRegistry $registry)
+    private Security $security;
+
+    public function __construct(ManagerRegistry $registry, Security $security)
     {
         parent::__construct($registry, Cabala::class);
+        $this->security = $security;
     }
 
-    public function findYearOfBirthCabala(int $yearOfBirth, int $amountEvents)
+
+    /**
+     * @return int|mixed|string|null
+     * @throws NonUniqueResultException
+     */
+    public function findPersonalCabalaById()
     {
+        $currentUser = $this->security->getUser();
 
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.user = :val')
+            ->setParameter('val', $currentUser)
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
     }
-
-    public function createYearOfBirthCabal(int $number){}
-
-    public function findInnerUrgency(){}
-    public function createInnerUrgency(int $number){}
-
-    public function findFundamentalTonic(){}
-    public function createFundamentalTonic(int $number){}
-
-    public function findTonicOfTheDay(){}
-    public function createTonicOfTheDay(int $number){}
-
-    public function findEventOfTheDay(){}
-    public function createEventOfTheDay(int $number){}
 
     /**
      * @return Cabala[]
@@ -46,5 +49,16 @@ class CabalaRepository extends ServiceEntityRepository
     {
         return $this->findAll();
     }
+
+    public function findYearOfBirthCabala(){}
+
+    public function findInnerUrgency(){}
+
+    public function findFundamentalTonic(){}
+
+    public function findTonicOfTheDay(){}
+
+    public function findEventOfTheDay(){}
+
 
 }

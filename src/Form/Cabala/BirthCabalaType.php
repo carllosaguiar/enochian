@@ -13,7 +13,8 @@ class BirthCabalaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('yearOfBirth', IntegerType::class, [
+            ->add('birthCabala', IntegerType::class, [
+                'mapped' => false,
                 'label' => 'Ano de Nascimento',
                 'attr' => [
                     'placeholder' => 'Seu ano de nascimento',
@@ -21,8 +22,8 @@ class BirthCabalaType extends AbstractType
                 ]
             ])
             ->add('amountEvents', IntegerType::class, [
-                'label' => 'Quantidade de Anos',
                 'mapped' => false,
+                'label' => 'Quantidade de Anos',
                 'attr' => [
                     'placeholder' => 'Quantidade de Anos a serem analizados',
                     'class' => 'mb-3'

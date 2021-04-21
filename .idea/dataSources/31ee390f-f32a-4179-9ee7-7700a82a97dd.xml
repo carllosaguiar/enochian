@@ -1007,10 +1007,11 @@ SELECT|sys.sys_config
       <Position>2</Position>
       <DataType>int|0s</DataType>
     </column>
-    <column id="305" parent="285" name="year_of_birth">
+    <column id="305" parent="285" name="birth_cabala">
       <Position>3</Position>
       <Comment>(DC2Type:array)</Comment>
       <DataType>longtext|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
     <column id="306" parent="285" name="inner_urgency">
       <Position>4</Position>

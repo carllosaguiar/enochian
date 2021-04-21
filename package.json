@@ -2,7 +2,10 @@
     "devDependencies": {
         "@symfony/stimulus-bridge": "^2.0.0",
         "@symfony/webpack-encore": "^1.0.0",
+        "bootstrap": "^4.6.0",
         "core-js": "^3.0.0",
+        "jquery": "^3.6.0",
+        "popper.js": "^1.16.1",
         "regenerator-runtime": "^0.13.2",
         "stimulus": "^2.0.0",
         "webpack-notifier": "^1.6.0"
@@ -16,9 +19,6 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "animate.css": "^4.1.1",
-        "vue": "^2.6.12",
-        "vue-loader": "^15.9.6",
-        "vue-template-compiler": "^2.6.12"
+        "animate.css": "^4.1.1"
     }
 }

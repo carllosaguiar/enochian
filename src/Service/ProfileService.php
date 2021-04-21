@@ -16,8 +16,8 @@ use Symfony\Component\Security\Csrf\TokenStorage\TokenStorageInterface;
 class ProfileService
 {
 
-    private $profileRepository;
-    private $userRepository;
+    private ProfileRepository $profileRepository;
+    private UserRepository $userRepository;
 
     public function __construct(ProfileRepository $profileRepository, UserRepository $userRepository)
     {

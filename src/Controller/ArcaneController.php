@@ -15,7 +15,7 @@ class ArcaneController extends AbstractController
     /**
      * @var ArcaneService
      */
-    private $arcaneService;
+    private ArcaneService $arcaneService;
 
     /**
      * ArcaneController constructor.
