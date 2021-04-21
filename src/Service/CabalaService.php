@@ -5,13 +5,14 @@ namespace App\Service;
 
 use App\Entity\Cabala;
 use App\Repository\CabalaRepository;
+use Doctrine\ORM\NonUniqueResultException;
 
 
 class CabalaService
 {
 
-    private $cabalaRepository;
-    private $locator;
+    private CabalaRepository $cabalaRepository;
+    private LocatorArcane $locator;
 
     public function __construct(CabalaRepository $cabalaRepository, LocatorArcane $locator)
     {
@@ -19,7 +20,16 @@ class CabalaService
         $this->locator = $locator;
     }
 
-    public function serviceSetYearOfBirth($year, $amountEvents): array
+    /**
+     * @return int|mixed|string|null
+     * @throws NonUniqueResultException
+     */
+    public function getPersonalCabala()
+    {
+        return $this->cabalaRepository->findPersonalCabalaById();
+    }
+
+    public function serviceSetYearOfBirth(int $year, int $amountEvents): array
     {
         $cabala = new Cabala();
         return $cabala->calculateYearOfBirth($year, $amountEvents);
@@ -61,4 +71,5 @@ class CabalaService
     {
         return $this->locator->locatorArcane($number);
     }
+
 }

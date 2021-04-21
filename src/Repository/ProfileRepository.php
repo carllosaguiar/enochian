@@ -16,7 +16,7 @@ use Symfony\Component\Security\Core\Security;
  */
 class ProfileRepository extends ServiceEntityRepository
 {
-    private $security;
+    private Security $security;
 
     public function __construct(ManagerRegistry $registry, Security $security)
     {

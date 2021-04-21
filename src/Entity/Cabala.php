@@ -15,32 +15,32 @@ class Cabala
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
-     * @ORM\Column(type="array", nullable=true)
+     * @ORM\Column(name="birth_cabala", type="array", nullable=true)
      */
-    private $yearOfBirth;
+    private array $birthCabala = [];
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $innerUrgency;
+    private int $innerUrgency;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)id
      */
-    private $fundamentalTonic;
+    private int $fundamentalTonic;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $tonicDay;
+    private int $tonicDay;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
-    private $eventDay;
+    private int $eventDay;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="cabala", cascade={"persist", "remove"})
@@ -60,18 +60,18 @@ class Cabala
     /**
      * @return array
      */
-    public function getYearOfBirth(): array
+    public function getBirthCabala(): array
     {
-        return $this->yearOfBirth;
+        return $this->birthCabala;
     }
 
     /**
-     * @param array $yearOfBirth
+     * @param array $birthCabala
      * @return $this
      */
-    public function setYearOfBirth(array $yearOfBirth): self
+    public function setBirthCabala(array $birthCabala): self
     {
-        $this->yearOfBirth = $yearOfBirth;
+        $this->birthCabala = $birthCabala;
 
         return $this;
     }
@@ -160,11 +160,11 @@ class Cabala
     {
         $arrayData = [];
 
-        $amountEvent = ($amountEvent == 0) || ($amountEvent == null)  ? 0 : $amountEvent;
+        $amountEvent = (int) ($amountEvent == 0 || $amountEvent == null)  ? 0 : $amountEvent;
 
         for ($i = 0; $i <= $amountEvent; $i++)
         {
-            $sum = array_sum(str_split($year)); // sum year birth
+            $sum = array_sum(str_split((int)$year)); // sum year birth
             $sumYear = $year + $sum; // sum year with year birth
             $firstSynthesis = array_sum(str_split($sumYear)); // get first synthesis
             if($firstSynthesis > 9)
@@ -174,11 +174,7 @@ class Cabala
                 $secondSynthesis = null;
             }
 
-            array_push($arrayData, [
-                'year' => $sumYear,
-                'firstSynthesis' => $firstSynthesis,
-                'secondSynthesis' => $secondSynthesis
-            ]);
+            array_push($arrayData, [ $sumYear, $firstSynthesis, $secondSynthesis ]);
 
             $year = $sumYear;
 
@@ -233,10 +229,10 @@ class Cabala
     }
 
     /**
-     * @param UserInterface $user
+     * @param User $user
      * @return $this
      */
-    public function setUser(UserInterface $user): self
+    public function setUser(User $user): self
     {
         $this->user = $user;
 
