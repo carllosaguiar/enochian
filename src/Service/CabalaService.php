@@ -3,6 +3,7 @@
 
 namespace App\Service;
 
+use App\Entity\Arcane;
 use App\Entity\Cabala;
 use App\Repository\CabalaRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -61,6 +62,14 @@ class CabalaService
     public function findAllPersonalCabala(): array
     {
         return $this->cabalaRepository->findAllPersonalCabala();
+    }
+
+    /**
+     * @return Arcane[]
+     */
+    public function locatorArcanes(): array
+    {
+        return $this->locator->locatorAllArcane();
     }
 
     /**

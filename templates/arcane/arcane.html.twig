@@ -3,7 +3,7 @@
 {% block title %} Enochian | Profile {% endblock %}
 
 {% block body %}
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
     <div class="main-body">
         <div class="row gutters-sm">
             {% if arcane %}
@@ -25,48 +25,48 @@
                     <div class="card-body">
                         <form class="form-horizontal" role="form" method="post">
                             <div class="mb-3">
-                                <label>Nome</label>
+                                <label><strong>Nome</strong></label>
                                 <p class="fw-normal"> {{ arcane.name }} </p>
                             </div>
                             <hr>
                             <div class="mb-3">
-                                <label>Descrição</label>
+                                <label><strong>Descrição</strong></label>
                                 <p class="fw-normal"> {{ arcane.description }} </p>
                             </div>
                             <div class="mb-3">
-                                <label>Letra</label>
+                                <label><strong>Letra</strong></label>
                                 <p class="fw-normal"> {{ arcane.letter }} </p>
                             </div>
                             <div class="mb-3">
-                                <label>Plano Espiritual</label>
+                                <label><strong>Plano Espiritual</strong></label>
                                 <p class="fw-normal"> {{ arcane.spiritualPlane }}</p>
                             </div>
                             <div class="mb-3">
-                                <label>Plano Mental</label>
+                                <label><strong>Plano Mental</strong></label>
                                 <p class="fw-normal"> {{ arcane.mentalPlane }} </p>
                             </div>
                             <div class="mb-3">
-                                <label>Plano Físico</label>
+                                <label><strong>Plano Físico</strong></label>
                                 <p class="fw-normal"> {{ arcane.physicalPlane }} </p>
                             </div>
                             <div class="mb-3">
-                                <label>Axioma Transcendental</label>
+                                <label><strong>Axioma Transcendental</strong></label>
                                 <p class="fw-normal"> {{ arcane.transcendentAxiom }}</p>
                             </div>
                             <div class="mb-3">
-                                <label>Axioma Transcendental</label>
+                                <label><strong>Axioma Transcendental</strong></label>
                                 <p class="fw-normal"> {{ arcane.astrologicalAssociation }}</p>
                             </div>
                             <div class="mb-3">
-                                <label>Em Geral</label>
+                                <label><strong>Em Geral</strong></label>
                                 <p class="fw-normal"> {{ arcane.inGeneral }}</p>
                             </div>
                             <div class="mb-3">
-                                <label>Direito</label>
+                                <label><strong>Direito</strong></label>
                                 <p class="fw-normal"> {{ arcane.favorable }} </p>
                             </div>
                             <div class="mb-3">
-                                <label>Reves</label>
+                                <label><strong>Reves</strong></label>
                                 <p class="fw-normal"> {{ arcane.notFavorable }} </p>
                             </div>
                         </form>

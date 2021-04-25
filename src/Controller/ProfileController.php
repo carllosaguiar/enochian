@@ -33,17 +33,17 @@ class ProfileController extends AbstractController
      * @Route("/profile/create", name="create")
      * @param Request $request
      * @return Response
+     * @throws NonUniqueResultException
      */
     public function create(Request $request): Response
     {
+
         $profile = new Profile();
-        $form = $this->createForm(ProfileType::class);
+        $form = $this->createForm(ProfileType::class, $profile);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $profile = $form->getData();
 
             $file = $request->files->get('profile')['my_file'];
 
@@ -63,7 +63,7 @@ class ProfileController extends AbstractController
 
             $this->addFlash('success', "Perfil Criado!");
 
-            return $this->redirectToRoute('profile');
+            return $this->redirectToRoute('create');
         }
 
         $userProfile = $this->profile->getUserProfile();
@@ -78,8 +78,9 @@ class ProfileController extends AbstractController
      * @Route ("/profile/{id}/edit", name="update")
      * @param Request $request
      * @return Response
+     * @throws NonUniqueResultException
      */
-    public function editeProfile(Request $request): Response
+    public function editProfile(Request $request): Response
     {
         $userProfile = $this->profile->getUserProfile();
 
