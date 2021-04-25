@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CabalaController!{% endblock %}
+{% block title %} Cabala | Personal {% endblock %}
 
 {% block body %}
     <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
@@ -17,14 +17,14 @@
                             <p style="text-align: center">A soma parcial, apesar de não representar o resultado final, também deverá ser analisada como o panorâma para aquele ano.<small></small></p>
                             <p><strong>Por exemplo:</strong> <br> Se um ano importante para a pessoa for <code>2027</code>, a soma dará <code>11</code>, que é sintetizada em <code>1</code> + <code>1</code> resultando na soma final <code>2</code>, que é a cabala para este ano. Porém, o consultante também deverá analisar o Arcano <code>11</code>, pois contribui na análise da cabala daquele ano.</p>
                         </div>
-
+                        {% for value in cabala.birthCabala %}
                         <main id="home" class="contents">
                             <div class="container">
                                 <h3 class="page-title text-center">Timeline</h3>
                                 <ul class="timeline">
                                     <li class="timeline-line"></li>
                                     <li class="timeline-group">
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> Today</a>
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> {{ value[0] }}</a>
                                     </li>
                                 </ul>
 
@@ -37,8 +37,8 @@
                                             <div class="panel">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
-                                                            <div class="timeline-heading">Soma Parcial</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseFive"></span>
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="text-decoration: none;">
+                                                            <div class="timeline-heading">Resultado Parcial</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseFive"></span>
                                                         </a>
                                                     </h4>
                                                 </div>
@@ -46,13 +46,24 @@
                                                     <div class="panel-body">
                                                         <div class="timeline-content">
                                                             <ul>
-                                                                <li><code>Ano: </code> <strong>2027</strong> <i>Ano que marca um acontecimento importante</i></li>
-                                                                <li><code>Soma Parcial</code> <strong><code>Ex:</code>22</strong><i>Primeira Sintese Cabalistica</i></li>
-                                                                <li><code>Arcano</code> <a href="#">Analisar Arcano</a></li>
+                                                                <li><code>Ano:</code><strong> {{ value[0] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
+                                                                <li><code>Síntese</code><strong> {{ value[1] }} </strong><i> Síntese cabalística</i></li>
+                                                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: value[1]} ) }}">Resultado Parcial</a></li>
                                                             </ul>
-                                                            <div class="timeline-embed">
-                                                                <iframe width="478" height="320" src="https://www.youtube.com/embed/qxlahRGEhp0" frameborder="0" allowfullscreen></iframe>
+                                                            <div class="custom-container">
+                                                                <div class="card-items justify-content-center wrap">
+                                                                    {% for arcane in arcanes %}
+                                                                        {% if arcane.id == value[1] %}
+                                                                        <div class="card" style="width: 8rem">
+                                                                            <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
+                                                                        </div>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                </div>
                                                             </div>
+                                                                {#                                                            <div class="timeline-embed">#}
+{#                                                                <iframe width="478" height="320" src="https://www.youtube.com/embed/qxlahRGEhp0" frameborder="0" allowfullscreen></iframe>#}
+{#                                                            </div>#}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -60,40 +71,57 @@
                                         </div>
                                     </li>
 
+                                    {% if value[2] is not null %}
                                     <li class="timeline-item">
                                         <div class="timeline-badge"><a href="#"></a></div>
                                         <div class="timeline-panel">
                                             <div class="panel">
                                                 <div class="panel-heading">
                                                     <h4 class="panel-title">
-                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
-                                                            <div class="timeline-heading">Soma Final</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseSix"></span>
+                                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="text-decoration: none;">
+                                                            <div class="timeline-heading">Resultado Final</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseFive"></span>
                                                         </a>
                                                     </h4>
                                                 </div>
-                                                <div id="collapseSix" class="panel-collapse collapse" role="tabpanel">
+                                                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
                                                     <div class="panel-body">
                                                         <div class="timeline-content">
-                                                            <p>Eu pid nunc urna integer, sed, cras tortor scelerisque penatibus facilisis a pulvinar, rhoncus sagittis ut nunc elit! Sociis in et? Rhoncus, vel dignissim in scelerisque. Dolor lacus pulvinar adipiscing adipiscing montes! Elementum risus adipiscing non, cras scelerisque risus penatibus? Massa vut, habitasse, tincidunt!</p>
-                                                            <div class="timeline-embed">
-                                                                <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d15936.386801163795!2d101.61008935000001!3d3.0688275999999997!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2smy!4v1446881552869" width="478" height="320" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                                            <ul>
+                                                                <li><code>Ano:</code> <strong> {{ value[0] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
+                                                                <li><code>Síntese</code> <strong> {{ value[2] }} </strong><i>Resultado Final</i></li>
+                                                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: value[2]} ) }}">Resultado Final</a></li>
+                                                            </ul>
+                                                            <div class="custom-container">
+                                                                <div class="card-items justify-content-center wrap">
+                                                                    {% for arcane in arcanes %}
+                                                                        {% if arcane.id == value[2] %}
+                                                                            <div class="card" style="width: 8rem">
+                                                                                <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
+                                                                            </div>
+                                                                        {% endif %}
+                                                                    {% endfor %}
+                                                                </div>
                                                             </div>
+                                                            {#                                                            <div class="timeline-embed">#}
+{#                                                                <iframe width="478" height="320" src="https://www.youtube.com/embed/qxlahRGEhp0" frameborder="0" allowfullscreen></iframe>#}
+{#                                                            </div>#}
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-
-                                </ul>
-                                <ul class="timeline">
-                                    <li class="timeline-line"></li>
-                                    <li class="timeline-group">
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> 2019</a>
+                                    {% else %}
+                                    <li class="timeline-item">
+                                        <div class="alert alert-warning" role="alert" style="border-radius: 12px">
+                                            Considere o seu resultado parcial como a síntese absoluta para este ano.
+                                        </div>
                                     </li>
+                                    {% endif %}
                                 </ul>
                             </div>
                         </main>
+                        {% endfor %}
 
                     </div>
                 </div>

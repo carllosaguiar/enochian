@@ -57,7 +57,7 @@ class CabalaController extends AbstractController
             $year = $yearOfBirth->get('birthCabala')->getData();
             $amountEvents = $yearOfBirth->get('amountEvents')->getData();
 
-            $result = $this->cabala->serviceSetYearOfBirth($year, $amountEvents);
+            $result = $this->service->serviceSetYearOfBirth($year, $amountEvents);
 
             $em = $this->getDoctrine()->getManager();
             $cabala->setUser($currentUser);
@@ -73,16 +73,17 @@ class CabalaController extends AbstractController
 
     /**
      * @Route("/cabala/personal", name="personal_cabala")
-     * @param Request $request
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function viewPersonalCabala(Request $request): Response
+    public function viewPersonalCabala(): Response
     {
         $personalCabala = $this->service->getPersonalCabala();
+        $arcanes = $this->service->locatorArcanes();
 
         return $this->render('cabala/personal.html.twig', [
-            'cabala' => $personalCabala
+            'cabala' => $personalCabala,
+            'arcanes' => $arcanes
         ]);
     }
 
