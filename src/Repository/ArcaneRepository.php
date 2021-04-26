@@ -62,6 +62,7 @@ class ArcaneRepository extends ServiceEntityRepository
     /**
      * @param int $number
      * @return false|string
+     * @throws NonUniqueResultException
      */
     public function locatorArcaneById(int $number): string
     {

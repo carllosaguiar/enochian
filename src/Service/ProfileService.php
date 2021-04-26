@@ -4,6 +4,7 @@
 namespace App\Service;
 
 
+use App\Entity\Cabala;
 use App\Entity\Profile;
 use App\Entity\User;
 use App\Repository\ProfileRepository;
@@ -18,11 +19,13 @@ class ProfileService
 
     private ProfileRepository $profileRepository;
     private UserRepository $userRepository;
+    private LocatorCabala $locator;
 
-    public function __construct(ProfileRepository $profileRepository, UserRepository $userRepository)
+    public function __construct(ProfileRepository $profileRepository, UserRepository $userRepository, LocatorCabala $locator)
     {
         $this->profileRepository = $profileRepository;
         $this->userRepository = $userRepository;
+        $this->locator = $locator;
     }
 
     /**
@@ -39,4 +42,24 @@ class ProfileService
         return $this->profileRepository->findAll();
 
     }
+
+    /**
+     * @return Cabala
+     * @throws NonUniqueResultException
+     */
+    public function locatorCabala(): Cabala
+    {
+        return $this->locator->locatorCabala();
+    }
+
+    /**
+     * @param int $number
+     * @return false|string
+     * @throws NonUniqueResultException
+     */
+    public function locatorAbsoluteUrlArcane(int $number): string
+    {
+        return $this->locator->locatorCabala($number);
+    }
+
 }
