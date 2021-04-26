@@ -14,8 +14,8 @@ use Symfony\Component\Security\Core\Security;
 
 class ProfileController extends AbstractController
 {
-    private $profile;
-    private $security;
+    private ProfileService $profile;
+    private Security $security;
 
     /**
      * ProfileController constructor.
@@ -84,8 +84,6 @@ class ProfileController extends AbstractController
     {
         $userProfile = $this->profile->getUserProfile();
 
-        $profile = new Profile();
-
         $form = $this->createForm(ProfileType::class, $userProfile);
 
         $form->handleRequest($request);
@@ -102,7 +100,7 @@ class ProfileController extends AbstractController
 
                 $file->move($uploads_directory, $filename);
 
-                $profile->setImage($filename);
+                $userProfile->setImage($filename);
 
             }
 

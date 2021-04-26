@@ -27,10 +27,10 @@ class CabalaRepository extends ServiceEntityRepository
 
 
     /**
-     * @return int|mixed|string|null
+     * @return Cabala|null
      * @throws NonUniqueResultException
      */
-    public function findPersonalCabalaById()
+    public function findPersonalCabalaById(): ?Cabala
     {
         $currentUser = $this->security->getUser();
 

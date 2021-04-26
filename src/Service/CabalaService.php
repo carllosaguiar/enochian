@@ -22,10 +22,10 @@ class CabalaService
     }
 
     /**
-     * @return int|mixed|string|null
+     * @return Cabala
      * @throws NonUniqueResultException
      */
-    public function getPersonalCabala()
+    public function getPersonalCabala(): ?Cabala
     {
         return $this->cabalaRepository->findPersonalCabalaById();
     }

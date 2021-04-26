@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\Entity\Arcane;
 use App\Repository\ArcaneRepository;
+use Doctrine\ORM\NonUniqueResultException;
 
 class LocatorArcane
 {
@@ -28,6 +29,7 @@ class LocatorArcane
     /**
      * @param int $number
      * @return false|string
+     * @throws NonUniqueResultException
      */
     public function locatorArcane(int $number): string
     {

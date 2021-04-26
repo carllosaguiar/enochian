@@ -28,7 +28,7 @@ class Cabala
     private int $innerUrgency;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)id
+     * @ORM\Column(type="integer", nullable=true)
      */
     private int $fundamentalTonic;
 

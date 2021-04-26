@@ -8,7 +8,7 @@
 // any CSS you require will output into a single css file (app.css in this case)
 import '../styles/app.css';
 import '../styles/timeline.css';
-
+import '../styles/hoverImage.css'
 //js
 import './timeline.js';
 

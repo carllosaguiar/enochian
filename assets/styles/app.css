@@ -37,11 +37,6 @@ body {
     box-shadow:0 0 0 #a71d5d;
 }
 
-.card:hover {
-    box-shadow:0 0 10px #B68CC7;
-    border-color: #B68CC7;
-}
-
 .card-body{
     display: flex;
     flex-direction: column;
