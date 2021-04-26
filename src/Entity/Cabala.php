@@ -77,10 +77,14 @@ class Cabala
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getInnerUrgency(): int
+    public function getInnerUrgency(): ?int
     {
+        if(empty($this->innerUrgency))
+        {
+            return null;
+        }
         return $this->innerUrgency;
     }
 
@@ -95,10 +99,14 @@ class Cabala
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getFundamentalTonic(): int
+    public function getFundamentalTonic(): ?int
     {
+        if(empty($this->fundamentalTonic))
+        {
+            return null;
+        }
         return $this->fundamentalTonic;
     }
 
@@ -113,10 +121,14 @@ class Cabala
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getTonicDay(): int
+    public function getTonicDay(): ?int
     {
+        if(empty($this->tonicDay))
+        {
+            return null;
+        }
         return $this->tonicDay;
     }
 
@@ -132,10 +144,14 @@ class Cabala
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getEventDay(): int
+    public function getEventDay(): ?int
     {
+        if(empty($this->eventDay))
+        {
+            return null;
+        }
         return $this->eventDay;
     }
 
