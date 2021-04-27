@@ -13,7 +13,7 @@ final class ArcaneService
     /**
      * @var ArcaneRepository
      */
-    private $arcaneRepository;
+    private ArcaneRepository $arcaneRepository;
 
     /**
      * ArcaneService constructor.

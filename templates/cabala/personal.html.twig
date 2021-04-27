@@ -13,7 +13,7 @@
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {% if cabala.birthCabala is not null %}
+                        {% if cabala.birthCabala is defined and cabala.birthCabala is not null %}
                             <div class="card">
                                 <p style="text-align: center">A soma parcial, apesar de não representar o resultado final, também deverá ser analisada como o panorâma para aquele ano.<small></small></p>
                                 <p><strong>Por exemplo:</strong> <br> Se um ano importante para a pessoa for <code>2027</code>, a soma dará <code>11</code>, que é sintetizada em <code>1</code> + <code>1</code> resultando na soma final <code>2</code>, que é a cabala para este ano. Porém, o consultante também deverá analisar o Arcano <code>11</code>, pois contribui na análise da cabala daquele ano.</p>
@@ -120,9 +120,14 @@
                                 </div>
                             </main>
                             {% endfor %}
+                            {% if cabala.birthCabala is not null %}
+                                <div style="padding-top: 20px">
+                                    <a href="{{ path('edit_birth_cabala', {id: cabala.id}) }}" type="button" class="btn btn-primary" style="align-content: center"><i class="bi bi-pencil"></i></a>
+                                </div>
+                            {% endif %}
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
-                                <p>Não foram encontrádos cálculos da <strong>Cabala do Ano de Nascimento</strong> para o usuário {{ app.user.username }}</p>
+                                <p>Não foram encontrádos cálculos da <strong>Cabala do Ano de Nascimento</strong> para o usuário atual</p>
                             </div>
                         {% endif %}
                     </div>
@@ -142,7 +147,7 @@
                         </div>
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
-                                <p>Não foram encontrádos cálculos da <strong>Urgência Interior</strong> para o usuário {{ app.user.username }}</p>
+                                <p>Não foram encontrádos cálculos da <strong>Urgência Interior</strong> para o usuário atual</p>
                             </div>
                         {% endif %}
                     </div>
@@ -156,13 +161,13 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {% if cabala.fundamentalTonic is not null %}
+                        {% if cabala.fundamentalTonic is defined and cabala.fundamentalTonic is not null %}
                         <div class="card">
                             <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
-                                <p>Não foram encontrádos cálculos da <strong>Tônica Fundamental</strong> para o usuário {{ app.user.username }}</p>
+                                <p>Não foram encontrádos cálculos da <strong>Tônica Fundamental</strong> para o usuário atual</p>
                             </div>
                         {% endif %}
                     </div>
@@ -176,13 +181,13 @@
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {% if cabala.tonicDay is not null %}
+                        {% if cabala.tonicDay is defined and cabala.tonicDay is not null %}
                         <div class="card">
                             <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
-                                <p>Não foram encontrádos cálculos da <strong>Tônica do Dia</strong> para o usuário {{ app.user.username }}</p>
+                                <p>Não foram encontrádos cálculos da <strong>Tônica do Dia</strong> para o usuário atual</p>
                             </div>
                         {% endif %}
                     </div>
@@ -196,13 +201,13 @@
                 </h2>
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        {% if cabala.eventDay is not null %}
+                        {% if cabala.eventDay is defined and cabala.eventDay is not null %}
                         <div class="card">
                             <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                         </div>
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
-                                <p>Não foram encontrádos cálculos do <strong>Evento do Dia</strong> para o usuário {{ app.user.username }}</p>
+                                <p>Não foram encontrádos cálculos do <strong>Evento do Dia</strong> para o usuário atual</p>
                             </div>
                         {% endif %}
                     </div>

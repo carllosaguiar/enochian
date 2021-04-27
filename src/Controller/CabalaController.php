@@ -23,8 +23,8 @@ class CabalaController extends AbstractController
 
     public function __construct(CabalaService $service, Security $security)
     {
-         $this->service = $service;
-         $this->security = $security;
+        $this->service = $service;
+        $this->security = $security;
     }
 
     /**
@@ -52,8 +52,7 @@ class CabalaController extends AbstractController
         $eventDay = $this->createForm(EventDayType::class);
         $eventDay->handleRequest($request);
 
-        if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid())
-        {
+        if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid()) {
             $year = $yearOfBirth->get('birthCabala')->getData();
             $amountEvents = $yearOfBirth->get('amountEvents')->getData();
 
@@ -65,10 +64,9 @@ class CabalaController extends AbstractController
             $em->persist($cabala);
             $em->flush();
         }
-            return $this->render('cabala/index.html.twig', [
-                'birthCabala' => $yearOfBirth->createView()
-            ]);
-
+        return $this->render('cabala/index.html.twig', [
+            'birthCabala' => $yearOfBirth->createView()
+        ]);
     }
 
     /**
@@ -78,13 +76,52 @@ class CabalaController extends AbstractController
      */
     public function viewPersonalCabala(): Response
     {
-        $personalCabala = $this->service->getPersonalCabala();
+        $userProfileCabala = $this->service->getPersonalCabala();
         $arcanes = $this->service->locatorArcanes();
 
         return $this->render('cabala/personal.html.twig', [
-            'cabala' => $personalCabala,
+            'cabala' => $userProfileCabala,
             'arcanes' => $arcanes
         ]);
     }
 
+    /**
+     * @Route("/cabala/{id}/birth/edit", name="edit_birth_cabala")
+     * @param Request $request
+     * @return Response
+     * @throws NonUniqueResultException
+     */
+    public function editBirthCabala(Request $request): Response
+    {
+        $userProfileCabala = $this->service->getPersonalCabala();
+
+        $form = $this->createForm(BirthCabalaType::class, $userProfileCabala);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $updateUser = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+
+//            dump($request);
+
+            $birthCabala = $request->request->get('birth_cabala')['birthCabala'];
+            $amountEvents = $request->request->get('birth_cabala')['amountEvents'];
+
+            $result = $this->service->serviceSetYearOfBirth($birthCabala, $amountEvents);
+            $userProfileCabala->setBirthCabala($result);
+            $em->persist($updateUser);
+            $em->flush();
+
+            $this->addFlash('success', "Cabala do Ano atualizada!");
+
+            return $this->redirectToRoute('personal_cabala');
+        }
+
+        return $this->render('cabala/index.html.twig', [
+            'birthCabala' => $form->createView(),
+            'cabala' => $userProfileCabala
+        ]);
+
+    }
 }
