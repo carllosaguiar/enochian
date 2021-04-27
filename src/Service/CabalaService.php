@@ -81,4 +81,13 @@ class CabalaService
         return $this->locator->locatorArcane($number);
     }
 
+    /**
+     * @param $id
+     * @return int|mixed|string
+     */
+    public function remove($id)
+    {
+        return $this->cabalaRepository->removeBirthCabalaById($id);
+    }
+
 }

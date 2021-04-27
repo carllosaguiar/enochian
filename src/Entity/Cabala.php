@@ -20,7 +20,7 @@ class Cabala
     /**
      * @ORM\Column(name="birth_cabala", type="array", nullable=true)
      */
-    private array $birthCabala = [];
+    private ?array $birthCabala = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -50,18 +50,26 @@ class Cabala
 
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
+        if(empty($this->id))
+        {
+            return null;
+        }
         return $this->id;
     }
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getBirthCabala(): array
+    public function getBirthCabala(): ?array
     {
+        if(empty($this->birthCabala))
+        {
+            return null;
+        }
         return $this->birthCabala;
     }
 
@@ -178,7 +186,7 @@ class Cabala
 
         $amountEvent = (int) ($amountEvent == 0 || $amountEvent == null)  ? 0 : $amountEvent;
 
-        for ($i = 0; $i <= $amountEvent; $i++)
+        for ($i = 0; $i < $amountEvent; $i++)
         {
             $sum = array_sum(str_split((int)$year)); // sum year birth
             $sumYear = $year + $sum; // sum year with year birth
