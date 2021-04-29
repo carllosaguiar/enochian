@@ -15,14 +15,14 @@ Enochian é uma Aplicação Web voltada para o estudo do esoterísmo do Tarot :m
 Com Enochian será possível ter seu Perfil e ter todos os cálculos da Cabala Pessoal em um único ambiente.
 
 ### Por que Enochian?
-Do inglês antigo, Enochian, é um nome relacionado à mítica língua dos anjos :angel:. Alguns textos antigos fazem referência a
-alguns personágens que entregaram essa ciência à humanidade (Tarot, Cabala, Numerologia).
-Portanto, nos pareceu bastante oportuno nomea-lo **Enochian**.  
+Do inglês antigo, Enochian, é um nome relacionado à mítica língua dos anjos :angel:. Alguns textos antigos fazem referência ao profeta Enoque
+como aquele que entregou ciência à humanidade (Tarot, Cabala, Numerologia).
+Portanto, nos pareceu bastante oportuno nomea-lo **Enochian**, a enoquiniana linguagem, aquele que vem de Enoque.
 
 ### Requisitos
-Para continuar, você deve ter instalados em sua máquina:    
+Para continuar, você deve ter instalados em sua máquina:
 
-- Gerenciador de pacotes do php [Composer](#https://getcomposer.org/download/)  
+- Gerenciador de pacotes do php [Composer](#https://getcomposer.org/download/)
 - Gerenciador de pacotes do Node [Yarn](#https://yarnpkg.com/getting-started/install)
 - Banco de dados MySql [MySql](#https://dev.mysql.com/downloads/mysql/)
 >Nota: Escolha sua distribuição linux e realize a instalação seguindo os passos da documentação oficial.
@@ -55,6 +55,6 @@ setp:4
 
 ### Como usar Enochian
 Enochian é uma aplicação que usa uma base de conhecimento específica para ser consultada de maneira correta.
-Para isso, preparamos uma [Documentação](https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ) :writing_hand: para você dar os primeiros passos.  
+Para isso, preparamos uma [Documentação](https://hackmd.io/QlAJiOtKQMeqsA20tPtAdQ) :writing_hand: para você dar os primeiros passos.
 
 Fim :rocket:
