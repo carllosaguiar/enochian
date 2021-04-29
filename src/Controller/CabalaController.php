@@ -103,8 +103,6 @@ class CabalaController extends AbstractController
             $updateUser = $form->getData();
             $em = $this->getDoctrine()->getManager();
 
-//            dump($request);
-
             $birthCabala = $request->request->get('birth_cabala')['birthCabala'];
             $amountEvents = $request->request->get('birth_cabala')['amountEvents'];
 
@@ -119,8 +117,7 @@ class CabalaController extends AbstractController
         }
 
         return $this->render('cabala/index.html.twig', [
-            'birthCabala' => $form->createView(),
-            'cabala' => $userProfileCabala
+            'birthCabala' => $form->createView()
         ]);
 
     }

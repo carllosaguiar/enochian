@@ -76,6 +76,10 @@ class ArcaneMinor
 
     public function getImage()
     {
+        if($this->image !== null)
+        {
+            return stream_get_contents($this->image);
+        }
         return $this->image;
     }
 
