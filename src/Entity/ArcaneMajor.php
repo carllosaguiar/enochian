@@ -7,19 +7,19 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArcaneRepository")
  */
-class Arcane
+class ArcaneMajor
 {
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private ?string $name;
 
     /**
      * @ORM\Column(type="blob")
@@ -29,52 +29,52 @@ class Arcane
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $description;
+    private ?string $description;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $letter;
+    private ?string $letter;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $spiritualPlane;
+    private ?string $spiritualPlane;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $mentalPlane;
+    private ?string $mentalPlane;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $physicalPlane;
+    private ?string $physicalPlane;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $transcendentAxiom;
+    private ?string $transcendentAxiom;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $astrologicalAssociation;
+    private ?string $astrologicalAssociation;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $inGeneral;
+    private ?string $inGeneral;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $favorable;
+    private ?string $favorable;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $notFavorable;
+    private ?string $notFavorable;
 
 
     public function getId(): ?int
@@ -229,4 +229,5 @@ class Arcane
 
         return $this;
     }
+
 }

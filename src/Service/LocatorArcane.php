@@ -4,7 +4,7 @@
 namespace App\Service;
 
 
-use App\Entity\Arcane;
+use App\Entity\ArcaneMajor;
 use App\Repository\ArcaneRepository;
 use Doctrine\ORM\NonUniqueResultException;
 
@@ -19,7 +19,7 @@ class LocatorArcane
     }
 
     /**
-     * @return Arcane[]
+     * @return ArcaneMajor[]
      */
     public function locatorAllArcane(): array
     {

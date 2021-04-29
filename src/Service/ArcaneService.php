@@ -3,7 +3,9 @@
 
 namespace App\Service;
 
-use App\Entity\Arcane;
+use App\Entity\ArcaneMajor;
+use App\Entity\ArcaneMinor;
+use App\Repository\ArcaneMinorRepository;
 use App\Repository\ArcaneRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\ORMException;
@@ -13,25 +15,28 @@ final class ArcaneService
     /**
      * @var ArcaneRepository
      */
-    private ArcaneRepository $arcaneRepository;
+    private ArcaneRepository $arcaneMajorRepository;
+    private ArcaneMinorRepository $arcaneMinorRepository;
 
     /**
      * ArcaneService constructor.
      * @param ArcaneRepository $arcaneRepository
+     * @param ArcaneMinorRepository $arcaneMinorRepository
      */
-    public function __construct(ArcaneRepository $arcaneRepository)
+    public function __construct(ArcaneRepository $arcaneRepository, ArcaneMinorRepository $arcaneMinorRepository)
     {
-        $this->arcaneRepository = $arcaneRepository;
+        $this->arcaneMajorRepository = $arcaneRepository;
+        $this->arcaneMinorRepository = $arcaneMinorRepository;
     }
 
     /**
      * @param $id
-     * @return Arcane
+     * @return ArcaneMajor
      * @throws NonUniqueResultException
      */
-    public function getArcaneById($id): Arcane
+    public function getArcaneById($id): ArcaneMajor
     {
-        return $this->arcaneRepository->findById($id);
+        return $this->arcaneMajorRepository->findById($id);
     }
 
     /**
@@ -39,16 +44,16 @@ final class ArcaneService
      */
     public function getAllArcane(): array
     {
-        return $this->arcaneRepository->findAllArcane();
+        return $this->arcaneMajorRepository->findAllArcane();
     }
 
     /**
-     * @param Arcane $arcane
+     * @param ArcaneMajor $arcane
      * @throws ORMException
      */
-    public function updateArcane(Arcane $arcane): void
+    public function updateArcane(ArcaneMajor $arcane): void
     {
-        $this->arcaneRepository->save($arcane);
+        $this->arcaneMajorRepository->save($arcane);
     }
 
     /**
@@ -59,6 +64,25 @@ final class ArcaneService
      */
     public function locatorArcaneById(int $number): string
     {
-        return $this->arcaneRepository->findById($number)->getImage();
+        return $this->arcaneMajorRepository->findById($number)->getImage();
+    }
+
+
+    // Session intended for use with minor arcana.
+    /**
+     * @return array
+     */
+    public function getAllMinorArcane(): array
+    {
+        return $this->arcaneMinorRepository->findAll();
+    }
+
+    /**
+     * @param $id
+     * @return ArcaneMinor|null
+     */
+    public function getMinorArcaneById($id): ?ArcaneMinor
+    {
+        return $this->arcaneMinorRepository->find($id);
     }
 }

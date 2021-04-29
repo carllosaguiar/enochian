@@ -13,7 +13,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
 {
-    private $passwordEncoder;
+    private UserPasswordEncoderInterface $passwordEncoder;
 
     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -22,6 +22,8 @@ class RegistrationController extends AbstractController
 
     /**
      * @Route("/registration", name="registration")
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
     public function index(Request $request)
     {
