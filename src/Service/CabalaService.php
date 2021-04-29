@@ -3,7 +3,7 @@
 
 namespace App\Service;
 
-use App\Entity\Arcane;
+use App\Entity\ArcaneMajor;
 use App\Entity\Cabala;
 use App\Repository\CabalaRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -65,7 +65,7 @@ class CabalaService
     }
 
     /**
-     * @return Arcane[]
+     * @return ArcaneMajor[]
      */
     public function locatorArcanes(): array
     {

@@ -3,7 +3,7 @@
 
 namespace App\Service;
 
-use App\Entity\Arcane;
+use App\Entity\ArcaneMajor;
 use App\Repository\ArcaneRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\ORMException;
@@ -26,10 +26,10 @@ final class ArcaneService
 
     /**
      * @param $id
-     * @return Arcane
+     * @return ArcaneMajor
      * @throws NonUniqueResultException
      */
-    public function getArcaneById($id): Arcane
+    public function getArcaneById($id): ArcaneMajor
     {
         return $this->arcaneRepository->findById($id);
     }
@@ -43,10 +43,10 @@ final class ArcaneService
     }
 
     /**
-     * @param Arcane $arcane
+     * @param ArcaneMajor $arcane
      * @throws ORMException
      */
-    public function updateArcane(Arcane $arcane): void
+    public function updateArcane(ArcaneMajor $arcane): void
     {
         $this->arcaneRepository->save($arcane);
     }
