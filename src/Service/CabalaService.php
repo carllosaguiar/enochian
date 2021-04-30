@@ -7,6 +7,7 @@ use App\Entity\ArcaneMajor;
 use App\Entity\Cabala;
 use App\Repository\CabalaRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
 
 
 class CabalaService
@@ -34,6 +35,15 @@ class CabalaService
     {
         $cabala = new Cabala();
         return $cabala->calculateYearOfBirth($year, $amountEvents);
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getBirthCabalaById(): array
+    {
+        return $this->cabalaRepository->findBirthCabalaById();
     }
 
     public function findInnerUrgency()
