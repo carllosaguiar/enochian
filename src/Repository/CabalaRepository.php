@@ -5,7 +5,9 @@ namespace App\Repository;
 use App\Entity\Cabala;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\Query;
 use Doctrine\ORM\Query\ResultSetMapping;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 
@@ -49,6 +51,23 @@ class CabalaRepository extends ServiceEntityRepository
     public function findAllPersonalCabala(): array
     {
         return $this->findAll();
+    }
+
+    /**
+     * @return array
+     */
+    public function findBirthCabalaById(): array
+    {
+        $id = $this->security->getUser();
+
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->select('c.birthCabala')
+            ->where('c.id = :val')
+            ->setParameter('val', $id)
+            ;
+
+        $query = $queryBuilder->getQuery();
+        return $query->execute();
     }
 
     /**

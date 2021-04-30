@@ -53,6 +53,17 @@ class CabalaController extends AbstractController
         $eventDay->handleRequest($request);
 
         if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid()) {
+
+            try{
+                if($this->service->getBirthCabalaById() != null)
+                {
+                    return $this->editBirthCabala($request);
+                }
+            }catch (\Exception $e)
+            {
+               echo $e->getMessage();
+            }
+
             $year = $yearOfBirth->get('birthCabala')->getData();
             $amountEvents = $yearOfBirth->get('amountEvents')->getData();
 
@@ -63,6 +74,8 @@ class CabalaController extends AbstractController
             $cabala->setBirthCabala($result);
             $em->persist($cabala);
             $em->flush();
+
+            return $this->redirectToRoute('personal_cabala');
         }
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $yearOfBirth->createView()
@@ -86,7 +99,7 @@ class CabalaController extends AbstractController
     }
 
     /**
-     * @Route("/cabala/{id}/birth/edit", name="edit_birth_cabala")
+     * @Route("/cabala/{id}/edit", name="edit_birth_cabala")
      * @param Request $request
      * @return Response
      * @throws NonUniqueResultException
@@ -95,12 +108,12 @@ class CabalaController extends AbstractController
     {
         $userProfileCabala = $this->service->getPersonalCabala();
 
-        $form = $this->createForm(BirthCabalaType::class, $userProfileCabala);
+        $formBirthCabala = $this->createForm(BirthCabalaType::class, $userProfileCabala);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $formBirthCabala->handleRequest($request);
+        if ($formBirthCabala->isSubmitted() && $formBirthCabala->isValid()) {
 
-            $updateUser = $form->getData();
+            $updateUser = $formBirthCabala->getData();
             $em = $this->getDoctrine()->getManager();
 
             $birthCabala = $request->request->get('birth_cabala')['birthCabala'];
@@ -117,7 +130,7 @@ class CabalaController extends AbstractController
         }
 
         return $this->render('cabala/index.html.twig', [
-            'birthCabala' => $form->createView()
+            'birthCabala' => $formBirthCabala->createView()
         ]);
 
     }
