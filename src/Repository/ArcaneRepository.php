@@ -50,16 +50,6 @@ class ArcaneRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param ArcaneMajor $arcane
-     * @throws ORMException
-     */
-    public function save(ArcaneMajor $arcane): void
-    {
-        $this->_em->persist($arcane);
-        $this->_em->flush();
-    }
-
-    /**
      * @param int $number
      * @return false|string
      * @throws NonUniqueResultException

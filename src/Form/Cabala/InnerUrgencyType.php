@@ -14,6 +14,7 @@ class InnerUrgencyType extends AbstractType
     {
         $builder
             ->add('innerUrgency', DateType::class, [
+                'mapped' => false,
                 'label' => 'Data de Nascimento',
                 'widget' => 'single_text',
                 'attr' => [

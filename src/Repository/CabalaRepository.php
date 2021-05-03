@@ -45,6 +45,7 @@ class CabalaRepository extends ServiceEntityRepository
             ;
     }
 
+
     /**
      * @return Cabala[]
      */
@@ -52,6 +53,7 @@ class CabalaRepository extends ServiceEntityRepository
     {
         return $this->findAll();
     }
+
 
     /**
      * @return array
@@ -62,13 +64,32 @@ class CabalaRepository extends ServiceEntityRepository
 
         $queryBuilder = $this->createQueryBuilder('c')
             ->select('c.birthCabala')
-            ->where('c.id = :val')
+            ->where('c.user = :val')
             ->setParameter('val', $id)
             ;
 
         $query = $queryBuilder->getQuery();
         return $query->execute();
     }
+
+
+    /**
+     * @return array
+     */
+    public function findInnerUrgencyById(): array
+    {
+        $id = $this->security->getUser();
+
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->select('c.innerUrgency')
+            ->where('c.user = :val')
+            ->setParameter('val', $id)
+        ;
+
+        $query = $queryBuilder->getQuery();
+        return $query->execute();
+    }
+
 
     /**
      * @param int $id
@@ -82,16 +103,5 @@ class CabalaRepository extends ServiceEntityRepository
             ->getQuery();
         $query->execute();
     }
-
-    public function findYearOfBirthCabala(){}
-
-    public function findInnerUrgency(){}
-
-    public function findFundamentalTonic(){}
-
-    public function findTonicOfTheDay(){}
-
-    public function findEventOfTheDay(){}
-
 
 }

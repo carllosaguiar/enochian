@@ -18,7 +18,6 @@ class LocatorCabala
         $this->cabalaRepository = $cabalaRepository;
     }
 
-
     /**
      * @return Cabala[]
      */
@@ -29,10 +28,11 @@ class LocatorCabala
 
 
     /**
+     * @param int $id
      * @return Cabala
      * @throws NonUniqueResultException
      */
-    public function locatorCabala(): Cabala
+    public function getUrlArcane(int $id): Cabala
     {
         return $this->cabalaRepository->findPersonalCabalaById();
     }
