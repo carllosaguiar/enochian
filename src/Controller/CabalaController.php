@@ -52,23 +52,18 @@ class CabalaController extends AbstractController
         $eventDay = $this->createForm(EventDayType::class);
         $eventDay->handleRequest($request);
 
-        if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid()) {
+        if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid())
+        {
 
-            try{
-                if($this->service->getBirthCabalaById() != null)
-                {
-                    return $this->editBirthCabala($request);
-                }
-            }catch (\Exception $e)
+            if($this->service->getBirthCabalaById())
             {
-               echo $e->getMessage();
+                return $this->editPersonalCabala($request);
             }
 
             $year = $yearOfBirth->get('birthCabala')->getData();
             $amountEvents = $yearOfBirth->get('amountEvents')->getData();
 
             $result = $this->service->serviceSetYearOfBirth($year, $amountEvents);
-
             $em = $this->getDoctrine()->getManager();
             $cabala->setUser($currentUser);
             $cabala->setBirthCabala($result);
@@ -77,8 +72,31 @@ class CabalaController extends AbstractController
 
             return $this->redirectToRoute('personal_cabala');
         }
+
+        if($innerUrgency->isSubmitted() && $innerUrgency->isValid())
+        {
+            if($this->service->getInnerUrgencyById())
+            {
+                return $this->editPersonalCabala($request);
+            }
+
+            $date = $innerUrgency->get('innerUrgency')->getViewData();
+
+            $resultInnerUrgency = $this->service->serviceSetInnerUrgency($date);
+
+            $em = $this->getDoctrine()->getManager();
+            $cabala->setUser($currentUser);
+            $cabala->setInnerUrgency($resultInnerUrgency);
+            $em->persist($cabala);
+            $em->flush();
+
+            return $this->redirectToRoute('personal_cabala');
+        }
+
+
         return $this->render('cabala/index.html.twig', [
-            'birthCabala' => $yearOfBirth->createView()
+            'birthCabala' => $yearOfBirth->createView(),
+            'innerUrgency' => $innerUrgency->createView()
         ]);
     }
 
@@ -104,13 +122,16 @@ class CabalaController extends AbstractController
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function editBirthCabala(Request $request): Response
+    public function editPersonalCabala(Request $request): Response
     {
         $userProfileCabala = $this->service->getPersonalCabala();
 
         $formBirthCabala = $this->createForm(BirthCabalaType::class, $userProfileCabala);
-
         $formBirthCabala->handleRequest($request);
+
+        $formInnerUrgency = $this->createForm(InnerUrgencyType::class, $userProfileCabala);
+        $formInnerUrgency->handleRequest($request);
+
         if ($formBirthCabala->isSubmitted() && $formBirthCabala->isValid()) {
 
             $updateUser = $formBirthCabala->getData();
@@ -129,8 +150,26 @@ class CabalaController extends AbstractController
             return $this->redirectToRoute('personal_cabala');
         }
 
+        if ($formInnerUrgency->isSubmitted() && $formInnerUrgency->isValid()) {
+
+            $updateUser = $formInnerUrgency->getData();
+            $em = $this->getDoctrine()->getManager();
+
+            $innerUrgency = $request->request->get('inner_urgency')['innerUrgency'];
+
+            $result = $this->service->serviceSetInnerUrgency($innerUrgency);
+            $userProfileCabala->setInnerUrgency($result);
+            $em->persist($updateUser);
+            $em->flush();
+
+            $this->addFlash('success', "Urgencia Interior atualizada!");
+
+            return $this->redirectToRoute('personal_cabala');
+        }
+
         return $this->render('cabala/index.html.twig', [
-            'birthCabala' => $formBirthCabala->createView()
+            'birthCabala' => $formBirthCabala->createView(),
+            'innerUrgency' => $formInnerUrgency->createView()
         ]);
 
     }

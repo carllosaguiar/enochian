@@ -22,8 +22,9 @@ class CabalaService
         $this->locator = $locator;
     }
 
+
     /**
-     * @return Cabala
+     * @return Cabala|null
      * @throws NonUniqueResultException
      */
     public function getPersonalCabala(): ?Cabala
@@ -31,12 +32,27 @@ class CabalaService
         return $this->cabalaRepository->findPersonalCabalaById();
     }
 
+    /**
+     * @param int $year
+     * @param int $amountEvents
+     * @return array
+     */
     public function serviceSetYearOfBirth(int $year, int $amountEvents): array
     {
         $cabala = new Cabala();
         return $cabala->calculateYearOfBirth($year, $amountEvents);
     }
 
+
+    /**
+     * @param string $date
+     * @return int
+     */
+    public function serviceSetInnerUrgency(string $date): int
+    {
+        $cabala = new Cabala();
+        return $cabala->calculateInnerUrgency($date);
+    }
 
     /**
      * @return array
@@ -46,24 +62,12 @@ class CabalaService
         return $this->cabalaRepository->findBirthCabalaById();
     }
 
-    public function findInnerUrgency()
+    /**
+     * @return array
+     */
+    public function getInnerUrgencyById(): array
     {
-        $this->cabalaRepository->findInnerUrgency();
-    }
-
-    public function findFundamentalTonic()
-    {
-        $this->cabalaRepository->findFundamentalTonic();
-    }
-
-    public function findTonicOfTheDay()
-    {
-        $this->cabalaRepository->findFundamentalTonic();
-    }
-
-    public function findEventOfTheDay()
-    {
-        $this->cabalaRepository->findEventOfTheDay();
+        return $this->cabalaRepository->findInnerUrgencyById();
     }
 
     /**
@@ -85,8 +89,9 @@ class CabalaService
     /**
      * @param int $number
      * @return false|string
+     * @throws NonUniqueResultException
      */
-    public function locatorAbsoluteUrlArcane(int $number): string
+    public function locatorUrlArcane(int $number): string
     {
         return $this->locator->locatorArcane($number);
     }

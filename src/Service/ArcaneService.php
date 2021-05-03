@@ -48,15 +48,6 @@ final class ArcaneService
     }
 
     /**
-     * @param ArcaneMajor $arcane
-     * @throws ORMException
-     */
-    public function updateArcane(ArcaneMajor $arcane): void
-    {
-        $this->arcaneMajorRepository->save($arcane);
-    }
-
-    /**
      * @param int $number
      * @return string
      * @Annotation

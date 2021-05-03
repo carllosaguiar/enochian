@@ -208,13 +208,23 @@ class Cabala
         return $arrayData;
     }
 
+
     /**
-     * @param int $number
+     * @param $date
      * @return int
      */
-    public function calculateInnerUrgency(int $number): int
+    public function calculateInnerUrgency(string $date): int
     {
-        return 1;
+        $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
+        $day = array_sum(str_split($dateFormat->format('d')));
+        $month = array_sum(str_split($dateFormat->format('m')));
+        $year = array_sum(str_split($dateFormat->format('Y')));
+
+        $partial = ($day + $month + $year);
+
+        $final = array_sum(str_split($partial));
+
+        return $final;
     }
 
     /**
