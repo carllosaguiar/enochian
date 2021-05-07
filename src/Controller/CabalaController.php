@@ -7,6 +7,7 @@ use App\Form\Cabala\BirthCabalaType;
 use App\Form\Cabala\EventDayType;
 use App\Form\Cabala\FundamentalTonicType;
 use App\Form\Cabala\InnerUrgencyType;
+use App\Form\Cabala\TonicDayType;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,6 +32,7 @@ class CabalaController extends AbstractController
      * @Route("/cabala", name="create_cabala")
      * @param Request $request
      * @return Response
+     * @throws Exception
      */
     public function personalCabala(Request $request): Response
     {
@@ -46,16 +48,17 @@ class CabalaController extends AbstractController
         $fundamentalTonic = $this->createForm(FundamentalTonicType::class);
         $fundamentalTonic->handleRequest($request);
 
-        $tonicDay = $this->createForm(FundamentalTonicType::class);
+        $tonicDay = $this->createForm(TonicDayType::class);
         $tonicDay->handleRequest($request);
 
         $eventDay = $this->createForm(EventDayType::class);
         $eventDay->handleRequest($request);
 
+
         if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid())
         {
 
-            if($this->service->getBirthCabalaById())
+            if(!empty($this->service->getBirthCabalaById()))
             {
                 return $this->editPersonalCabala($request);
             }
@@ -73,30 +76,60 @@ class CabalaController extends AbstractController
             return $this->redirectToRoute('personal_cabala');
         }
 
+
         if($innerUrgency->isSubmitted() && $innerUrgency->isValid())
         {
-            if($this->service->getInnerUrgencyById())
+            if(!empty($this->service->getInnerUrgencyById()))
             {
                 return $this->editPersonalCabala($request);
             }
 
             $date = $innerUrgency->get('innerUrgency')->getViewData();
 
-            $resultInnerUrgency = $this->service->serviceSetInnerUrgency($date);
+            $result = $this->service->serviceSetInnerUrgency($date);
 
             $em = $this->getDoctrine()->getManager();
             $cabala->setUser($currentUser);
-            $cabala->setInnerUrgency($resultInnerUrgency);
+            $cabala->setInnerUrgency($result);
             $em->persist($cabala);
             $em->flush();
 
             return $this->redirectToRoute('personal_cabala');
         }
 
+        if($fundamentalTonic->isSubmitted() && $fundamentalTonic->isValid())
+        {
+
+            if(!empty($this->service->getFundamentalTonicById()))
+            {
+                return $this->editPersonalCabala($request);
+            }
+
+            $date = $innerUrgency->get('fundamentalTonic')->getViewData();
+
+            $result = $this->service->serviceSetFundamentalTonic($date);
+
+            if(!empty($this->service->getInnerUrgencyById()))
+            {
+                $em = $this->getDoctrine()->getManager();
+                $cabala->setUser($currentUser);
+                $cabala->setFundamentalTonic($result);
+                $em->persist($cabala);
+                $em->flush();
+
+                return $this->redirectToRoute('personal_cabala');
+            }
+
+            return $this->reder('create_cabala', [
+                "inner_urgency_does_not_exist" => "Para calcular a Tônica Fundamental, é necessário primeiramente o cálculo da Urgência Interior."
+            ]);
+
+        }
 
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $yearOfBirth->createView(),
-            'innerUrgency' => $innerUrgency->createView()
+            'innerUrgency' => $innerUrgency->createView(),
+            'fundamentalTonic' => $fundamentalTonic->createView()
         ]);
     }
 
@@ -131,6 +164,9 @@ class CabalaController extends AbstractController
 
         $formInnerUrgency = $this->createForm(InnerUrgencyType::class, $userProfileCabala);
         $formInnerUrgency->handleRequest($request);
+
+        $formFundamentalTonic = $this->createForm(FundamentalTonicType::class, $userProfileCabala);
+        $formFundamentalTonic->handleRequest($request);
 
         if ($formBirthCabala->isSubmitted() && $formBirthCabala->isValid()) {
 
@@ -167,9 +203,28 @@ class CabalaController extends AbstractController
             return $this->redirectToRoute('personal_cabala');
         }
 
+        if ($formFundamentalTonic->isSubmitted() && $formFundamentalTonic->isValid()) {
+
+            $updateUser = $formFundamentalTonic->getData();
+            $em = $this->getDoctrine()->getManager();
+
+            $fundamentalTonic = $request->request->get('fundamental_tonic')['fundamentalTonic'];
+
+            $result = $this->service->serviceSetFundamentalTonic($fundamentalTonic);
+
+            $userProfileCabala->setFundamentalTonic($result);
+            $em->persist($updateUser);
+            $em->flush();
+
+            $this->addFlash('success', "Tonica Fundamental atualizada!");
+
+            return $this->redirectToRoute('personal_cabala');
+        }
+
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $formBirthCabala->createView(),
-            'innerUrgency' => $formInnerUrgency->createView()
+            'innerUrgency' => $formInnerUrgency->createView(),
+            'fundamentalTonic' => $formFundamentalTonic->createView()
         ]);
 
     }

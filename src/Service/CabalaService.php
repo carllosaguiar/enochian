@@ -54,6 +54,18 @@ class CabalaService
         return $cabala->calculateInnerUrgency($date);
     }
 
+
+    /**
+     * @param string $name
+     * @return float|int|string|null
+     */
+    public function serviceSetFundamentalTonic(string $name)
+    {
+        $cabala = new Cabala();
+        return $cabala->calculateFundamentalTonic($name);
+    }
+
+
     /**
      * @return array
      */
@@ -68,6 +80,14 @@ class CabalaService
     public function getInnerUrgencyById(): array
     {
         return $this->cabalaRepository->findInnerUrgencyById();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFundamentalTonicById(): array
+    {
+        return $this->cabalaRepository->findFundamentalTonicById();
     }
 
     /**
