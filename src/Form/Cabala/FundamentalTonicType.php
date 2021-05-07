@@ -14,6 +14,7 @@ class FundamentalTonicType extends AbstractType
     {
         $builder
             ->add('fundamentalTonic', TextType::class, [
+                'mapped' => false,
                 'label' => 'Seu nome completo',
                 'attr' => [
                     'placeholder' => 'Victor Manuel Chavez Caballero',

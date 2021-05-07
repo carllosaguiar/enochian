@@ -91,6 +91,20 @@ class CabalaRepository extends ServiceEntityRepository
     }
 
 
+    public function findFundamentalTonicById(): array
+    {
+        $id = $this->security->getUser();
+
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->select('c.fundamentalTonic')
+            ->where('c.user = :val')
+            ->setParameter('val', $id)
+        ;
+
+        $query = $queryBuilder->getQuery();
+        return $query->execute();
+    }
+
     /**
      * @param int $id
      */

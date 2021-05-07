@@ -124,6 +124,7 @@ class Cabala
      */
     public function setFundamentalTonic(int $fundamentalTonic): self
     {
+
         $this->fundamentalTonic = $fundamentalTonic;
         return $this;
     }
@@ -236,13 +237,17 @@ class Cabala
         return 1;
     }
 
+
     /**
-     * @param int $number
-     * @return int
+     * @param string $name
+     * @return float|int|string|null
      */
-    public function calculateFundamentalTonic(int $number): int
+    public function calculateFundamentalTonic(string $name)
     {
-        return 1;
+        $string = preg_replace("/[^A-Za-z]/","",$name);
+        $totalCaracteres = strlen($string);
+        $result = array_sum(str_split($totalCaracteres));
+        return $result;
     }
 
     /**

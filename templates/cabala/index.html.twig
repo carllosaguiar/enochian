@@ -54,6 +54,11 @@
                         <button type="submit" class="btn btn-outline-primary">Salvar</button>
                     </div>
                     {{ form_end(innerUrgency) }}
+                    {% if inner_urgency_does_not_exist is defined %}
+                        <div class="alert alert-danger" role="alert" style="text-align: center">
+                            <p>{{ inner_urgency_does_not_exist }}</p>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -65,7 +70,21 @@
             </h2>
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="card">
+                        <p style="text-align: center">A soma parcial, apesar de não representar o resultado final, também deverá ser analisada como o panorâma para aquele ano.<small></small></p>
+                        <p><strong>Por exemplo:</strong> <br> Se um ano importante para a pessoa for <code>2027</code>, a soma dará <code>11</code>, que é sintetizada em <code>1</code> + <code>1</code> resultando na soma final <code>2</code>, que é a cabala para este ano. Porém, o consultante também deverá analisar o Arcano <code>11</code>, pois contribui na análise da cabala daquele ano.</p>
+                    </div>
+                    {{ form_start(fundamentalTonic) }}
+                    <div class="alert alert-error">
+                        {{ form_errors(fundamentalTonic) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(fundamentalTonic) }}
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                    </div>
+                    {{ form_end(fundamentalTonic) }}
                 </div>
             </div>
         </div>

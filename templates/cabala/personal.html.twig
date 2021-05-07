@@ -178,9 +178,25 @@
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         {% if cabala.fundamentalTonic is defined and cabala.fundamentalTonic is not null %}
-                        <div class="card">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                        </div>
+                            <div class="card">
+                                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                            <ul>
+                                <li><code>Síntese</code><strong> {{ cabala.fundamentalTonic }} </strong><i> Síntese cabalística</i></li>
+                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.fundamentalTonic} ) }}">Resultado Parcial</a></li>
+                            </ul>
+                            {% for arcane in arcanes %}
+                                {% if arcane.id == cabala.fundamentalTonic  %}
+                                    <div class="card" style="width: 8rem">
+                                        <img src="{{ arcane.image }}" class="card-img-bottom hover-zoom" alt="{{ arcane.name }}">
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                            {% if cabala.fundamentalTonic is not null %}
+                                <div style="padding-top: 20px">
+                                    <a href="{{ path('edit_birth_cabala', {id: cabala.id}) }}" type="button" class="btn btn-primary" style="align-content: center"><i class="bi bi-pencil"></i></a>
+                                </div>
+                            {% endif %}
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
                                 <p>Não foram encontrádos cálculos da <strong>Tônica Fundamental</strong> para o usuário atual</p>
