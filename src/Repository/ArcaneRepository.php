@@ -37,8 +37,9 @@ class ArcaneRepository extends ServiceEntityRepository
         ;
     }
 
+
     /**
-     * @return ArcaneMajor[]
+     * @return array
      */
     public function findAllArcane(): array
     {

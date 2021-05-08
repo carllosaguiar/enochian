@@ -46,18 +46,15 @@
                                                             <div class="timeline-content">
                                                                 <ul>
                                                                     <li><code>Ano:</code><strong> {{ value[0] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
-                                                                    <li><code>Síntese</code><strong> {{ value[1] }} </strong><i> Síntese cabalística</i></li>
+                                                                    <li><code>Parcial</code><strong> {{ value[1] }} </strong><i> Síntese cabalística</i></li>
+                                                                    <li><code>Descrição</code><strong> {{ value[3] }} </strong><i> Carta do Tarot</i></li>
                                                                     <li><code>Arcano</code> <a href="{{ path('arcane', {id: value[1]} ) }}">Resultado Parcial</a></li>
                                                                 </ul>
                                                                 <div class="custom-container">
                                                                     <div class="card-items justify-content-center wrap">
-                                                                        {% for arcane in arcanes %}
-                                                                            {% if arcane.id == value[1]  %}
-                                                                                <div class="card" style="width: 8rem">
-                                                                                    <img src="{{ arcane.image }}" class="card-img-bottom hover-zoom" alt="{{ arcane.name }}">
-                                                                                </div>
-                                                                            {% endif %}
-                                                                        {% endfor %}
+                                                                        <div class="card" style="width: 8rem">
+                                                                            <img src="{{ value[5] }}" class="card-img-bottom hover-zoom">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="timeline-embed">
@@ -87,17 +84,14 @@
                                                                 <ul>
                                                                     <li><code>Ano:</code> <strong> {{ value[0] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
                                                                     <li><code>Síntese</code> <strong> {{ value[2] }} </strong><i>Resultado Final</i></li>
+                                                                    <li><code>Descrição</code><strong> {{ value[4] }} </strong><i> Carta do Tarot</i></li>
                                                                     <li><code>Arcano</code> <a href="{{ path('arcane', {id: value[2]} ) }}">Resultado Final</a></li>
                                                                 </ul>
                                                                 <div class="custom-container">
                                                                     <div class="card-items justify-content-center wrap">
-                                                                        {% for arcane in arcanes %}
-                                                                            {% if arcane.id == value[2] %}
-                                                                                <div class="card" style="width: 8rem">
-                                                                                    <img src="{{ arcane.image }}" class="card-img-bottom hover-zoom" alt="{{ arcane.name }}">
-                                                                                </div>
-                                                                            {% endif %}
-                                                                        {% endfor %}
+                                                                        <div class="card" style="width: 8rem">
+                                                                            <img src="{{ value[6] }}" class="card-img-bottom hover-zoom">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="timeline-embed">

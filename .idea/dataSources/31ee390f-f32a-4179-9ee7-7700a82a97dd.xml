@@ -1068,19 +1068,23 @@ SELECT|sys.sys_config
     </column>
     <column id="317" parent="286" name="inner_urgency">
       <Position>4</Position>
-      <DataType>int|0s</DataType>
+      <Comment>(DC2Type:array)</Comment>
+      <DataType>longtext|0s</DataType>
     </column>
     <column id="318" parent="286" name="fundamental_tonic">
       <Position>5</Position>
-      <DataType>int|0s</DataType>
+      <Comment>(DC2Type:array)</Comment>
+      <DataType>longtext|0s</DataType>
     </column>
     <column id="319" parent="286" name="tonic_day">
       <Position>6</Position>
-      <DataType>int|0s</DataType>
+      <Comment>(DC2Type:array)</Comment>
+      <DataType>longtext|0s</DataType>
     </column>
     <column id="320" parent="286" name="event_day">
       <Position>7</Position>
-      <DataType>int|0s</DataType>
+      <Comment>(DC2Type:array)</Comment>
+      <DataType>longtext|0s</DataType>
     </column>
     <index id="321" parent="286" name="UNIQ_B0376950A76ED395">
       <ColNames>user_id</ColNames>

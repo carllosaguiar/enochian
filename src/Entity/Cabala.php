@@ -18,29 +18,29 @@ class Cabala
     private int $id;
 
     /**
-     * @ORM\Column(name="birth_cabala", type="array", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private ?array $birthCabala = null;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
-    private int $innerUrgency;
+    private ?array $innerUrgency;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
-    private int $fundamentalTonic;
+    private ?array $fundamentalTonic;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
-    private int $tonicDay;
+    private ?array $tonicDay;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
-    private int $eventDay;
+    private ?array $eventDay;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="cabala", cascade={"persist", "remove"})
@@ -85,9 +85,9 @@ class Cabala
     }
 
     /**
-     * @return int|null
+     * @return array|null
      */
-    public function getInnerUrgency(): ?int
+    public function getInnerUrgency(): ?array
     {
         if(empty($this->innerUrgency))
         {
@@ -97,19 +97,19 @@ class Cabala
     }
 
     /**
-     * @param int $innerUrgency
+     * @param array $innerUrgency
      * @return $this
      */
-    public function setInnerUrgency(int $innerUrgency): self
+    public function setInnerUrgency(array $innerUrgency): self
     {
         $this->innerUrgency = $innerUrgency;
         return $this;
     }
 
     /**
-     * @return int|null
+     * @return array|null
      */
-    public function getFundamentalTonic(): ?int
+    public function getFundamentalTonic(): ?array
     {
         if(empty($this->fundamentalTonic))
         {
@@ -119,10 +119,10 @@ class Cabala
     }
 
     /**
-     * @param int $fundamentalTonic
+     * @param array $fundamentalTonic
      * @return $this
      */
-    public function setFundamentalTonic(int $fundamentalTonic): self
+    public function setFundamentalTonic(array $fundamentalTonic): self
     {
 
         $this->fundamentalTonic = $fundamentalTonic;
@@ -130,9 +130,9 @@ class Cabala
     }
 
     /**
-     * @return int|null
+     * @return array|null
      */
-    public function getTonicDay(): ?int
+    public function getTonicDay(): ?array
     {
         if(empty($this->tonicDay))
         {
@@ -142,7 +142,7 @@ class Cabala
     }
 
     /**
-     * @param int $tonicDay
+     * @param array $tonicDay
      * @return $this
      */
     public function setTonicDay(int $tonicDay): self
@@ -153,9 +153,9 @@ class Cabala
     }
 
     /**
-     * @return int|null
+     * @return array|null
      */
-    public function getEventDay(): ?int
+    public function getEventDay(): ?array
     {
         if(empty($this->eventDay))
         {
@@ -168,7 +168,7 @@ class Cabala
      * @param int $eventDay
      * @return $this
      */
-    public function setEventDay(int $eventDay): self
+    public function setEventDay(array $eventDay): self
     {
         $this->eventDay = $eventDay;
         return $this;
@@ -181,7 +181,7 @@ class Cabala
      * @param int $amountEvent
      * @return array
      */
-    public function calculateYearOfBirth(int $year, int $amountEvent): array
+    public function calculateBirthCabala(array $allArcanesTarot, int $year, $amountEvent): array
     {
         $arrayData = [];
 
@@ -189,21 +189,30 @@ class Cabala
 
         for ($i = 0; $i < $amountEvent; $i++)
         {
+            $index = [];
             $sum = array_sum(str_split((int)$year)); // sum year birth
             $sumYear = $year + $sum; // sum year with year birth
-            $firstSynthesis = array_sum(str_split($sumYear)); // get first synthesis
-            if($firstSynthesis > 9)
+            $partial = array_sum(str_split($sumYear)); // get first synthesis
+            if($partial > 9)
             {
-                $secondSynthesis = array_sum(str_split($firstSynthesis)); //get second synthesis
+                $synthesis = array_sum(str_split($partial)); //get second synthesis
             } else {
-                $secondSynthesis = null;
+                $synthesis = null;
             }
 
-            array_push($arrayData, [ $sumYear, $firstSynthesis, $secondSynthesis ]);
+            array_push($arrayData, [
+                $sumYear,
+                $partial,
+                $synthesis,
+                $allArcanesTarot[$partial-1]->getName(),
+                !empty($synthesis)? $allArcanesTarot[$synthesis-1]->getName() : null,
+                $allArcanesTarot[$partial-1]->getImage(),
+                !empty($synthesis)? $allArcanesTarot[$synthesis-1]->getImage() : null
+            ]);
 
             $year = $sumYear;
-
         }
+        dump($arrayData);
 
         //return year, first synthesis and second synthesis
         return $arrayData;
@@ -211,11 +220,14 @@ class Cabala
 
 
     /**
-     * @param $date
-     * @return int
+     * @param string $date
+     * @param $arcane
+     * @return array
      */
-    public function calculateInnerUrgency(string $date): int
+    public function calculateInnerUrgency(string $date, $arcanes): array
     {
+        $checkedArcane = [];
+
         $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
         $day = array_sum(str_split($dateFormat->format('d')));
         $month = array_sum(str_split($dateFormat->format('m')));
@@ -223,9 +235,45 @@ class Cabala
 
         $partial = ($day + $month + $year);
 
-        $final = array_sum(str_split($partial));
+        $synthesis = array_sum(str_split($partial));
 
-        return $final;
+        $result = $this->findArcaneByNumericSynthesis($synthesis, $arcanes);
+
+        return $result;
+    }
+
+    /**
+     * @param string $name
+     * @return float|int|string|null
+     */
+    public function calculateFundamentalTonic(string $name, array $arcanes): array
+    {
+        $string = preg_replace("/[^A-Za-z]/","",$name);
+        $totalCaracteres = strlen($string);
+        $synthesis = array_sum(str_split($totalCaracteres));
+
+        $result = $this->findArcaneByNumericSynthesis($synthesis, $arcanes);
+
+        return $result;
+    }
+
+    public function findArcaneByNumericSynthesis(int $synthesys, array $arcanes): array
+    {
+        $mount = [];
+
+        foreach ($arcanes as $arcane) {
+            if($synthesys == $arcane['id'])
+            {
+                $mount = [
+                    'name' => $arcane['name'],
+                    'image' => $arcane['image'],
+                    'synthesis' => $synthesys
+                ];
+                break;
+            }
+        }
+
+        return $mount;
     }
 
     /**
@@ -235,19 +283,6 @@ class Cabala
     public function calculateTonicDay(int $number): int
     {
         return 1;
-    }
-
-
-    /**
-     * @param string $name
-     * @return float|int|string|null
-     */
-    public function calculateFundamentalTonic(string $name)
-    {
-        $string = preg_replace("/[^A-Za-z]/","",$name);
-        $totalCaracteres = strlen($string);
-        $result = array_sum(str_split($totalCaracteres));
-        return $result;
     }
 
     /**
