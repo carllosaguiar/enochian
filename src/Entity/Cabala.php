@@ -211,7 +211,6 @@ class Cabala
 
             }
 
-
             if($partial < 10)
             {
                 $synthesis = array_sum(str_split($partial)); //generate synthesis
@@ -250,7 +249,16 @@ class Cabala
         $month = array_sum(str_split($dateFormat->format('m')));
         $year = array_sum(str_split($dateFormat->format('Y')));
 
-        $partial = ($day + $month + $year);
+        $daySynthesis = array_sum(str_split($day));
+        $monthSynthesis = array_sum(str_split($month));
+        $yearSynthesis = array_sum(str_split($year));
+
+        while($yearSynthesis > 9)
+        {
+            $yearSynthesis = array_sum(str_split($yearSynthesis));
+        }
+
+        $partial = ($daySynthesis + $monthSynthesis + $yearSynthesis);
 
         $synthesis = array_sum(str_split($partial));
 
@@ -263,11 +271,14 @@ class Cabala
      * @param string $name
      * @return float|int|string|null
      */
-    public function calculateFundamentalTonic(string $name, array $arcanes): array
+    public function calculateFundamentalTonic(string $name, array $arcanes, $innerUrgency): array
     {
         $string = preg_replace("/[^A-Za-z]/","",$name);
         $totalCaracteres = strlen($string);
         $synthesis = array_sum(str_split($totalCaracteres));
+
+        $int = (int)$innerUrgency[0];
+        $synthesis += $int;
 
         $result = $this->findArcaneByNumericSynthesis($synthesis, $arcanes);
 
@@ -279,11 +290,11 @@ class Cabala
         $mount = [];
 
         foreach ($arcanes as $arcane) {
-            if($synthesys == $arcane['id'])
+            if($synthesys == $arcane->getId())
             {
                 $mount = [
-                    'name' => $arcane['name'],
-                    'image' => $arcane['image'],
+                    'name' => $arcane->getName(),
+                    'image' => $arcane->getImage(),
                     'synthesis' => $synthesys
                 ];
                 break;
