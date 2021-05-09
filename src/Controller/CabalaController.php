@@ -39,8 +39,8 @@ class CabalaController extends AbstractController
         $cabala = new Cabala();
         $currentUser = $this->security->getUser();
 
-        $yearOfBirth = $this->createForm(BirthCabalaType::class);
-        $yearOfBirth->handleRequest($request);
+        $birthCabala = $this->createForm(BirthCabalaType::class);
+        $birthCabala->handleRequest($request);
 
         $innerUrgency = $this->createForm(InnerUrgencyType::class);
         $innerUrgency->handleRequest($request);
@@ -55,7 +55,7 @@ class CabalaController extends AbstractController
         $eventDay->handleRequest($request);
 
 
-        if ($yearOfBirth->isSubmitted() && $yearOfBirth->isValid())
+        if ($birthCabala->isSubmitted() && $birthCabala->isValid())
         {
 
             if(!empty($this->service->getBirthCabalaById()))
@@ -63,10 +63,10 @@ class CabalaController extends AbstractController
                 return $this->editPersonalCabala($request);
             }
 
-            $year = $yearOfBirth->get('birthCabala')->getData();
-            $amountEvents = $yearOfBirth->get('amountEvents')->getData();
+            $year = $birthCabala->get('birthCabala')->getData();
+            $amountEvents = $birthCabala->get('amountEvents')->getData();
 
-            $result = $this->service->serviceSetYearOfBirth($year, $amountEvents);
+            $result = $this->service->serviceSetBirthCabala($year, $amountEvents);
             $em = $this->getDoctrine()->getManager();
             $cabala->setUser($currentUser);
             $cabala->setBirthCabala($result);
@@ -127,7 +127,7 @@ class CabalaController extends AbstractController
         }
 
         return $this->render('cabala/index.html.twig', [
-            'birthCabala' => $yearOfBirth->createView(),
+            'birthCabala' => $birthCabala->createView(),
             'innerUrgency' => $innerUrgency->createView(),
             'fundamentalTonic' => $fundamentalTonic->createView()
         ]);
@@ -144,8 +144,7 @@ class CabalaController extends AbstractController
         $arcanes = $this->service->locatorArcanes();
 
         return $this->render('cabala/personal.html.twig', [
-            'cabala' => $userProfileCabala,
-            'arcanes' => $arcanes
+            'cabala' => $userProfileCabala
         ]);
     }
 
@@ -176,7 +175,7 @@ class CabalaController extends AbstractController
             $birthCabala = $request->request->get('birth_cabala')['birthCabala'];
             $amountEvents = $request->request->get('birth_cabala')['amountEvents'];
 
-            $result = $this->service->serviceSetYearOfBirth($birthCabala, $amountEvents);
+            $result = $this->service->serviceSetBirthCabala($birthCabala, $amountEvents);
             $userProfileCabala->setBirthCabala($result);
             $em->persist($updateUser);
             $em->flush();

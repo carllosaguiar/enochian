@@ -19,6 +19,18 @@ class ArcaneMinorRepository extends ServiceEntityRepository
         parent::__construct($registry, ArcaneMinor::class);
     }
 
+    /**
+     * @return array
+     */
+    public function findAllMinorArcane(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return ArcaneMinor[] Returns an array of ArcaneMinor objects
     //  */

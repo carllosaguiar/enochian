@@ -25,11 +25,12 @@
                                     <ul class="timeline">
                                         <li class="timeline-line"></li>
                                         <li class="timeline-group">
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> {{ value[0] }}</a>
+                                            <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> {{ value['sumYear'] }}</a>
                                         </li>
                                     </ul>
                                     <ul class="timeline panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                         <li class="timeline-line"></li>
+                                        {% if value['partial'] != null and value['partial'] != value['synthesis']%}
                                         <li class="timeline-item">
                                             <div class="timeline-badge"><a href="#"></a></div>
                                             <div class="timeline-panel">
@@ -45,19 +46,16 @@
                                                         <div class="panel-body">
                                                             <div class="timeline-content">
                                                                 <ul>
-                                                                    <li><code>Ano:</code><strong> {{ value[0] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
-                                                                    <li><code>Síntese</code><strong> {{ value[1] }} </strong><i> Síntese cabalística</i></li>
-                                                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: value[1]} ) }}">Resultado Parcial</a></li>
+                                                                    <li><code>Ano:</code><strong> {{ value['sumYear'] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
+                                                                    <li><code>Parcial</code><strong> {{ value['partial'] }} </strong><i> Síntese cabalística</i></li>
+                                                                    <li><code>Descrição</code><strong> {{ value['majorArcaneName'] }} </strong><i> Carta do Tarot</i></li>
+                                                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: value['partial']} ) }}">Resultado Parcial</a></li>
                                                                 </ul>
                                                                 <div class="custom-container">
                                                                     <div class="card-items justify-content-center wrap">
-                                                                        {% for arcane in arcanes %}
-                                                                            {% if arcane.id == value[1]  %}
-                                                                                <div class="card" style="width: 8rem">
-                                                                                    <img src="{{ arcane.image }}" class="card-img-bottom hover-zoom" alt="{{ arcane.name }}">
-                                                                                </div>
-                                                                            {% endif %}
-                                                                        {% endfor %}
+                                                                        <div class="card" style="width: 8rem">
+                                                                            <img src="{{ value['majorArcaneImage'] }}" class="card-img-bottom hover-zoom">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="timeline-embed">
@@ -69,7 +67,14 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        {% if value[2] is not null %}
+                                        {% else %}
+                                            <li class="timeline-item">
+                                                <div class="alert alert-warning" role="alert" style="border-radius: 12px">
+                                                    Considere o seu resultado final como a síntese absoluta para este ano.
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                        {% if value['synthesis'] != value['partial']%}
                                         <li class="timeline-item">
                                             <div class="timeline-badge"><a href="#"></a></div>
                                             <div class="timeline-panel">
@@ -85,19 +90,16 @@
                                                         <div class="panel-body">
                                                             <div class="timeline-content">
                                                                 <ul>
-                                                                    <li><code>Ano:</code> <strong> {{ value[0] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
-                                                                    <li><code>Síntese</code> <strong> {{ value[2] }} </strong><i>Resultado Final</i></li>
-                                                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: value[2]} ) }}">Resultado Final</a></li>
+                                                                    <li><code>Ano:</code> <strong> {{ value['sumYear'] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
+                                                                    <li><code>Síntese</code> <strong> {{ value['synthesis'] }} </strong><i>Resultado Final</i></li>
+                                                                    <li><code>Descrição</code><strong> {{ value['minorArcaneName'] }} </strong><i> Carta do Tarot</i></li>
+                                                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: value['synthesis']} ) }}">Resultado Final</a></li>
                                                                 </ul>
                                                                 <div class="custom-container">
                                                                     <div class="card-items justify-content-center wrap">
-                                                                        {% for arcane in arcanes %}
-                                                                            {% if arcane.id == value[2] %}
-                                                                                <div class="card" style="width: 8rem">
-                                                                                    <img src="{{ arcane.image }}" class="card-img-bottom hover-zoom" alt="{{ arcane.name }}">
-                                                                                </div>
-                                                                            {% endif %}
-                                                                        {% endfor %}
+                                                                        <div class="card" style="width: 8rem">
+                                                                            <img src="{{ value['minorArcaneImage'] }}" class="card-img-bottom hover-zoom">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="timeline-embed">

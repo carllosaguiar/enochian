@@ -32,26 +32,33 @@ class CabalaService
         return $this->cabalaRepository->findPersonalCabalaById();
     }
 
+
     /**
      * @param int $year
      * @param int $amountEvents
      * @return array
      */
-    public function serviceSetYearOfBirth(int $year, int $amountEvents): array
+    public function serviceSetBirthCabala(int $year, int $amountEvents): array
     {
         $cabala = new Cabala();
-        return $cabala->calculateYearOfBirth($year, $amountEvents);
+        $majorArcane = $this->locator->locatorAllArcane();
+        $minorArcane = $this->locator->locatorAllMinorArcane();
+
+        $allArcanesTarot = array_merge($majorArcane, $minorArcane);
+
+        return $cabala->calculateBirthCabala($allArcanesTarot, $year, $amountEvents);
     }
 
 
     /**
      * @param string $date
-     * @return int
+     * @return array
      */
-    public function serviceSetInnerUrgency(string $date): int
+    public function serviceSetInnerUrgency(string $date): array
     {
         $cabala = new Cabala();
-        return $cabala->calculateInnerUrgency($date);
+        $arcanes = $this->locator->locatorAllArcane();
+        return $cabala->calculateInnerUrgency($date, $arcanes);
     }
 
 
@@ -62,7 +69,8 @@ class CabalaService
     public function serviceSetFundamentalTonic(string $name)
     {
         $cabala = new Cabala();
-        return $cabala->calculateFundamentalTonic($name);
+        $arcanes = $this->locator->locatorAllArcane();
+        return $cabala->calculateFundamentalTonic($name, $arcanes);
     }
 
 
@@ -74,6 +82,7 @@ class CabalaService
         return $this->cabalaRepository->findBirthCabalaById();
     }
 
+
     /**
      * @return array
      */
@@ -81,6 +90,7 @@ class CabalaService
     {
         return $this->cabalaRepository->findInnerUrgencyById();
     }
+
 
     /**
      * @return array
@@ -90,6 +100,7 @@ class CabalaService
         return $this->cabalaRepository->findFundamentalTonicById();
     }
 
+
     /**
      * @return array
      */
@@ -98,6 +109,7 @@ class CabalaService
         return $this->cabalaRepository->findAllPersonalCabala();
     }
 
+
     /**
      * @return ArcaneMajor[]
      */
@@ -105,6 +117,7 @@ class CabalaService
     {
         return $this->locator->locatorAllArcane();
     }
+
 
     /**
      * @param int $number
@@ -115,6 +128,7 @@ class CabalaService
     {
         return $this->locator->locatorArcane($number);
     }
+
 
     /**
      * @param $id
