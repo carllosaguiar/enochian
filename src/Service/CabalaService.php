@@ -64,13 +64,25 @@ class CabalaService
 
     /**
      * @param string $name
-     * @return float|int|string|null
+     * @return array
      */
-    public function serviceSetFundamentalTonic(string $name)
+    public function serviceSetFundamentalTonic(string $name): ?array
     {
         $cabala = new Cabala();
         $arcanes = $this->locator->locatorAllArcane();
-        return $cabala->calculateFundamentalTonic($name, $arcanes);
+        try {
+            if(!empty($this->cabalaRepository->findInnerUrgencyById()))
+            {
+                $innerUrgency = $this->cabalaRepository->findInnerUrgencyById();
+                $innerUrgency = array_column($innerUrgency[0], 'synthesis');
+                return $cabala->calculateFundamentalTonic($name, $arcanes, $innerUrgency);
+            }
+        }catch (\Exception $e)
+        {
+            echo $e->getMessage();
+        }
+
+        return null;
     }
 
 

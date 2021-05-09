@@ -105,11 +105,11 @@ class CabalaController extends AbstractController
                 return $this->editPersonalCabala($request);
             }
 
-            $date = $innerUrgency->get('fundamentalTonic')->getViewData();
+            $date = $fundamentalTonic->get('fundamentalTonic')->getViewData();
 
             $result = $this->service->serviceSetFundamentalTonic($date);
 
-            if(!empty($this->service->getInnerUrgencyById()))
+            if(!empty($result) && $result != null)
             {
                 $em = $this->getDoctrine()->getManager();
                 $cabala->setUser($currentUser);
@@ -119,10 +119,6 @@ class CabalaController extends AbstractController
 
                 return $this->redirectToRoute('personal_cabala');
             }
-
-            return $this->reder('create_cabala', [
-                "inner_urgency_does_not_exist" => "Para calcular a Tônica Fundamental, é necessário primeiramente o cálculo da Urgência Interior."
-            ]);
 
         }
 
