@@ -143,8 +143,6 @@ class CabalaController extends AbstractController
         $userProfileCabala = $this->service->getPersonalCabala();
         $arcanes = $this->service->locatorArcanes();
 
-        dump($userProfileCabala);
-
         return $this->render('cabala/personal.html.twig', [
             'cabala' => $userProfileCabala
         ]);

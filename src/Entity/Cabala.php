@@ -184,35 +184,52 @@ class Cabala
     public function calculateBirthCabala(array $allArcanesTarot, int $year, $amountEvent): array
     {
         $arrayData = [];
+        $synthesis = 0;
 
         $amountEvent = (int) ($amountEvent == 0 || $amountEvent == null)  ? 0 : $amountEvent;
 
         for ($i = 0; $i < $amountEvent; $i++)
         {
-            $index = [];
+
             $sum = array_sum(str_split((int)$year)); // sum year birth
             $sumYear = $year + $sum; // sum year with year birth
             $partial = array_sum(str_split($sumYear)); // get first synthesis
+
             if($partial > 9)
             {
-                $synthesis = array_sum(str_split($partial)); //get second synthesis
-            } else {
-                $synthesis = null;
+                $synthesis = array_sum(str_split($partial)); //generate synthesis
+
+                array_push($arrayData, [
+                    'sumYear' => $sumYear,
+                    'partial' => $partial,
+                    'synthesis' => $synthesis,
+                    'majorArcaneName' => $allArcanesTarot[$partial-1]->getName(),
+                    'majorArcaneImage' => $allArcanesTarot[$partial-1]->getImage(),
+                    'minorArcaneName' => $allArcanesTarot[$synthesis-1]->getName(),
+                    'minorArcaneImage' => $allArcanesTarot[$synthesis-1]->getImage()
+                ]);
+
             }
 
-            array_push($arrayData, [
-                $sumYear,
-                $partial,
-                $synthesis,
-                $allArcanesTarot[$partial-1]->getName(),
-                !empty($synthesis)? $allArcanesTarot[$synthesis-1]->getName() : null,
-                $allArcanesTarot[$partial-1]->getImage(),
-                !empty($synthesis)? $allArcanesTarot[$synthesis-1]->getImage() : null
-            ]);
+
+            if($partial < 10)
+            {
+                $synthesis = array_sum(str_split($partial)); //generate synthesis
+
+                array_push($arrayData, [
+                    'sumYear' => $sumYear,
+                    'partial' => null,
+                    'synthesis' => $synthesis,
+                    'majorArcaneName' => null,
+                    'majorArcaneImage' => null,
+                    'minorArcaneName' => $allArcanesTarot[$partial-1]->getName(),
+                    'minorArcaneImage' => $allArcanesTarot[$partial-1]->getImage()
+                ]);
+
+            }
 
             $year = $sumYear;
         }
-        dump($arrayData);
 
         //return year, first synthesis and second synthesis
         return $arrayData;

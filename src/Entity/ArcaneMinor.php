@@ -78,6 +78,7 @@ class ArcaneMinor
     {
         if($this->image !== null)
         {
+            rewind($this->image);
             return stream_get_contents($this->image);
         }
         return $this->image;
