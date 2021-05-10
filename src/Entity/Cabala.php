@@ -278,24 +278,26 @@ class Cabala
         $synthesis = array_sum(str_split($totalCaracteres));
 
         $int = (int)$innerUrgency[0];
-        $synthesis += $int;
+        $sum = $synthesis + $int;
+        $synthesis = strlen($sum);
 
         $result = $this->findArcaneByNumericSynthesis($synthesis, $arcanes);
 
         return $result;
     }
 
-    public function findArcaneByNumericSynthesis(int $synthesys, array $arcanes): array
+    public function findArcaneByNumericSynthesis(int $synthesis, array $arcanes): array
     {
         $mount = [];
 
+
         foreach ($arcanes as $arcane) {
-            if($synthesys == $arcane->getId())
+            if($synthesis == $arcane->getId())
             {
                 $mount = [
                     'name' => $arcane->getName(),
                     'image' => $arcane->getImage(),
-                    'synthesis' => $synthesys
+                    'synthesis' => $synthesis
                 ];
                 break;
             }
