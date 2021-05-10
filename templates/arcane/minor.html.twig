@@ -3,66 +3,66 @@
 {% block title %} Enochian | Profile {% endblock %}
 
 {% block body %}
-    <div class="container" xmlns="http://www.w3.org/1999/html">
-        <div class="main-body">
-            <div class="row gutters-sm">
-                {% if arcane %}
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-column align-items-center text-center">
-                                    <div class="card" style="width: 18rem">
-                                        <div class="card-header"> {{ arcane.name }} </div>
-                                        <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
-                                    </div>
-                                </div>
-                                <a href="{{ path('minor') }}" class="button-arcane btn btn-outline-primary">Ver Arcanos Menores</a>
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            {% if arcane %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <div class="card" style="width: 18rem">
+                                <div class="card-header"> {{ arcane.name }} </div>
+                                <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
                             </div>
                         </div>
+                        <a href="{{ path('minor') }}" class="button-arcane btn btn-outline-primary">Ver Arcanos Menores</a>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <form class="form-horizontal" role="form" method="post">
-                                    <div class="mb-3">
-                                        <label><strong>Nome</strong></label>
-                                        <p class="fw-normal"> {{ arcane.name }} </p>
-                                    </div>
-                                    <hr>
-                                    <div class="mb-3">
-                                        <label><strong>Aributo moderador</strong></label>
-                                        <p class="fw-normal"> {{ arcane.moderatorAttribute }} </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label><strong>Axioma Transcendental</strong></label>
-                                        <p class="fw-normal"> {{ arcane.transcendentAxiom }}</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label><strong>Associações várias</strong></label>
-                                        <p class="fw-normal"> {{ arcane.variousAssociations }}</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label><strong>Em Geral</strong></label>
-                                        <p class="fw-normal"> {{ arcane.inGeneral }}</p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label><strong>Direito</strong></label>
-                                        <p class="fw-normal"> {{ arcane.favorable }} </p>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label><strong>Reves</strong></label>
-                                        <p class="fw-normal"> {{ arcane.notFavorable }} </p>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                    <div class="alert alert-danger" role="alert">
-                        Ooops!!! Nenhum Arcano para ser exibido?!!! &#x1F644
-                    </div>
-                {% endif %}
+                </div>
             </div>
+            <div class="col-md-8">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form class="form-horizontal" role="form" method="post">
+                            <div class="mb-3">
+                                <label><strong>Nome</strong></label>
+                                <p class="fw-normal"> {{ arcane.name }} </p>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <label><strong>Aributo moderador</strong></label>
+                                <p class="fw-normal"> {{ arcane.moderatorAttribute }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Axioma Transcendental</strong></label>
+                                <p class="fw-normal"> {{ arcane.transcendentAxiom }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Associações várias</strong></label>
+                                <p class="fw-normal"> {{ arcane.variousAssociations }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Em Geral</strong></label>
+                                <p class="fw-normal"> {{ arcane.inGeneral }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Direito</strong></label>
+                                <p class="fw-normal"> {{ arcane.favorable }} </p>
+                            </div>
+                            <div class="mb-3">
+                                <label><strong>Reves</strong></label>
+                                <p class="fw-normal"> {{ arcane.notFavorable }} </p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="alert alert-danger" role="alert">
+                    Ooops!!! Nenhum Arcano para ser exibido?!!! &#x1F644
+                </div>
+            {% endif %}
         </div>
     </div>
+</div>
 {% endblock %}
