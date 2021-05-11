@@ -14,8 +14,8 @@
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="card">
-                        <p style="text-align: center">A soma parcial, apesar de não representar o resultado final, também deverá ser analisada como o panorâma para aquele ano.<small></small></p>
-                        <p><strong>Por exemplo:</strong> <br> Se um ano importante para a pessoa for <code>2027</code>, a soma dará <code>11</code>, que é sintetizada em <code>1</code> + <code>1</code> resultando na soma final <code>2</code>, que é a cabala para este ano. Porém, o consultante também deverá analisar o Arcano <code>11</code>, pois contribui na análise da cabala daquele ano.</p>
+                        <p style="text-align: center">A Cabala do Ano de Nascimento, permite calcular os anos com acontecimentos importantes para a sua vida.<small></small></p>
+                        <p style="text-align: center">Não é possível estabelecer o acontecimento em sí, porém, com este ano, encontra-se uma síntese numérica que determina um arcano do tarot a ser estudado, que refletirá o panorama do ano em questão.</p>
                     </div>
                     {{ form_start(birthCabala) }}
                     <div class="alert alert-error">
@@ -40,8 +40,8 @@
             <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="card">
-                        <p style="text-align: center">A soma parcial, apesar de não representar o resultado final, também deverá ser analisada como o panorâma para aquele ano.<small></small></p>
-                        <p><strong>Por exemplo:</strong> <br> Se um ano importante para a pessoa for <code>2027</code>, a soma dará <code>11</code>, que é sintetizada em <code>1</code> + <code>1</code> resultando na soma final <code>2</code>, que é a cabala para este ano. Porém, o consultante também deverá analisar o Arcano <code>11</code>, pois contribui na análise da cabala daquele ano.</p>
+                        <p style="text-align: center">A Urgência Interior é a soma cabalistica que determina um dos aspectos mais importantes que a pessoa precisará trabalhar, desenvolver, conhecer, aprimorar em vida, com o objetivo de alcançar o seu maior potencial e expressão de valores e dons.<small></small></p>
+                        <p style="text-align: center">A Urgência Interior é calculada fazendo-se a soma cabalistica do dia, mês e ano de nascimento.</p>
                     </div>
                     {{ form_start(innerUrgency) }}
                     <div class="alert alert-error">
@@ -71,8 +71,11 @@
             <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <div class="card">
-                        <p style="text-align: center">A soma parcial, apesar de não representar o resultado final, também deverá ser analisada como o panorâma para aquele ano.<small></small></p>
-                        <p><strong>Por exemplo:</strong> <br> Se um ano importante para a pessoa for <code>2027</code>, a soma dará <code>11</code>, que é sintetizada em <code>1</code> + <code>1</code> resultando na soma final <code>2</code>, que é a cabala para este ano. Porém, o consultante também deverá analisar o Arcano <code>11</code>, pois contribui na análise da cabala daquele ano.</p>
+                        <p style="text-align: center">A Tônica Fundamental é a soma cabalística que representará o ritmo, a forma, o meio pelo qual, quando bem desenvolvido, pode levar a pessoa a alcançar a sua Urgência Interior.<small></small></p>
+                        <p style="text-align: center">Podemos dizer que, quando a pessoa encontra a sua particularidade, ela terá mais facilidade de expressar seus valores e dons. A Tônica Fundamental é obtida pela soma cabalística da Urgência Interior com o número de letras do nome de batismo completo.</p>
+                    </div>
+                    <div class="alert alert-warning" role="alert" style="border-radius: 12px; text-align: center">
+                        Para obter o cálculo da <strong>Tônica Fundamental</strong> é preciso que tenha sido feito o cálculo da <strong>Urgência Interior</strong>.
                     </div>
                     {{ form_start(fundamentalTonic) }}
                     <div class="alert alert-error">
@@ -96,19 +99,31 @@
             </h2>
             <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="card">
+                        <p style="text-align: center">A Tônica do Dia representa a soma cabalística que permite determinar o panorama de como será o dia consultado, para que assim o consultante possa preparar-se e saber a forma com a qual deverá atuar naquele dia para obter êxito.<small></small></p>
+                        <p style="text-align: center">A Tônica do Dia é obtida pela soma cabalística da Tônica Fundamental com a data escolhida.</p>
+                    </div>
+                    <div class="alert alert-warning" role="alert" style="border-radius: 12px; text-align: center">
+                        Para obter o cálculo da <strong>Tônica do Dia</strong>, é preciso que tenha sido feito o cálculo da <strong>Tônica Fundamental</strong>.
+                    </div>
                 </div>
             </div>
         </div>
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingFive">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                    Evento do Dia
+                    Acontecimento do Dia
                 </button>
             </h2>
             <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    <div class="card">
+                        <p style="text-align: center">O Acontecimento do Dia representa a soma cabalística que indica o panorama de como será algum acontecimento em Hora determinada pelo consultante. Nesse cálculo é possível analisar o panorama geral de um dia, analisar também o panorama e as características de uma Hora exata daquele mesmo dia.<small></small></p>
+                        <p style="text-align: center">A Tônica do Dia é obtida pela soma cabalística da Tônica Fundamental com a data escolhida.</p>
+                    </div>
+                    <div class="alert alert-warning" role="alert" style="border-radius: 12px; text-align: center">
+                        Para obter o cálculo do <strong>Acontecimento do Dia</strong>, é preciso que tenha sido feito o cálculo da <strong>Urgência Interior e Tônica Fundamental</strong>.
+                    </div>
                 </div>
             </div>
         </div>
