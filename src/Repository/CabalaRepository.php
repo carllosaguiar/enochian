@@ -105,6 +105,20 @@ class CabalaRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    public function findTonicDayById(): array
+    {
+        $id = $this->security->getUser();
+
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->select('c.tonicDay')
+            ->where('c.user = :val')
+            ->setParameter('val', $id)
+        ;
+
+        $query = $queryBuilder->getQuery();
+        return $query->execute();
+    }
+
     /**
      * @param int $id
      */

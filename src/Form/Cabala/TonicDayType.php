@@ -14,7 +14,9 @@ class TonicDayType extends AbstractType
     {
         $builder
             ->add('tonicDay', DateType::class, [
+                'mapped' => false,
                 'label' => 'Data à Investigar',
+                'widget' => 'single_text',
                 'attr' => [
                     'placeholder' => 'dd/mm/yyyy',
                     'class' => 'mb-3'
