@@ -145,7 +145,7 @@ class Cabala
      * @param array $tonicDay
      * @return $this
      */
-    public function setTonicDay(int $tonicDay): self
+    public function setTonicDay(array $tonicDay): self
     {
         $this->tonicDay = $tonicDay;
 
@@ -286,6 +286,56 @@ class Cabala
         return $result;
     }
 
+    /**
+     * @param string $number
+     * @return array|null
+     */
+    public function calculateTonicDay(string $date, $arcanes, $fundamentalTonic): ?array
+    {
+
+        $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
+        $day = array_sum(str_split($dateFormat->format('d')));
+        $month = array_sum(str_split($dateFormat->format('m')));
+        $year = array_sum(str_split($dateFormat->format('Y')));
+
+        $daySynthesis = array_sum(str_split($day));
+        $monthSynthesis = array_sum(str_split($month));
+        $yearSynthesis = array_sum(str_split($year));
+
+        if($daySynthesis > 9)
+        {
+            $daySynthesis = array_sum(str_split($daySynthesis));
+        }
+
+        if($yearSynthesis > 9)
+        {
+            $yearSynthesis = array_sum(str_split($yearSynthesis));
+        }
+
+        $partial = ($daySynthesis + $monthSynthesis + $yearSynthesis);
+
+        if($partial > 9)
+        {
+            $partial = array_sum(str_split($partial));
+        }
+
+        $int = (int)$fundamentalTonic[0];
+        $synthesis = $partial + $int;
+
+        if($synthesis > 9)
+        {
+            $synthesis = array_sum(str_split($synthesis));
+        }
+
+        return $this->findArcaneByNumericSynthesis($synthesis, $arcanes);
+
+    }
+
+    /**
+     * @param int $synthesis
+     * @param array $arcanes
+     * @return array
+     */
     public function findArcaneByNumericSynthesis(int $synthesis, array $arcanes): array
     {
         $mount = [];
@@ -306,14 +356,6 @@ class Cabala
         return $mount;
     }
 
-    /**
-     * @param int $number
-     * @return int
-     */
-    public function calculateTonicDay(int $number): int
-    {
-        return 1;
-    }
 
     /**
      * @param int $number

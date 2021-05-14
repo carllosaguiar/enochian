@@ -122,10 +122,33 @@ class CabalaController extends AbstractController
 
         }
 
+        if($tonicDay->isSubmitted() && $tonicDay->isValid())
+        {
+            if(!empty($this->service->getTonicDayById()))
+            {
+                return $this->editPersonalCabala($request);
+            }
+
+            $date = $tonicDay->get('tonicDay')->getViewData();
+
+            $result = $this->service->serviceSetTonicDay($date);
+
+            if(!empty($result) && $result != null)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $cabala->setUser($currentUser);
+                $cabala->setTonicDay($result);
+                $em->persist($cabala);
+                $em->flush();
+            }
+
+        }
+
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $birthCabala->createView(),
             'innerUrgency' => $innerUrgency->createView(),
-            'fundamentalTonic' => $fundamentalTonic->createView()
+            'fundamentalTonic' => $fundamentalTonic->createView(),
+            'tonicDay' => $tonicDay->createView()
         ]);
     }
 
@@ -162,6 +185,9 @@ class CabalaController extends AbstractController
 
         $formFundamentalTonic = $this->createForm(FundamentalTonicType::class, $userProfileCabala);
         $formFundamentalTonic->handleRequest($request);
+
+        $formTonicDay = $this->createForm(TonicDayType::class, $userProfileCabala);
+        $formTonicDay->handleRequest($request);
 
         if ($formBirthCabala->isSubmitted() && $formBirthCabala->isValid()) {
 
@@ -216,10 +242,28 @@ class CabalaController extends AbstractController
             return $this->redirectToRoute('personal_cabala');
         }
 
+        if ($formTonicDay->isSubmitted() && $formTonicDay->isValid()) {
+
+            $updateUser = $formTonicDay->getData();
+            $em = $this->getDoctrine()->getManager();
+
+            $tonicDay = $request->request->get('tonic_day')['tonicDay'];
+
+            $result = $this->service->serviceSetTonicDay($tonicDay);
+            $userProfileCabala->setTonicDay($result);
+            $em->persist($updateUser);
+            $em->flush();
+
+            $this->addFlash('success', "Tônica do Dia Atualizada!");
+
+            return $this->redirectToRoute('personal_cabala');
+        }
+
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $formBirthCabala->createView(),
             'innerUrgency' => $formInnerUrgency->createView(),
-            'fundamentalTonic' => $formFundamentalTonic->createView()
+            'fundamentalTonic' => $formFundamentalTonic->createView(),
+            'tonicDay' => $formTonicDay->createView()
         ]);
 
     }

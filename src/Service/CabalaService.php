@@ -85,6 +85,27 @@ class CabalaService
         return null;
     }
 
+    /**
+     * @param string $date
+     * @return array|null
+     */
+    public function serviceSetTonicDay(string $date) : ?array
+    {
+        $cabala = new Cabala();
+        $arcanes = $this->locator->locatorAllArcane();
+        try {
+            if(!empty($this->cabalaRepository->findFundamentalTonicById()))
+            {
+                $fundamentalTonic = $this->cabalaRepository->findFundamentalTonicById();
+                $fundamentalTonic = array_column($fundamentalTonic[0], 'synthesis');
+                return $cabala->calculateTonicDay($date, $arcanes, $fundamentalTonic);
+            }
+        } catch (\Exception $e)
+        {
+            echo $e->getMessage();
+        }
+        return null;
+    }
 
     /**
      * @return array
@@ -112,6 +133,11 @@ class CabalaService
         return $this->cabalaRepository->findFundamentalTonicById();
     }
 
+
+    public function getTonicDayById(): array
+    {
+        return $this->cabalaRepository->findTonicDayById();
+    }
 
     /**
      * @return array

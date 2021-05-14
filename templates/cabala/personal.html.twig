@@ -212,6 +212,19 @@
                             <div class="card">
                                 <p style="text-align: center">A Tônica do Dia representa a soma cabalística que permite determinar o panorama de como será o dia consultado, para que assim o consultante possa preparar-se e saber a forma com a qual deverá atuar naquele dia para obter êxito.<small></small></p>
                             </div>
+                            <ul>
+                                <li><code>Descrição</code><strong> {{ cabala.tonicDay['name'] }} </strong><i> Carta do Tarot</i></li>
+                                <li><code>Síntese</code><strong> {{ cabala.tonicDay['synthesis'] }} </strong><i> Síntese cabalística</i></li>
+                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.tonicDay['synthesis']} ) }}">Analisar Arcano</a></li>
+                            </ul>
+                            <div class="card" style="width: 8rem">
+                                <img src="{{ cabala.tonicDay['image'] }}" class="card-img-bottom hover-zoom">
+                            </div>
+                            {% if cabala.fundamentalTonic is not null %}
+                                <div style="padding-top: 20px">
+                                    <a href="{{ path('edit_birth_cabala', {id: cabala.tonicDay['synthesis']}) }}" type="button" class="btn btn-primary" style="align-content: center"><i class="bi bi-pencil"></i></a>
+                                </div>
+                            {% endif %}
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
                                 <p>Não foram encontrádos cálculos da <strong>Tônica do Dia</strong> para o usuário atual</p>
