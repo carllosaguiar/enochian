@@ -4,20 +4,20 @@
 
 {% block body %}
     <div class="main-title">
-        <h1 class="arcanos-maiores">Os Arcanos do Tarot</h1>
+        <h1 class="arcanos-maiores">Os Arcanos Menores do Tarot</h1>
     </div>
     <div class="custom-container">
         <div class="card-items justify-content-center wrap">
             {% for arcane in arcanes %}
-                <div class="card" style="width: 18rem">
-                    <div class="card-header">
-                        {{ arcane.name }}
-                    </div>
+                <div class="card" style="width: 15rem">
+{#                    <div class="card-header">#}
+{#                        {{ arcane.name }}#}
+{#                    </div>#}
                     <img src="{{ arcane.image }}" class="card-img-top" alt="{{ arcane.name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ arcane.name }}</h5>
 {#                        <p class="card-text">{{ arcane.description }}</p>#}
-                        <a href="{{ path('minor_arcane', {id: arcane.id}) }}" class="btn btn-primary" style="margin-top: auto">Descrição Completa</a>
+                        <a href="{{ path('minor_arcane', {id: arcane.id}) }}" class="btn btn-primary" style="margin-top: auto">Analisar</a>
                     </div>
                 </div>
             {% endfor %}

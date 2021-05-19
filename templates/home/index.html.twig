@@ -4,22 +4,15 @@
 
  {% block body %}
      <div class="main-container justify-content-center">
-         <div class="card text-center">
-             <div class="card-header">
-                 Enochian
-             </div>
-             <div class="card-body">
-                 <!--<h5 class="card-title">Special title treatment</h5>-->
-                 <figure class="text-center">
-                     <blockquote class="blockquote">
-                         <p>O Universo está feito com a lei do número, medida e peso. As matemáticas, formam o universo.</p>
-                     </blockquote>
-                     <figcaption class="blockquote-footer">
-                         Samael Aun Weor in <cite title="Source Title">Tarot e Kabala</cite>
-                     </figcaption>
-                 </figure>
-                 <a href="{{ path('major') }}" class="btn btn-primary">Arcanos</a>
-             </div>
+         <div class="container">
+             <figure class="text-center">
+                 <blockquote class="blockquote">
+                     <p>{{ axiom }}</p>
+                 </blockquote>
+                 <figcaption class="blockquote-footer">
+                     <cite title="Source Title">Axiomas Transcendentais do antigo mundo</cite>
+                 </figcaption>
+             </figure>
          </div>
      </div>
  {% endblock %}
