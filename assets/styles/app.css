@@ -45,7 +45,7 @@ body {
 .card-items{
     display: flex;
     margin: auto;
-    max-width: 900px;
+    max-width: 1480px;
     flex-direction: row;
     flex-shrink: 3;
 }
@@ -115,8 +115,8 @@ body {
 
 .arcanos-maiores {
     display: inline-block;
-    margin: 20px;
-    animation: backInUp; /* referring directly to the animation's @keyframe declaration */
+    margin: 20px 0 40px 0;
+    animation: zoomInDown; /* referring directly to the animation's @keyframe declaration */
     animation-duration: 2s; /* don't forget to set a duration! */
 }
 
