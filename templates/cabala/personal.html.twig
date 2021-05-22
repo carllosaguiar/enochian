@@ -245,6 +245,104 @@
                             <div class="card">
                                 <p style="text-align: center">O Acontecimento do Dia representa a soma cabalística que indica o panorama de como será algum acontecimento em Hora determinada pelo consultante. Nesse cálculo é possível analisar o panorama geral de um dia, analisar também o panorama e as características de uma Hora exata daquele mesmo dia.<small></small></p>
                             </div>
+
+                            <main id="home" class="contents">
+                                <div class="container">
+                                    <h3 class="page-title text-center">Acontecimento do Dia</h3>
+                                    <ul class="timeline">
+                                        <li class="timeline-line"></li>
+                                        <li class="timeline-group">
+                                            <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }}</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="timeline panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                        <li class="timeline-line"></li>
+                                        {% if cabala.eventDay.partial['partial'] != null and cabala.eventDay.partial['partial'] != cabala.eventDay.synthesis['tonicDay']%}
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge"><a href="#"></a></div>
+                                                <div class="timeline-panel">
+                                                    <div class="panel">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="text-decoration: none;">
+                                                                    <div class="timeline-heading">Resultado Parcial</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseFive"></span>
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
+                                                            <div class="panel-body">
+                                                                <div class="timeline-content">
+                                                                    <ul>
+                                                                        <li><code>Data:</code><strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
+                                                                        <li><code>Parcial</code><strong> {{ cabala.eventDay.partial['partial'] }} </strong><i> Resultado Parcial </i></li>
+                                                                        <li><code>Descrição</code><strong> {{ cabala.eventDay.partial['name'] }} </strong><i> Carta do Tarot</i></li>
+                                                                        <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.eventDay.partial['partial']} ) }}">Resultado Parcial</a></li>
+                                                                    </ul>
+                                                                    <div class="custom-container">
+                                                                        <div class="card-items justify-content-center wrap">
+                                                                            <div class="card" style="width: 8rem">
+                                                                                <img src="{{ cabala.eventDay.partial['image'] }}" class="card-img-bottom hover-zoom">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% else %}
+                                            <li class="timeline-item">
+                                                <div class="alert alert-warning" role="alert" style="border-radius: 12px">
+                                                    Considere o seu resultado final como a síntese absoluta para este ano.
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                        {% if cabala.eventDay.synthesis['tonicDay'] != cabala.eventDay.partial['partial']%}
+                                            <li class="timeline-item">
+                                                <div class="timeline-badge"><a href="#"></a></div>
+                                                <div class="timeline-panel">
+                                                    <div class="panel">
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="text-decoration: none;">
+                                                                    <div class="timeline-heading">Resultado Final</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseFive"></span>
+                                                                </a>
+                                                            </h4>
+                                                        </div>
+                                                        <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
+                                                            <div class="panel-body">
+                                                                <div class="timeline-content">
+                                                                    <ul>
+                                                                        <li><code>Data:</code> <strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
+                                                                        <li><code>Síntese</code> <strong> {{ cabala.eventDay.synthesis['tonicDay'] }} </strong><i>Resultado Final</i></li>
+                                                                        <li><code>Descrição</code><strong> {{ cabala.eventDay.synthesis['name'] }} </strong><i> Carta do Tarot</i></li>
+                                                                        <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.eventDay.synthesis['tonicDay']} ) }}">Analisar Arcano</a></li>
+                                                                    </ul>
+                                                                    <div class="custom-container">
+                                                                        <div class="card-items justify-content-center wrap">
+                                                                            <div class="card" style="width: 8rem">
+                                                                                <img src="{{ cabala.eventDay.synthesis['image'] }}" class="card-img-bottom hover-zoom">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% else %}
+                                            <li class="timeline-item">
+                                                <div class="alert alert-warning" role="alert" style="border-radius: 12px">
+                                                    Considere o seu resultado parcial como a síntese absoluta para este ano.
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </main>
+
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
                                 <p>Não foram encontrádos cálculos do <strong>Evento do Dia</strong> para o usuário atual</p>

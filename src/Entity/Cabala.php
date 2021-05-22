@@ -332,6 +332,97 @@ class Cabala
     }
 
     /**
+     * @param $dateTime
+     * @param $arcanes
+     * @param $innerUrgency
+     * @param $fundamentalTonic
+     * @return array
+     */
+    public function calculateEventDay($dateTime, $arcanes, $fundamentalTonic): array
+    {
+        $dateFormat = \DateTime::createFromFormat('Y-m-d\TH:i', $dateTime);
+        $day = array_sum(str_split($dateFormat->format('d')));
+        $month = array_sum(str_split($dateFormat->format('m')));
+        $year = array_sum(str_split($dateFormat->format('Y')));
+        $hours = (int)$dateFormat->format('H');
+
+        $yearFormat =  (int)$dateFormat->format('Y');
+
+        $daySynthesis = array_sum(str_split($day));
+        $monthSynthesis = array_sum(str_split($month));
+        $yearSynthesis = array_sum(str_split($year));
+
+        if($yearSynthesis > 9)
+        {
+            $yearSynthesis = array_sum(str_split($yearSynthesis));
+        }
+
+        $dateSynthesis = ($daySynthesis + $monthSynthesis + $yearSynthesis);
+
+        if($dateSynthesis > 9)
+        {
+            $dateSynthesis = array_sum(str_split($dateSynthesis));
+        }
+
+        $partial = $dateSynthesis + 8;
+
+        $tonicDay;
+
+        if($partial > 9 )
+        {
+            $tonicDay = array_sum(str_split($partial));
+        }
+
+        $eventDay = $tonicDay + $hours;
+
+        if($eventDay > 9)
+        {
+            $eventDay = array_sum(str_split($eventDay));
+        }
+
+        foreach ($arcanes as $arcane)
+        {
+            if($partial == $arcane->getId())
+            {
+                $firstResult = [
+                    'name' => $arcane->getName(),
+                    'image' => $arcane->getImage(),
+                    'partial' => $partial
+                ];
+            }
+
+            if($tonicDay == $arcane->getId())
+            {
+                $secondResult = [
+                    'name' => $arcane->getName(),
+                    'image' => $arcane->getImage(),
+                    'tonicDay' => $tonicDay
+                ];
+            }
+
+            if($eventDay == $arcane->getId())
+            {
+                $event = [
+                    'name' => $arcane->getName(),
+                    'image' => $arcane->getImage(),
+                    'eventDay' => $eventDay
+                ];
+            }
+        }
+
+        return [
+            'day' => $day,
+            'month' => $month,
+            'year' => $yearFormat,
+            'partial' => $firstResult,
+            'synthesis' => $secondResult,
+            'eventDay' => $event,
+            'hours' => $hours
+        ];
+
+    }
+
+    /**
      * @param int $synthesis
      * @param array $arcanes
      * @return array
@@ -354,16 +445,6 @@ class Cabala
         }
 
         return $mount;
-    }
-
-
-    /**
-     * @param int $number
-     * @return int
-     */
-    public function calculateEventDay(int $number): int
-    {
-        return 1;
     }
 
     /**

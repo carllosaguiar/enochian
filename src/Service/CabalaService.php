@@ -108,6 +108,34 @@ class CabalaService
     }
 
     /**
+     * @param string $dateTime
+     * @return array|null
+     */
+   public function serviceSetEventDay(string $dateTime): ?array
+   {
+       $cabala = new Cabala();
+       $major = $this->locator->locatorAllArcane();
+       $minor = $this->locator->locatorAllMinorArcane();
+
+       $arcanes = array_merge($major, $minor);
+
+       try{
+           if(!empty($this->cabalaRepository->findFundamentalTonicById()))
+           {
+               $fundamentalTonic = $this->cabalaRepository->findFundamentalTonicById();
+               $fundamentalTonic = array_column($fundamentalTonic[0], 'synthesis');
+
+               return $cabala->calculateEventDay($dateTime, $arcanes, $fundamentalTonic);
+           }
+       } catch (\Exception $e)
+       {
+           echo $e->getMessage();
+       }
+       return null;
+   }
+
+
+    /**
      * @return array
      */
     public function getBirthCabalaById(): array
@@ -134,9 +162,20 @@ class CabalaService
     }
 
 
+    /**
+     * @return array
+     */
     public function getTonicDayById(): array
     {
         return $this->cabalaRepository->findTonicDayById();
+    }
+
+    /**
+     * @return array
+     */
+    public function getEventDayById(): array
+    {
+        return $this->cabalaRepository->findEventDayById();
     }
 
     /**

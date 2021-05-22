@@ -4,6 +4,7 @@ namespace App\Form\Cabala;
 
 use App\Entity\Cabala;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,12 +15,10 @@ class EventDayType extends AbstractType
     {
         $builder
 
-            ->add('eventDay', IntegerType::class, [
-                'label' => 'Hora à Investigar',
-                'attr' => [
-                    'placeholder' => 'Entre 1h e 12h',
-                    'class' => 'mb-3'
-                ]
+            ->add('eventDay', DateTimeType::class, [
+                'mapped' => false,
+                'label' => 'Data e Horas à Investigar',
+                'widget' => 'single_text'
             ])
 
         ;
