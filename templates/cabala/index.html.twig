@@ -117,7 +117,6 @@
                         <button type="submit" class="btn btn-outline-primary">Salvar</button>
                     </div>
                     {{ form_end(tonicDay) }}
-
                 </div>
             </div>
         </div>
@@ -136,6 +135,17 @@
                     <div class="alert alert-warning" role="alert" style="border-radius: 12px; text-align: center">
                         Para obter o cálculo do <strong>Acontecimento do Dia</strong>, é preciso que tenha sido feito o cálculo da <strong>Urgência Interior e Tônica Fundamental</strong>.
                     </div>
+                    {{ form_start(eventDay) }}
+                    <div class="alert alert-error">
+                        {{ form_errors(eventDay) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_widget(eventDay) }}
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-outline-primary">Salvar</button>
+                    </div>
+                    {{ form_end(eventDay) }}
                 </div>
             </div>
         </div>

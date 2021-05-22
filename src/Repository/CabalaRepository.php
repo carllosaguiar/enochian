@@ -91,6 +91,9 @@ class CabalaRepository extends ServiceEntityRepository
     }
 
 
+    /**
+     * @return array
+     */
     public function findFundamentalTonicById(): array
     {
         $id = $this->security->getUser();
@@ -105,6 +108,9 @@ class CabalaRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
+    /**
+     * @return array
+     */
     public function findTonicDayById(): array
     {
         $id = $this->security->getUser();
@@ -120,8 +126,22 @@ class CabalaRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param int $id
+     * @return array
      */
+    public function findEventDayById(): array
+    {
+        $id = $this->security->getUser();
+
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->select('c.eventDay')
+            ->where('c.user = :val')
+            ->setParameter('val', $id)
+        ;
+
+        $query = $queryBuilder->getQuery();
+        return $query->execute();
+    }
+
     public function removeBirthCabalaById(int $id)
     {
         $query = $this->_em->createQueryBuilder()

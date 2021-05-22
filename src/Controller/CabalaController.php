@@ -54,7 +54,6 @@ class CabalaController extends AbstractController
         $eventDay = $this->createForm(EventDayType::class);
         $eventDay->handleRequest($request);
 
-
         if ($birthCabala->isSubmitted() && $birthCabala->isValid())
         {
 
@@ -144,11 +143,34 @@ class CabalaController extends AbstractController
 
         }
 
+        if($eventDay->isSubmitted() && $eventDay->isValid())
+        {
+            if(!empty($this->service->getEventDayById()))
+            {
+                return $this->editPersonalCabala($request);
+            }
+
+            $dateTime = $eventDay->get('eventDay')->getViewData();
+
+            $result = $this->service->serviceSetEventDay($dateTime);
+
+            if(!empty($result) && $result != null)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $cabala->setUser($currentUser);
+                $cabala->setTonicDay($result);
+                $em->persist($cabala);
+                $em->flush();
+            }
+
+        }
+
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $birthCabala->createView(),
             'innerUrgency' => $innerUrgency->createView(),
             'fundamentalTonic' => $fundamentalTonic->createView(),
-            'tonicDay' => $tonicDay->createView()
+            'tonicDay' => $tonicDay->createView(),
+            'eventDay' => $eventDay->createView()
         ]);
     }
 
@@ -188,6 +210,9 @@ class CabalaController extends AbstractController
 
         $formTonicDay = $this->createForm(TonicDayType::class, $userProfileCabala);
         $formTonicDay->handleRequest($request);
+
+        $formEventDay = $this->createForm(EventDayType::class, $userProfileCabala);
+        $formEventDay->handleRequest($request);
 
         if ($formBirthCabala->isSubmitted() && $formBirthCabala->isValid()) {
 
@@ -259,11 +284,29 @@ class CabalaController extends AbstractController
             return $this->redirectToRoute('personal_cabala');
         }
 
+        if ($formEventDay->isSubmitted() && $formEventDay->isValid()) {
+
+            $updateUser = $formEventDay->getData();
+            $em = $this->getDoctrine()->getManager();
+
+            $eventDay = $request->request->get('event_day')['eventDay'];
+
+            $result = $this->service->serviceSetEventDay($eventDay);
+            $userProfileCabala->setEventDay($result);
+            $em->persist($updateUser);
+            $em->flush();
+
+            $this->addFlash('success', "Evento do Dia Atualizado!");
+
+            return $this->redirectToRoute('personal_cabala');
+        }
+
         return $this->render('cabala/index.html.twig', [
             'birthCabala' => $formBirthCabala->createView(),
             'innerUrgency' => $formInnerUrgency->createView(),
             'fundamentalTonic' => $formFundamentalTonic->createView(),
-            'tonicDay' => $formTonicDay->createView()
+            'tonicDay' => $formTonicDay->createView(),
+            'eventDay' => $formEventDay->createView()
         ]);
 
     }
