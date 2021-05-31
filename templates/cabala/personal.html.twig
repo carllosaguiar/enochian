@@ -57,9 +57,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-{#                                                                <div class="timeline-embed">#}
-{#                                                                    <iframe width="478" height="320" src="https://www.youtube.com/embed/qxlahRGEhp0" frameborder="0" allowfullscreen></iframe>#}
-{#                                                                </div>#}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -101,9 +98,6 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-{#                                                                <div class="timeline-embed">#}
-{#                                                                    <iframe width="478" height="320" src="https://www.youtube.com/embed/qxlahRGEhp0" frameborder="0" allowfullscreen></iframe>#}
-{#                                                                </div>#}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -245,7 +239,6 @@
                             <div class="card">
                                 <p style="text-align: center">O Acontecimento do Dia representa a soma cabalística que indica o panorama de como será algum acontecimento em Hora determinada pelo consultante. Nesse cálculo é possível analisar o panorama geral de um dia, analisar também o panorama e as características de uma Hora exata daquele mesmo dia.<small></small></p>
                             </div>
-
                             <main id="home" class="contents">
                                 <div class="container">
                                     <h3 class="page-title text-center">Acontecimento do Dia</h3>
@@ -339,10 +332,48 @@
                                                 </div>
                                             </li>
                                         {% endif %}
+                                        <li class="timeline-item">
+                                            <div class="timeline-badge"><a href="#"></a></div>
+                                            <div class="timeline-panel">
+                                                <div class="panel">
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" style="text-decoration: none;">
+                                                                <div class="timeline-heading">O Acontecimento do Dia</div> <span class="expand-icon-wrap" aria-expanded="false" aria-controls="collapseFive"></span>
+                                                            </a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
+                                                        <div class="panel-body">
+                                                            <div class="timeline-content">
+                                                                <ul>
+                                                                    <li><code>Data:</code><strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia.</i></li>
+                                                                    <li><code>Hora:</code><strong> {{ cabala.eventDay.hours }} </strong> <i>Hora selecionada pelo consultante.</i></li>
+                                                                    <li><code>Acontecimento do dia</code><strong> {{ cabala.eventDay.eventDay['eventDay'] }} </strong><i> Arcano para o acontecimento do dia onde às {{ cabala.eventDay.hours }}h é a hora mais importante.</i></li>
+                                                                    <li><code>Descrição</code><strong> {{ cabala.eventDay.eventDay['name'] }} </strong><i> Carta do Tarot</i></li>
+                                                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.eventDay.eventDay['eventDay']} ) }}">Resultado Parcial</a></li>
+                                                                </ul>
+                                                                <div class="custom-container">
+                                                                    <div class="card-items justify-content-center wrap">
+                                                                        <div class="card" style="width: 8rem">
+                                                                            <img src="{{ cabala.eventDay.eventDay['image'] }}" class="card-img-bottom hover-zoom">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </main>
-
+                            {% if cabala.eventDay is not null %}
+                                <div style="padding-top: 20px">
+                                    <a href="{{ path('edit_birth_cabala', {id: cabala.id}) }}" type="button" class="btn btn-primary" style="align-content: center"><i class="bi bi-pencil"></i></a>
+                                </div>
+                            {% endif %}
                         {% else %}
                             <div class="alert alert-danger" role="alert" style="text-align: center">
                                 <p>Não foram encontrádos cálculos do <strong>Evento do Dia</strong> para o usuário atual</p>

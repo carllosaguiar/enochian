@@ -15,8 +15,12 @@
                         <img src="{{ asset('uploads/') ~ userProfile.image }}" alt="Avatar" class="rounded-circle" style="height: 180px; width: 180px" width="180"/>
                         <div class="mt-3">
                             <h4>{{ userProfile.name }}</h4>
-                            <p class="text-secondary mb-1">Full Stack Developer</p>
-                            <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                            {% if userProfile.comment is not empty %}
+                                <p class="text-secondary mb-1">{{ userProfile.comment }}</p>
+                                <div class="mt-3">
+                                    <img src="{{ userProfile.zodiac['signImg'] }}" alt="{{ userProfile.zodiac['sign'] }}">
+                                </div>
+                            {% endif %}
                             <a href="{{ path('personal_cabala') }}" class="btn btn-outline-primary">Ver Cabala Pessoal</a>
                         </div>
                         {% endif %}
@@ -66,25 +70,34 @@
                                 <h6 class="mb-0">Phone</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (239) 816-9029
+                                {{ userProfile.phone }}
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Contato</h6>
+                                <h6 class="mb-0">Ocupação</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                (320) 380-4539
+                                {{ userProfile.occupation }}
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Endereço</h6>
+                                <h6 class="mb-0">Genero</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                Bay Area, San Francisco, CA
+                                {{ userProfile.gender }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Signo</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ userProfile.zodiac['sign'] }}
                             </div>
                         </div>
                     </div>

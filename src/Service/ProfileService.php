@@ -13,10 +13,12 @@ class ProfileService
 {
 
     private ProfileRepository $profileRepository;
+    private Zodiac $zodiac;
 
-    public function __construct(ProfileRepository $profileRepository)
+    public function __construct(ProfileRepository $profileRepository, Zodiac $zodiac)
     {
         $this->profileRepository = $profileRepository;
+        $this->zodiac = $zodiac;
     }
 
     /**
@@ -37,5 +39,13 @@ class ProfileService
     public function locatorUrlArcane(LocatorArcane $arcaneLocator, int $id): string
     {
         return $arcaneLocator->locatorArcane($id);
+    }
+
+    public function generateZodiac($day, $mount): array
+    {
+        $this->zodiac->setDay($day);
+        $this->zodiac->setMonth($mount);
+
+        return $this->zodiac->mountSign();
     }
 }

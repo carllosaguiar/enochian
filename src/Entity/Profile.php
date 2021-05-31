@@ -25,6 +25,21 @@ class Profile
     private $name;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $occupation;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $comment;
+
+    /**
      * @ORM\Column(type="blob", nullable=true)
      */
     private $image;
@@ -38,6 +53,11 @@ class Profile
      * @ORM\Column(type="string", length=255)
      */
     private $gender;
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private ?array $zodiac;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="profile", cascade={"persist", "remove"})
@@ -60,6 +80,39 @@ class Profile
     {
         $this->name = $name;
 
+        return $this;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+        return $this;
+    }
+
+    public function getOccupation()
+    {
+        return $this->occupation;
+    }
+
+    public function setOccupation($occupation)
+    {
+        $this->occupation = $occupation;
+        return $this;
+    }
+
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
         return $this;
     }
 
@@ -100,6 +153,24 @@ class Profile
     {
         $this->gender = $gender;
 
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getZodiac(): ?array
+    {
+        return $this->zodiac;
+    }
+
+    /**
+     * @param array|null $zodiac
+     * @return Profile
+     */
+    public function setZodiac(?array $zodiac): Profile
+    {
+        $this->zodiac = $zodiac;
         return $this;
     }
 
