@@ -364,7 +364,7 @@ class Cabala
             $dateSynthesis = array_sum(str_split($dateSynthesis));
         }
 
-        $partial = $dateSynthesis + 8;
+        $partial = $dateSynthesis + 5;
 
         $tonicDay;
 
@@ -414,10 +414,10 @@ class Cabala
             'day' => $day,
             'month' => $month,
             'year' => $yearFormat,
+            'hours' => $hours,
             'partial' => $firstResult,
             'synthesis' => $secondResult,
-            'eventDay' => $event,
-            'hours' => $hours
+            'eventDay' => $event
         ];
 
     }

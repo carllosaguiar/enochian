@@ -53,6 +53,15 @@ class ProfileController extends AbstractController
 
             $file->move($uploads_directory, $filename);
 
+            $date = $form->get('birthDate')->getViewData();
+
+            $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
+            $day = $dateFormat->format('d');
+            $month = $dateFormat->format('m');
+
+            $resultZodiac = $this->profile->generateZodiac($day, $month);
+            $profile->setZodiac($resultZodiac);
+
             $profile->setImage($filename);
 
             $em = $this->getDoctrine()->getManager();
@@ -104,7 +113,17 @@ class ProfileController extends AbstractController
 
             }
 
+            $date = $form->get('birthDate')->getViewData();
+
+            $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
+            $day = $dateFormat->format('d');
+            $month = $dateFormat->format('m');
+
+            $resultZodiac = $this->profile->generateZodiac($day, $month);
+            $userProfile->setZodiac($resultZodiac);
+
             $updateUser = $form->getData();
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($updateUser);
             $em->flush();
