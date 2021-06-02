@@ -32,6 +32,58 @@ class CabalaService
         return $this->cabalaRepository->findPersonalCabalaById();
     }
 
+    /**
+     * @return array
+     */
+    public function getAllCabala(): array
+    {
+        $allCabala = $this->cabalaRepository->findAllCabala();
+
+        $birthCabala = 0;
+        $innerUrgency = 0;
+        $fundamentalTonic = 0;
+        $tonicDay = 0;
+        $eventDay = 0;
+
+        foreach ($allCabala as $cabala)
+        {
+            if(isset($cabala['birthCabala'])) {
+                $birthCabala += 1;
+            }
+
+            if(isset($cabala['innerUrgency'])) {
+                $innerUrgency += 1;
+            }
+
+            if(isset($cabala['fundamentalTonic'])) {
+                $fundamentalTonic += 1;
+            }
+
+            if(isset($cabala['tonicDay'])) {
+                $tonicDay += 1;
+            }
+
+            if(isset($cabala['eventDay'])) {
+                $eventDay += 1;
+            }
+        }
+
+        $arrayLength = count($allCabala);
+
+        $birthCabala = ($birthCabala / $arrayLength) * 100;
+        $innerUrgency = ($innerUrgency / $arrayLength) * 100;
+        $fundamentalTonic = ($fundamentalTonic / $arrayLength) * 100;
+        $tonicDay = ($tonicDay / $arrayLength) * 100;
+        $eventDay = ($eventDay / $arrayLength) * 100;
+
+        return [
+            'birthCabala' => floor($birthCabala),
+            'innerUrgency' => floor($innerUrgency),
+            'fundamentalTonic' => floor($fundamentalTonic),
+            'tonicDay' => floor($tonicDay),
+            'eventDay' => floor($eventDay)
+        ];
+    }
 
     /**
      * @param int $year

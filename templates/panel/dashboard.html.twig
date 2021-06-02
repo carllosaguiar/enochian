@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Enochian | Dashboard {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    {% if zodiac is not empty %}
+                    <div class="mt-3" style="overflow-y:scroll">
+                        <ul class="list-group list-group-flush">
+                            <h6 class="d-flex align-items-center material-icons text-info mb-3">Constelações Global</h6>
+                            {% for image, total in zodiac %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0"><img src="{{ image }}" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe mr-2 icon-inline"></h6>
+                                    <span class="text-secondary">{{ total }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8">
+                    <div class="row gutters-sm">
+                        <div class="col-sm-12 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="d-flex align-items-center material-icons text-info mb-3">Progresso Global</h6>
+                                    <small>Cabala do Ano de Nascimento</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ cabala.birthCabala }}%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>Urgência Interior</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ cabala.innerUrgency }}%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>Tônica Fundamental</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ cabala.fundamentalTonic }}%" aria-valuenow="89" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>Tônica do Dia</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ cabala.tonicDay }}%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <small>Acontecimento do Dia</small>
+                                    <div class="progress mb-3" style="height: 5px">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: {{ cabala.eventDay }}%" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

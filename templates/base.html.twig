@@ -52,10 +52,11 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Maps Astral
+                        Painel
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="#">Criar Mapa</a></li>
+                        <li><a class="dropdown-item" href="{{ path('dashboard') }}">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{{ path('personal') }}">Minhas informações</a></li>
                     </ul>
                 </li>
                 {% endif %}
