@@ -40,4 +40,14 @@ class ProfileRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findAllZodiac()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.zodiac')
+            ->andWhere('p.zodiac IS NOT NULL')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 }

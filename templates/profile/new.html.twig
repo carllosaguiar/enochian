@@ -91,15 +91,17 @@
                                 {{ userProfile.gender }}
                             </div>
                         </div>
+                        {% if userProfile.zodiac is not empty %}
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <h6 class="mb-0">Signo</h6>
+                                <h6 class="mb-0">Constelação</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
                                 {{ userProfile.zodiac['sign'] }}
                             </div>
                         </div>
+                        {% endif %}
                     </div>
                     <div class="mb-3">
                         <a href="{{ path('update', {id: userProfile.id}) }}" type="button" class="btn btn-primary" style="float: right"><i class="bi bi-pencil"></i></a>

@@ -44,7 +44,7 @@
                                                     <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
                                                         <div class="panel-body">
                                                             <div class="timeline-content">
-                                                                <ul>
+                                                                <ul id="block-list-left">
                                                                     <li><code>Ano:</code><strong> {{ value['sumYear'] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
                                                                     <li><code>Parcial</code><strong> {{ value['partial'] }} </strong><i> Resultado Parcial </i></li>
                                                                     <li><code>Descrição</code><strong> {{ value['majorArcaneName'] }} </strong><i> Carta do Tarot</i></li>
@@ -85,7 +85,7 @@
                                                     <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
                                                         <div class="panel-body">
                                                             <div class="timeline-content">
-                                                                <ul>
+                                                                <ul id="block-list-left">
                                                                     <li><code>Ano:</code> <strong> {{ value['sumYear'] }} </strong> <i>Ano que marca um acontecimento importante para sua vida</i></li>
                                                                     <li><code>Síntese</code> <strong> {{ value['synthesis'] }} </strong><i>Resultado Final</i></li>
                                                                     <li><code>Descrição</code><strong> {{ value['minorArcaneName'] }} </strong><i> Carta do Tarot</i></li>
@@ -140,12 +140,14 @@
                             <div class="card">
                                 <p style="text-align: center">A Urgência Interior é a soma cabalistica que determina um dos aspectos mais importantes que a pessoa precisará trabalhar, desenvolver, conhecer, aprimorar em vida, com o objetivo de alcançar o seu maior potencial e expressão de valores e dons.<small></small></p>
                             </div>
-                            <ul>
-                                <li><code>Descrição</code><strong> {{ cabala.innerUrgency['name'] }} </strong><i> Carta do Tarot</i></li>
-                                <li><code>Síntese</code><strong> {{ cabala.innerUrgency['synthesis'] }} </strong><i> Síntese cabalística</i></li>
-                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.innerUrgency['synthesis']} ) }}">Analisar Arcano</a></li>
-                            </ul>
-                                <div class="card" style="width: 8rem">
+                            <div class="block-list">
+                                <ul id="block-list-center">
+                                    <li><code>Descrição</code><strong> {{ cabala.innerUrgency['name'] }} </strong><i> Carta do Tarot</i></li>
+                                    <li><code>Síntese</code><strong> {{ cabala.innerUrgency['synthesis'] }} </strong><i> Síntese cabalística</i></li>
+                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.innerUrgency['synthesis']} ) }}">Analisar Arcano</a></li>
+                                </ul>
+                            </div>
+                                <div class="card" style="width: 8rem; margin:0 auto">
                                     <img src="{{ cabala.innerUrgency['image'] }}" class="card-img-bottom hover-zoom">
                                 </div>
                         {% endif %}
@@ -173,12 +175,14 @@
                             <div class="card">
                                 <p style="text-align: center">A Tônica Fundamental é a soma cabalística que representará o ritmo, a forma, o meio pelo qual, quando bem desenvolvido, pode levar a pessoa a alcançar a sua Urgência Interior.<small></small></p>
                             </div>
-                            <ul>
-                                <li><code>Descrição</code><strong> {{ cabala.fundamentalTonic['name'] }} </strong><i> Carta do Tarot</i></li>
-                                <li><code>Síntese</code><strong> {{ cabala.fundamentalTonic['synthesis'] }} </strong><i> Síntese cabalística</i></li>
-                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.fundamentalTonic['synthesis']} ) }}">Analisar Arcano</a></li>
-                            </ul>
-                            <div class="card" style="width: 8rem">
+                            <div class="block-list">
+                                <ul id="block-list-center">
+                                    <li><code>Descrição</code><strong> {{ cabala.fundamentalTonic['name'] }} </strong><i> Carta do Tarot</i></li>
+                                    <li><code>Síntese</code><strong> {{ cabala.fundamentalTonic['synthesis'] }} </strong><i> Síntese cabalística</i></li>
+                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.fundamentalTonic['synthesis']} ) }}">Analisar Arcano</a></li>
+                                </ul>
+                            </div>
+                            <div class="card" style="width: 8rem; margin:0 auto">
                                 <img src="{{ cabala.fundamentalTonic['image'] }}" class="card-img-bottom hover-zoom">
                             </div>
                             {% if cabala.fundamentalTonic is not null %}
@@ -206,12 +210,14 @@
                             <div class="card">
                                 <p style="text-align: center">A Tônica do Dia representa a soma cabalística que permite determinar o panorama de como será o dia consultado, para que assim o consultante possa preparar-se e saber a forma com a qual deverá atuar naquele dia para obter êxito.<small></small></p>
                             </div>
-                            <ul>
-                                <li><code>Descrição</code><strong> {{ cabala.tonicDay['name'] }} </strong><i> Carta do Tarot</i></li>
-                                <li><code>Síntese</code><strong> {{ cabala.tonicDay['synthesis'] }} </strong><i> Síntese cabalística</i></li>
-                                <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.tonicDay['synthesis']} ) }}">Analisar Arcano</a></li>
-                            </ul>
-                            <div class="card" style="width: 8rem">
+                            <div class="block-list">
+                                <ul id="block-list-center">
+                                    <li><code>Descrição</code><strong> {{ cabala.tonicDay['name'] }} </strong><i> Carta do Tarot</i></li>
+                                    <li><code>Síntese</code><strong> {{ cabala.tonicDay['synthesis'] }} </strong><i> Síntese cabalística</i></li>
+                                    <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.tonicDay['synthesis']} ) }}">Analisar Arcano</a></li>
+                                </ul>
+                            </div>
+                            <div class="card" style="width: 8rem; margin:0 auto">
                                 <img src="{{ cabala.tonicDay['image'] }}" class="card-img-bottom hover-zoom">
                             </div>
                             {% if cabala.fundamentalTonic is not null %}
@@ -265,12 +271,12 @@
                                                         <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
                                                             <div class="panel-body">
                                                                 <div class="timeline-content">
-                                                                    <ul>
+                                                                    <ul id="block-list-left">
                                                                         <li><code>Data:</code><strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
                                                                         <li><code>Parcial</code><strong> {{ cabala.eventDay.partial['partial'] }} </strong><i> Resultado Parcial </i></li>
                                                                         <li><code>Descrição</code><strong> {{ cabala.eventDay.partial['name'] }} </strong><i> Carta do Tarot</i></li>
                                                                         <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.eventDay.partial['partial']} ) }}">Resultado Parcial</a></li>
-                                                                    </ul>
+                                                                        A Urgência Interior é a soma cabalistica que determina um dos aspectos mais importantes que a pessoa               </ul>
                                                                     <div class="custom-container">
                                                                         <div class="card-items justify-content-center wrap">
                                                                             <div class="card" style="width: 8rem">
@@ -306,7 +312,7 @@
                                                         <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
                                                             <div class="panel-body">
                                                                 <div class="timeline-content">
-                                                                    <ul>
+                                                                    <ul id="block-list-left">
                                                                         <li><code>Data:</code> <strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
                                                                         <li><code>Síntese</code> <strong> {{ cabala.eventDay.synthesis['tonicDay'] }} </strong><i>Resultado Final</i></li>
                                                                         <li><code>Descrição</code><strong> {{ cabala.eventDay.synthesis['name'] }} </strong><i> Carta do Tarot</i></li>
@@ -346,7 +352,7 @@
                                                     <div id="collapseFive" class="panel-collapse collapse" role="tabpanel">
                                                         <div class="panel-body">
                                                             <div class="timeline-content">
-                                                                <ul>
+                                                                <ul id="block-list-left">
                                                                     <li><code>Data:</code><strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia.</i></li>
                                                                     <li><code>Hora:</code><strong> {{ cabala.eventDay.hours }} </strong> <i>Hora selecionada pelo consultante.</i></li>
                                                                     <li><code>Acontecimento do dia</code><strong> {{ cabala.eventDay.eventDay['eventDay'] }} </strong><i> Arcano para o acontecimento do dia onde às {{ cabala.eventDay.hours }}h é a hora mais importante.</i></li>

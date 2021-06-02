@@ -48,4 +48,23 @@ class ProfileService
 
         return $this->zodiac->mountSign();
     }
+
+    public function getAllZodiac(): array
+    {
+        $zodiacs = $this->profileRepository->findAllZodiac();
+        $finalArray = [];
+
+        foreach ($zodiacs as $zodiac)
+        {
+            foreach ($zodiac as $value)
+            {
+                array_push($finalArray, $value['signImg']);
+            }
+        }
+
+        $finalArray = array_count_values($finalArray);
+
+        return $finalArray;
+
+    }
 }

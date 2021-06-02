@@ -55,6 +55,22 @@ body {
     border-color: #B68CC7;
 }
 
+.block-list{
+    padding: 20px 0 20px 0;
+    margin:0 auto;
+    text-align: center;
+}
+
+
+
+#block-list-left{
+    list-style-type: none;
+}
+
+#block-list-center{
+    list-style-type: none;
+}
+
 /*Container utilizado para páginas com conteúdo central*/
 .custom-container{
     display: flex;
