@@ -1,6 +1,10 @@
 ###> PHP Storm ###
 /.idea/workspace.xml
 
+
+###> Upload files
+/public/uploads/*
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php

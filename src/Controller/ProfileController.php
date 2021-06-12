@@ -122,7 +122,7 @@ class ProfileController extends AbstractController
                 $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
+                $newFilename = $safeFilename . '-' . md5(uniqid()) . '.' . $brochureFile->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
