@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class ProfileType extends AbstractType
 {
@@ -65,7 +66,7 @@ class ProfileType extends AbstractType
                     'class' => 'mb-3'
                 ]
             ])
-            ->add('my_file', FileType::class, [
+            ->add('image', FileType::class, [
                 'required' => false,
                 'mapped' => false,
                 'label' => 'Foto do Perfil',

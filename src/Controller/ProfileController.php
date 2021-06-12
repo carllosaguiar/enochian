@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\File;
+
 
 class ProfileController extends AbstractController
 {
@@ -32,26 +36,41 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile/create", name="create")
      * @param Request $request
+     * @param SluggerInterface $slugger
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function create(Request $request): Response
+    public function create(Request $request, SluggerInterface $slugger): Response
     {
 
         $profile = new Profile();
         $form = $this->createForm(ProfileType::class, $profile);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $file = $request->files->get('profile')['my_file'];
+            $brochureFile = $form->get('image')->getData();
 
-            $uploads_directory = $this->getParameter('uploads_directory');
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . md5(uniqid()) . '.' . $brochureFile->guessExtension();
 
-            $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                // Move the file to the directory where brochures are stored
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
 
-            $file->move($uploads_directory, $filename);
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $profile->setImage($newFilename);
+            }
 
             $date = $form->get('birthDate')->getViewData();
 
@@ -61,8 +80,6 @@ class ProfileController extends AbstractController
 
             $resultZodiac = $this->profile->generateZodiac($day, $month);
             $profile->setZodiac($resultZodiac);
-
-            $profile->setImage($filename);
 
             $em = $this->getDoctrine()->getManager();
             $user = $this->security->getUser();
@@ -86,53 +103,61 @@ class ProfileController extends AbstractController
     /**
      * @Route ("/profile/{id}/edit", name="update")
      * @param Request $request
+     * @param SluggerInterface $slugger
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function editProfile(Request $request): Response
+    public function editProfile(Request $request, SluggerInterface $slugger): Response
     {
         $userProfile = $this->profile->getUserProfile();
 
         $form = $this->createForm(ProfileType::class, $userProfile);
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
 
-            if($request->files->get('profile')['my_file'] != null)
-            {
-                $file = $request->files->get('profile')['my_file'];
+            $brochureFile = $form->get('image')->getData();
 
-                $uploads_directory = $this->getParameter('uploads_directory');
+            if ($brochureFile) {
+                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
 
-                $filename = md5(uniqid()) . '.' . $file->guessExtension();
+                // Move the file to the directory where brochures are stored
+                try {
+                    $brochureFile->move(
+                        $this->getParameter('uploads_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
 
-                $file->move($uploads_directory, $filename);
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $userProfile->setImage($newFilename);
 
-                $userProfile->setImage($filename);
+                $date = $form->get('birthDate')->getViewData();
 
+                $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
+                $day = $dateFormat->format('d');
+                $month = $dateFormat->format('m');
+
+                $resultZodiac = $this->profile->generateZodiac($day, $month);
+                $userProfile->setZodiac($resultZodiac);
+
+                $updateUser = $form->getData();
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($updateUser);
+                $em->flush();
+
+                $this->addFlash('success', "Perfil atualizado!");
+
+                return $this->redirectToRoute('create');
             }
-
-            $date = $form->get('birthDate')->getViewData();
-
-            $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
-            $day = $dateFormat->format('d');
-            $month = $dateFormat->format('m');
-
-            $resultZodiac = $this->profile->generateZodiac($day, $month);
-            $userProfile->setZodiac($resultZodiac);
-
-            $updateUser = $form->getData();
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($updateUser);
-            $em->flush();
-
-            $this->addFlash('success', "Perfil atualizado!");
-
-            return $this->redirectToRoute('create');
         }
-
         return $this->render('profile/update.html.twig', [
             'form_profile' => $form->createView(),
             'userProfile' => $userProfile
