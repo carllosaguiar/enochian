@@ -70,11 +70,14 @@ class CabalaService
 
         $arrayLength = count($allCabala);
 
-        $birthCabala = ($birthCabala / $arrayLength) * 100;
-        $innerUrgency = ($innerUrgency / $arrayLength) * 100;
-        $fundamentalTonic = ($fundamentalTonic / $arrayLength) * 100;
-        $tonicDay = ($tonicDay / $arrayLength) * 100;
-        $eventDay = ($eventDay / $arrayLength) * 100;
+
+        if($arrayLength != 0) {
+            $birthCabala = ($birthCabala / $arrayLength) * 100;
+            $innerUrgency = ($innerUrgency / $arrayLength) * 100;
+            $fundamentalTonic = ($fundamentalTonic / $arrayLength) * 100;
+            $tonicDay = ($tonicDay / $arrayLength) * 100;
+            $eventDay = ($eventDay / $arrayLength) * 100;
+        }
 
         return [
             'birthCabala' => floor($birthCabala),
@@ -83,6 +86,7 @@ class CabalaService
             'tonicDay' => floor($tonicDay),
             'eventDay' => floor($eventDay)
         ];
+
     }
 
     /**
