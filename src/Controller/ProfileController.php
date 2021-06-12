@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Profile;
 use App\Form\ProfileType;
+use App\Service\FileUploader;
 use App\Service\ProfileService;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -36,11 +37,11 @@ class ProfileController extends AbstractController
     /**
      * @Route("/profile/create", name="create")
      * @param Request $request
-     * @param SluggerInterface $slugger
+     * @param FileUploader $fileUploader
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function create(Request $request, SluggerInterface $slugger): Response
+    public function create(Request $request, FileUploader $fileUploader): Response
     {
 
         $profile = new Profile();
@@ -52,23 +53,7 @@ class ProfileController extends AbstractController
             $brochureFile = $form->get('image')->getData();
 
             if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . md5(uniqid()) . '.' . $brochureFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $brochureFile->move(
-                        $this->getParameter('uploads_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
+                $newFilename = $fileUploader->upload($brochureFile);
                 $profile->setImage($newFilename);
             }
 
@@ -103,41 +88,24 @@ class ProfileController extends AbstractController
     /**
      * @Route ("/profile/{id}/edit", name="update")
      * @param Request $request
-     * @param SluggerInterface $slugger
+     * @param FileUploader $fileUploader
      * @return Response
      * @throws NonUniqueResultException
      */
-    public function editProfile(Request $request, SluggerInterface $slugger): Response
+    public function editProfile(Request $request, FileUploader $fileUploader): Response
     {
         $userProfile = $this->profile->getUserProfile();
-
         $form = $this->createForm(ProfileType::class, $userProfile);
-
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $brochureFile = $form->get('image')->getData();
 
-            if ($brochureFile) {
-                $originalFilename = pathinfo($brochureFile->getClientOriginalName(), PATHINFO_FILENAME);
-                // this is needed to safely include the file name as part of the URL
-                $safeFilename = $slugger->slug($originalFilename);
-                $newFilename = $safeFilename . '-' . uniqid() . '.' . $brochureFile->guessExtension();
-
-                // Move the file to the directory where brochures are stored
-                try {
-                    $brochureFile->move(
-                        $this->getParameter('uploads_directory'),
-                        $newFilename
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
-
-                // updates the 'brochureFilename' property to store the PDF file name
-                // instead of its contents
+            if ($userProfile->getImage()) {
+                $newFilename = $fileUploader->upload($brochureFile);
                 $userProfile->setImage($newFilename);
-
+            }
                 $date = $form->get('birthDate')->getViewData();
 
                 $dateFormat = \DateTime::createFromFormat('Y-m-d', $date);
@@ -157,7 +125,7 @@ class ProfileController extends AbstractController
 
                 return $this->redirectToRoute('create');
             }
-        }
+
         return $this->render('profile/update.html.twig', [
             'form_profile' => $form->createView(),
             'userProfile' => $userProfile
