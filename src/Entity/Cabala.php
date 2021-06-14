@@ -346,11 +346,11 @@ class Cabala
         $year = array_sum(str_split($dateFormat->format('Y')));
         $hours = (int)$dateFormat->format('H');
         $yearFormat =  (int)$dateFormat->format('Y');
+
+        $dateFull = $dateFormat->format('d-m-Y');
         $daySynthesis = array_sum(str_split($day));
         $monthSynthesis = array_sum(str_split($month));
         $yearSynthesis = array_sum(str_split($year));
-
-        $dateFull = $dateFormat->format('d-m-Y');
 
         if($yearSynthesis > 9)
         {
@@ -364,14 +364,9 @@ class Cabala
             $dateSynthesis = array_sum(str_split($dateSynthesis));
         }
 
-        $partial = $dateSynthesis + $fundamentalTonic[0];
+        $partial = $dateSynthesis + 5;
 
-        $tonicDay;
-
-        if($partial > 9 )
-        {
-            $tonicDay = array_sum(str_split($partial));
-        }
+        $tonicDay = array_sum(str_split($partial));
 
         $eventDay = $tonicDay + $hours;
 
