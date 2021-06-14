@@ -12,7 +12,7 @@
                         {% if userProfile is empty %}
                             <img src="{{asset('images/avatar.jpg')}}" alt="Avatar" class="rounded-circle" width="180">
                         {% else %}
-                        <img src="{{ asset('uploads/') ~ userProfile.image }}" alt="Avatar" class="rounded-circle" style="height: 180px; width: 180px" width="180"/>
+                        <img src="{{ asset(userProfile.image) }}" alt="Avatar" class="rounded-circle" style="height: 180px; width: 180px" width="180"/>
                         <div class="mt-3">
                             <h4>{{ userProfile.name }}</h4>
                             {% if userProfile.comment is not empty %}
