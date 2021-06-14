@@ -251,7 +251,7 @@
                                     <ul class="timeline">
                                         <li class="timeline-line"></li>
                                         <li class="timeline-group">
-                                            <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }}</a>
+                                            <a href="#" class="btn btn-primary"><i class="fa fa-calendar"></i> {{ cabala.eventDay.dateFull }}</a>
                                         </li>
                                     </ul>
                                     <ul class="timeline panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -272,7 +272,7 @@
                                                             <div class="panel-body">
                                                                 <div class="timeline-content">
                                                                     <ul id="block-list-left">
-                                                                        <li><code>Data:</code><strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
+                                                                        <li><code>Data:</code><strong> {{ cabala.eventDay.dateFull }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
                                                                         <li><code>Parcial</code><strong> {{ cabala.eventDay.partial['partial'] }} </strong><i> Resultado Parcial </i></li>
                                                                         <li><code>Descrição</code><strong> {{ cabala.eventDay.partial['name'] }} </strong><i> Carta do Tarot</i></li>
                                                                         <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.eventDay.partial['partial']} ) }}">Resultado Parcial</a></li>
@@ -313,7 +313,7 @@
                                                             <div class="panel-body">
                                                                 <div class="timeline-content">
                                                                     <ul id="block-list-left">
-                                                                        <li><code>Data:</code> <strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
+                                                                        <li><code>Data:</code> <strong> {{ cabala.eventDay.dateFull }} </strong> <i>Data selecionada para analise do acontecimento do dia</i></li>
                                                                         <li><code>Síntese</code> <strong> {{ cabala.eventDay.synthesis['tonicDay'] }} </strong><i>Resultado Final</i></li>
                                                                         <li><code>Descrição</code><strong> {{ cabala.eventDay.synthesis['name'] }} </strong><i> Carta do Tarot</i></li>
                                                                         <li><code>Arcano</code> <a href="{{ path('arcane', {id: cabala.eventDay.synthesis['tonicDay']} ) }}">Analisar Arcano</a></li>
@@ -353,7 +353,7 @@
                                                         <div class="panel-body">
                                                             <div class="timeline-content">
                                                                 <ul id="block-list-left">
-                                                                    <li><code>Data:</code><strong> {{ cabala.eventDay.day ~ "/" ~ cabala.eventDay.month ~ "/" ~ cabala.eventDay.year }} </strong> <i>Data selecionada para analise do acontecimento do dia.</i></li>
+                                                                    <li><code>Data:</code><strong> {{ cabala.eventDay.dateFull }} </strong> <i>Data selecionada para analise do acontecimento do dia.</i></li>
                                                                     <li><code>Hora:</code><strong> {{ cabala.eventDay.hours }} </strong> <i>Hora selecionada pelo consultante.</i></li>
                                                                     <li><code>Acontecimento do dia</code><strong> {{ cabala.eventDay.eventDay['eventDay'] }} </strong><i> Arcano para o acontecimento do dia onde às {{ cabala.eventDay.hours }}h é a hora mais importante.</i></li>
                                                                     <li><code>Descrição</code><strong> {{ cabala.eventDay.eventDay['name'] }} </strong><i> Carta do Tarot</i></li>
