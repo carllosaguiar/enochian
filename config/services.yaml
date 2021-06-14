@@ -21,6 +21,11 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+            - '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+
+    App\Service\FileUploader:
+        arguments:
+            $targetDirectory: 'uploads/profile/'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
