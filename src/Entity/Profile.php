@@ -40,7 +40,7 @@ class Profile
     private $comment;
 
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -118,16 +118,12 @@ class Profile
 
     public function getImage()
     {
-        if($this->image != null)
-        {
-            return stream_get_contents($this->image);
-        }
-        return $this->image;
+        return 'uploads/profile/'.$this->image;
     }
 
     public function setImage($image): self
     {
-        $this->image = (string) $image;
+        $this->image = $image;
 
         return $this;
     }
