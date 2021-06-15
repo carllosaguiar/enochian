@@ -277,11 +277,16 @@ class Cabala
         $totalCaracteres = strlen($string);
         $synthesis = array_sum(str_split($totalCaracteres));
 
-        $int = (int)$innerUrgency[0];
-        $sum = $synthesis + $int;
-        $synthesis = strlen($sum);
+        $urgency = (int)$innerUrgency[0];
 
-        $result = $this->findArcaneByNumericSynthesis($synthesis, $arcanes);
+        if($synthesis > 9)
+        {
+            $synthesis = strlen($synthesis);
+        }
+
+        $sum = $synthesis + $urgency;
+
+        $result = $this->findArcaneByNumericSynthesis($sum, $arcanes);
 
         return $result;
     }

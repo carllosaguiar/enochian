@@ -2,8 +2,7 @@
 
 {% block title %}Enochian | Register{% endblock %}
 {% block body %}
-<div class="custom-container container">
-    <div class="container" style="width: 500px; padding-top: 50px">
+<div class="container" style="width: 500px">
         {{ form_start(form) }}
         <div class="mb-3">
             {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
@@ -14,10 +13,12 @@
         <div class="mb-3">
             {{ form_row(form.password.second, {'attr': {'class': 'form-control'}}) }}
         </div>
-        <div class="mb-3">
-            <button type="submit" class="btn btn-outline-primary">Enviar</button>
+        <div class="mb-3 d-grid gap-2">
+            <button type="submit" class="btn btn-outline-primary btn-sm">Enviar</button>
+        </div>
+        <div class="mb-3 d-grid gap-2">
+            <a type="button" href="{{ path('app_login') }}" class="btn btn-outline-primary btn-sm">Retornar ao Login</a>
         </div>
         {{ form_end(form) }}
-    </div>
 </div>
 {% endblock %}
