@@ -12,13 +12,18 @@
                             {% if userProfile is empty %}
                                 <img src="{{asset('images/avatar.jpg')}}" alt="Avatar" class="rounded-circle" width="180">
                             {% else %}
-                                <img src="{{ asset(userProfile.image) }}" alt="Avatar" class="rounded-circle" width="180"/>
+                                <img src="{{ asset(userProfile.image) }}" alt="Avatar" class="rounded-circle" style="height: 180px; width: 180px" width="180"/>
+                                <div class="mt-3">
+                                    <h4>{{ userProfile.name }}</h4>
+                                    {% if userProfile.comment is not empty %}
+                                        <p class="text-secondary mb-1">{{ userProfile.comment }}</p>
+                                        <div class="mt-3">
+                                            <img src="{{ userProfile.zodiac['signImg'] }}" alt="{{ userProfile.zodiac['sign'] }}">
+                                        </div>
+                                    {% endif %}
+                                    <a href="{{ path('personal_cabala') }}" class="btn btn-outline-primary">Ver Cabala Pessoal</a>
+                                </div>
                             {% endif %}
-                            <div class="mt-3">
-                                <h4>{{ app.user.username }}</h4>
-                                <p class="text-secondary mb-1">Full Stack Developer</p>
-                                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-                            </div>
                         </div>
                     </div>
                 </div>
