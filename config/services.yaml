@@ -25,7 +25,7 @@ services:
 
     App\Service\FileUploader:
         arguments:
-            $targetDirectory: 'uploads/profile/'
+            $targetDirectory: '%uploads_directory%'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
