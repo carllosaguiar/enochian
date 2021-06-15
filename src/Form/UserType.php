@@ -32,7 +32,7 @@ class UserType extends AbstractType
                     ]
                 ],
                 'second_options' => [
-                    'label' => 'Confirm Senha',
+                    'label' => 'Confirme a senha',
                     'attr' => [
                         'placeholder' => 'Senha'
                     ]
