@@ -351,6 +351,8 @@ class Cabala
         $daySynthesis = array_sum(str_split($day));
         $monthSynthesis = array_sum(str_split($month));
         $yearSynthesis = array_sum(str_split($year));
+        $tonicDay = 0;
+        $eventDay = 0;
 
         if($yearSynthesis > 9)
         {
@@ -364,11 +366,17 @@ class Cabala
             $dateSynthesis = array_sum(str_split($dateSynthesis));
         }
 
-        $partial = $dateSynthesis + 5;
+        $partialValueTonicDay = $dateSynthesis + $fundamentalTonic[0];
 
-        $tonicDay = array_sum(str_split($partial));
+        if($partialValueTonicDay > 9)
+        {
+            $tonicDay = array_sum(str_split($partialValueTonicDay));
+            $eventDay = $tonicDay + $hours;
+        } else {
+            $eventDay = $partialValueTonicDay + $hours;
+            $tonicDay = $partialValueTonicDay;
+        }
 
-        $eventDay = $tonicDay + $hours;
 
         if($eventDay > 9)
         {
@@ -377,12 +385,12 @@ class Cabala
 
         foreach ($arcanes as $arcane)
         {
-            if($partial == $arcane->getId())
+            if($partialValueTonicDay == $arcane->getId())
             {
                 $firstResult = [
                     'name' => $arcane->getName(),
                     'image' => $arcane->getImage(),
-                    'partial' => $partial
+                    'partial' => $partialValueTonicDay
                 ];
             }
 
